@@ -24,7 +24,7 @@
                                     <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                                 </h4>
                                 <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">crime</a>,
+                                    <a class="content-link" href="movies-blocks.html">horror</a>,
                                     <a class="content-link" href="movies-blocks.html">action</a>
                                 </div>
                                 <div class="entity-info">
@@ -93,10 +93,11 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">Spacesweepers</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
                                 </h4>
                                 <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">Fantasy</a>
+                                    <a class="content-link" href="movies-blocks.html">Action</a>
+                                    <a class="content-link" href="movies-blocks.html">Adventure</a>
                                 </div>
                                 <div class="entity-info">
                                     <div class="info-lines">
@@ -232,7 +233,7 @@
                             <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                         </h4>
                         <div class="entity-category">
-                            <a class="content-link" href="movies-blocks.html">crime</a>,
+                            <a class="content-link" href="movies-blocks.html">horror</a>,
                             <a class="content-link" href="movies-blocks.html">action</a>
                         </div>
                         <div class="entity-info">
@@ -281,7 +282,7 @@
                 <article class="movie-line-entity">
                     <div class="entity-poster" data-role="hover-wrap">
                         <div class="embed-responsive embed-responsive-poster">
-                            <img class="embed-responsive-item" src="images/joose.jpeg" alt="" />
+                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
                         </div>
                         <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                             <div class="entity-play">
@@ -293,11 +294,11 @@
                     </div>
                     <div class="entity-content">
                         <h4 class="entity-title">
-                            <a class="content-link" href="index.php?page=movie-info">Joose</a>
+                            <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
                         </h4>
                         <div class="entity-category">
-                            <a class="content-link" href="movies-blocks.html">Melodrama</a>,
-                            <a class="content-link" href="movies-blocks.html">Romance</a>
+                            <a class="content-link" href="movies-blocks.html">Action</a>,
+                            <a class="content-link" href="movies-blocks.html">Adventure</a>
                         </div>
                         <div class="entity-info">
                             <div class="info-lines">

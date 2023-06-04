@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                         <div class="entity-play">
-                                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=T0uRwQHQgEQ" data-magnific-popup="iframe">
                                                 <span class="icon-content"><i class="fas fa-play"></i></span>
                                             </a>
                                         </div>
@@ -66,8 +66,7 @@
                                         </li>
                                         <li>
                                             <span class="entity-list-title">Production company:</span>
-                                            <a class="content-link" href="index.php?page=production">Bidangil Pictures</a>,
-                                            <a class="content-link" href="index.php?page=production">Dexter Studios</a>
+                                            Bidangil Pictures, Dexter Studios
                                         </li>
                                         <li>
                                             <span class="entity-list-title">Country:</span>South Korea
@@ -84,10 +83,9 @@
                                 <h2 class="section-title text-uppercase text-dark">Synopsis</h2>
                             </div>
                             <div class="section-description">
-                                <p class="lead">Lead text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                <h6 class="text-dark">Why do we use it?</h6>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                                <h6 class="text-dark">Where does it come from?</h6>
+                                <p class="lead">The movie is set in the year 2092 where Earth is uninhabitable. A new orbiting home for humanity is built by UTS corporation, but only the elite are permitted to become citizens while others are left on Earth. The film follows a crew of space sweepers who work for UTS collecting space debris and selling it to the company factory. The crew discovers a child robot named Dorothy who contains a weapon of mass destruction created by the terrorist group Black Fox. They negotiate a ransom for returning Dorothy, but their plan is foiled when UTS soldiers stage a massacre at the club where the exchange was supposed to take place. 
+                                The crew must navigate this dangerous situation while also dealing with their own personal struggles.</p>
+                                <h6 class="text-dark">Cast</h6>
                                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
                                 <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
                             </div>
@@ -298,41 +296,35 @@
                         <div class="section-head">
                             <h2 class="section-title text-uppercase text-dark">Latest movies</h2>
                         </div>
-                        <div class="movie-short-line-entity">
-                            <a class="entity-preview" href="movie-info-sidebar-right.html">
-                                <span class="embed-responsive embed-responsive-16by9">
-                                    <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
-                                </span>
-                            </a>
+                        <div class="movie-short-line-entity">                          
+                            <span class="entity-preview embed-responsive embed-responsive-16by9">
+                                <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
+                            </span>                    
                             <div class="entity-content ">
                                 <h4 class="entity-title  text-dark">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Train To Busan</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                                 </h4>
                                 <p class="entity-subtext">20 Jul 2016</p>
                             </div>
                         </div>
-                        <div class="movie-short-line-entity">
-                            <a class="entity-preview" href="movie-info-sidebar-right.html">
-                                <span class="embed-responsive embed-responsive-16by9">
-                                    <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
-                                </span>
-                            </a>
+                        <div class="movie-short-line-entity">             
+                            <span class="entity-preview embed-responsive embed-responsive-16by9">
+                                <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
+                            </span>                           
                             <div class="entity-content">
-                                <h4 class="entity-title  text-dark">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Space Sweepers</a>
+                                <h4 class="entity-title text-dark">
+                                    <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
                                 </h4>
                                 <p class="entity-subtext">5 Feb 2021</p>
                             </div>
                         </div>
                         <div class="movie-short-line-entity">
-                            <a class="entity-preview" href="movie-info-sidebar-right.html">
-                                <span class="embed-responsive embed-responsive-16by9">
-                                    <img class="embed-responsive-item" src="images/hidayah.jpg" alt=""/>
-                                </span>
-                            </a>
+                            <span class="entity-preview embed-responsive embed-responsive-16by9">
+                                <img class="embed-responsive-item" src="images/hidayah.jpg" alt=""/>
+                            </span>                         
                             <div class="entity-content">
                                 <h4 class="entity-title  text-dark">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Hidayah</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
                                 </h4>
                                 <p class="entity-subtext">13 Jan 2023</p>
                             </div>

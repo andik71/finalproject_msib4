@@ -24,25 +24,18 @@
                                         <div class="input-view-flat input-group">
                                             <select class="form-control" name="genre">
                                                 <option selected="true">genre</option>
-                                                <option>action</option>
-                                                <option>adventure</option>
-                                                <option>comedy</option>
-                                                <option>crime</option>
-                                                <option>detective</option>
-                                                <option>drama</option>
-                                                <option>fantasy</option>
-                                                <option>melodrama</option>
-                                                <option>romance</option>
-                                                <option>superhero</option>
-                                                <option>supernatural</option>
-                                                <option>thriller</option>
-                                                <option>sport</option>
-                                                <option>historical</option>
-                                                <option>horror</option>
-                                                <option>musical</option>
-                                                <option>sci-fi</option>
-                                                <option>war</option>
-                                                <option>western</option>
+                                                <option>Action</option>
+                                                <option>Crime</option>
+                                                <option>Thriller</option>
+                                                <option>Adventure</option>
+                                                <option>Fantasy</option>
+                                                <option>Horror</option>
+                                                <option>Biography</option>
+                                                <option>History</option>
+                                                <option>Family</option>
+                                                <option>Drama</option>
+                                                <option>Romance</option>
+                                                <option>Comedy</option>
                                             </select>
                                         </div>
                                     </div>

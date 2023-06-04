@@ -4,7 +4,7 @@
         <div class="top-block-content">
             <h1 class="section-title">Contact us</h1>
             <div class="page-breadcrumbs">
-                <a class="content-link" href="#">Home</a>
+                <a class="content-link" href="index.php?page=home">Home</a>
                 <span class="text-theme mx-2"><i class="fas fa-chevron-right"></i></span>
                 <span>Contact us</span>
             </div>
@@ -12,7 +12,7 @@
     </div>
 </section>
 <section>
-            <div class="gmap-with-map bg-white">
+    <div class="gmap-with-map bg-white">
                 <div class="gmap" data-lat="-50.878897" data-lng="151.103737">
                     <iframe style="border:0; width: 100%; height: 500px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.94212418348434!2d112.61591113524486!3d-7.9433266018527355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788274e9c41b51%3A0xb66aa2d4fd7ab2e5!2sStudio%20Rupa%20Malang%20Store!5e0!3m2!1sid!2sid!4v1685096592149!5m2!1sid!2sid" frameborder="0" allowfullscreen></iframe>
                 </div>
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+    </div>
+</section>
 <section class="section bg-white text-center">
     <div class="container">
         <div class="grid row">

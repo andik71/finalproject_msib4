@@ -21,7 +21,7 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Train To Busan</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="movies-blocks.html">crime</a>,
@@ -57,7 +57,7 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Joose</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Joose</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="movies-blocks.html">Melodrama</a>,
@@ -93,7 +93,7 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Spacesweepers</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Spacesweepers</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="movies-blocks.html">Fantasy</a>
@@ -128,7 +128,7 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">True Beauty</a>
+                                    <a class="content-link" href="index.php?page=movie-info">True Beauty</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="movies-blocks.html">drama</a>,
@@ -164,7 +164,7 @@
                                     </a>
                                 </div>
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="movie-info-sidebar-right.html">Doom At Your Service</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Doom At Your Service</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="movies-blocks.html">Fantasy</a>,
@@ -211,7 +211,7 @@
 <section class="section-long">
             <div class="container">
                 <div class="section-head">
-                    <h2 class="section-title text-uppercase">RECENTLY ADDED</h2>
+                    <h2 class="section-title text-uppercase">LATEST MOVIES</h2>
                     <p class="section-text">Dates: 13 - 15 Mei 2023</p>
                 </div>
                 <article class="movie-line-entity">
@@ -229,7 +229,7 @@
                     </div>
                     <div class="entity-content">
                         <h4 class="entity-title">
-                            <a class="content-link" href="movie-info-sidebar-right.html">Train To Busan</a>
+                            <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                         </h4>
                         <div class="entity-category">
                             <a class="content-link" href="movies-blocks.html">crime</a>,
@@ -293,7 +293,7 @@
                     </div>
                     <div class="entity-content">
                         <h4 class="entity-title">
-                            <a class="content-link" href="movie-info-sidebar-right.html">Joose</a>
+                            <a class="content-link" href="index.php?page=movie-info">Joose</a>
                         </h4>
                         <div class="entity-category">
                             <a class="content-link" href="movies-blocks.html">Melodrama</a>,
@@ -357,7 +357,7 @@
                     </div>
                     <div class="entity-content">
                         <h4 class="entity-title">
-                            <a class="content-link" href="movie-info-sidebar-right.html">Hidayah</a>
+                            <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
                         </h4>
                         <div class="entity-category">
                             <a class="content-link" href="movies-blocks.html">Horror</a>,
@@ -431,7 +431,7 @@
                                 </div>
                                 <div class="entity-content">
                                     <h4 class="entity-title">
-                                        <a class="content-link" href="movie-info-sidebar-right.html">The Conjuring 4</a>
+                                        <a class="content-link" href="index.php?page=movie-info">The Conjuring 4</a>
                                     </h4>
                                     <div class="entity-category">
                                         <a class="content-link" href="movies-blocks.html">Horror</a>,
@@ -471,7 +471,7 @@
                                 </div>
                                 <div class="entity-content">
                                     <h4 class="entity-title">
-                                        <a class="content-link" href="movie-info-sidebar-right.html">Miracle In Cell</a>
+                                        <a class="content-link" href="index.php?page=movie-info">Miracle In Cell</a>
                                     </h4>
                                     <div class="entity-category">
                                         <a class="content-link" href="movies-blocks.html">drama</a>,
@@ -540,7 +540,7 @@
                             </a>
                             <div class="entity-content">
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="article-sidebar-right.html">Gita Cinta Dari SMP</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Gita Cinta Dari SMP</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="news-blocks-sidebar-right.html">Drama</a>,
@@ -573,7 +573,7 @@
                             </a>
                             <div class="entity-content">
                                 <h4 class="entity-title">
-                                    <a class="content-link" href="article-sidebar-right.html">Buya Hamka</a>
+                                    <a class="content-link" href="index.php?page=movie-info">Buya Hamka</a>
                                 </h4>
                                 <div class="entity-category">
                                     <a class="content-link" href="news-blocks-sidebar-right.html">drama</a>,

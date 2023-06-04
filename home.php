@@ -209,7 +209,9 @@
         </div>
     </div>
 </section>
-<section class="section-long">
+
+<!-- New Movies Update -->
+<section class="section-long" id="new-movies">
             <div class="container">
                 <div class="section-head">
                     <h2 class="section-title text-uppercase">LATEST MOVIES</h2>
@@ -408,8 +410,10 @@
                     </div>
                 </article>
             </div>
-        </section>
-        <section class="section-solid-long section-text-white position-relative">
+</section>
+
+<!-- Upcoming Movies -->
+<section class="section-solid-long section-text-white position-relative" id="upcoming">
             <div class="container position-relative">
                 <div class="section-head">
                     <h2 class="section-title text-uppercase">Comming Soon</h2>
@@ -515,8 +519,10 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="section-long">
+</section>
+
+<!-- Movies List -->
+<section class="section-long">
             <div class="container">
                 <div class="section-head">
                     <h2 class="section-title text-uppercase">movies</h2>
@@ -590,11 +596,13 @@
                     </div>
                 </div>
                 <div class="section-bottom">
-                    <a class="btn btn-theme" href="news-blocks-sidebar-right.html">View All Movies</a>
+                    <a class="btn btn-theme" href="index.php?page=movie-list">View All Movies</a>
                 </div>
             </div>
-        </section>
-        <section>
+</section>
+
+<!-- COntact -->
+<section>
             <div class="gmap-with-map bg-white">
                 <div class="gmap" data-lat="-40.878897" data-lng="151.103737">
                     <iframe style="border:0; width: 100%; height: 570px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.94212418348434!2d112.61591113524486!3d-7.9433266018527355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788274e9c41b51%3A0xb66aa2d4fd7ab2e5!2sStudio%20Rupa%20Malang%20Store!5e0!3m2!1sid!2sid!4v1685096592149!5m2!1sid!2sid" frameborder="0" allowfullscreen></iframe>
@@ -634,6 +642,6 @@
                     </div>
                 </div>
             </div>
-        </section>
+</section>
 
            

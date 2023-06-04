@@ -15,16 +15,16 @@
                     <h5 class="footer-title text-uppercase">Movies</h5>
                     <ul class="list-unstyled list-wide footer-content">
                         <li>
-                            <a class="content-link" href="#">All Movies</a>
+                            <a class="content-link" href="index.php?page=movies_list">All Movies</a>
                         </li>
                         <li>
-                            <a class="content-link" href="#">Upcoming movies</a>
+                            <a class="content-link" href="index.php?page=home#upcoming">Upcoming movies</a>
                         </li>
                         <li>
-                            <a class="content-link" href="#">Top 10 movies</a>
+                            <a class="content-link" href="index.php?page=movies_top">Top 10 movies</a>
                         </li>
                         <li>
-                            <a class="content-link" href="#">New Movies Update</a>
+                            <a class="content-link" href="index.php?page=home#new-movies">New Movies Update</a>
                         </li>
                     </ul>
                 </div>

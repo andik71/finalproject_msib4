@@ -54,7 +54,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="movies-blocks.html">Movies</a>
+                                <a class="nav-link" href="index.php?page=movies_list">Movies</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact-us.html">About</a>

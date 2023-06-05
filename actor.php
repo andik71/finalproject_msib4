@@ -20,7 +20,7 @@
             <div class="card p-4">
                 <div class="grid row">                 
                     <div class="col-md-3">
-                    <img src="images/hidayah.jpg" alt="" srcset="" width="150px">
+                    <img src="images/song.jpg" alt="" srcset="" width="150px">
                     </div>
                     <div class="col-md-6 p-4">
                         <div class="row">

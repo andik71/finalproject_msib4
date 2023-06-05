@@ -57,7 +57,7 @@
                             <a class="nav-link" href="index.php?page=movies_list">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html">About</a>
+                            <a class="nav-link" href="index.php?page=about">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=contact">Contact us</a>

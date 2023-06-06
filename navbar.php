@@ -1,5 +1,5 @@
 <body class="body">
-        <header class="header header-horizontal header-view-pannel">
+        <header class="header header-horizontal header-view-pannel position-fixed">
             <div class="container">
                 <nav class="navbar">
                     <a class="navbar-brand" href="./">

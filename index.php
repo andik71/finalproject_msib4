@@ -7,7 +7,7 @@ require_once 'navbar.php';
 if ($_REQUEST['page']) {
     $page = $_REQUEST['page'];
     if (!empty($page)) {
-        require_once $page . '.php';
+        require_once $page . '.php' . '';
     } else {
         require_once '404.php';
     }

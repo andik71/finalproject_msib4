@@ -1,5 +1,5 @@
 <body class="body">
-    <header class="header header-horizontal header-view-pannel">
+    <header class="header header-horizontal header-view-pannel position-fixed">
         <div class="container">
             <nav class="navbar">
                 <a class="navbar-brand" href="./">
@@ -28,7 +28,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <ul class="list-unstyled px-2">
-                                            <li><a href="">Action</a></li>
+                                            <li><a href="index.php?page=genre">Action</a></li>
                                             <li><a href="">Crime</a></li>
                                             <li><a href="">Thriller</a></li>
                                             <li><a href="">Adventure</a></li>

@@ -1,4 +1,4 @@
-<section class="after-head d-flex section-text-white position-relative" style="background-image: url('images/image1.png');">
+<section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
     <div class="top-block top-inner container">
         <div class="top-block-content">

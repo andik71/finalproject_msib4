@@ -1,4 +1,4 @@
-<section class="after-head d-flex section-text-white position-relative" style="background-image: url('images/image1.png');">
+<section class="after-head d-flex section-text-white pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
     <div class="top-block top-inner container">
         <div class="top-block-content">
@@ -115,6 +115,130 @@
                     </div>
                     <div class="section-line">
                         <div class="section-head">
+                            <h2 class="section-title text-uppercase text-dark">Recommended For You</h2>
+                        </div>
+                        <div class="grid row">
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/northman.png" alt="" height="200px"/>
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">Northman</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/gundala.jpg" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">Gundala</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/top.png" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">Top Gun: Maverick</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/tanpaampun.jpg" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">Tanpa Ampun</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/vicenzo.jpeg" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">Vicenzo</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive  embed-responsive-4by3">
+                                            <img class="embed-responsive-item" src="images/uncharted.png" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+                                            </div>
+                                            <h4 class="entity-title">
+                                                <a class="content-link" href="index.php?page=movie-info">uncharted</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-bottom">
+                            <a class="btn btn-theme" href="index.php?page=genre">View All</a>
+                        </div>
+                    </div>
+                    <div class="section-line">
+                        <div class="section-head">
                             <h2 class="section-title text-uppercase text-dark">Comments</h2>
                         </div>
                         <div class="comment-entity">
@@ -122,7 +246,7 @@
                                 <div class="entity-content">
                                     <h4 class="entity-title text-dark">Lie Stone</h4>
                                     <p class="entity-subtext">07.08.2018, 14:33</p>
-                                    <p class="entity-text">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
+                                    <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
                                     </p>
                                 </div>
                                 <div class="entity-extra">
@@ -133,11 +257,6 @@
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                             </div>
                                         </div>
@@ -155,7 +274,7 @@
                                     <div class="entity-content">
                                         <h4 class="entity-title text-dark">Gabriel Norris</h4>
                                         <p class="entity-subtext">09.08.2018, 11:33</p>
-                                        <p class="entity-text">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
+                                        <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
                                         </p>
                                     </div>
                                     <div class="entity-extra">
@@ -176,7 +295,7 @@
                                 <div class="entity-content">
                                     <h4 class="entity-title text-dark">Keith Earlee</h4>
                                     <p class="entity-subtext">11.05.2018, 07:23</p>
-                                    <p class="entity-text">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
+                                    <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
                                     </p>
                                 </div>
                                 <div class="entity-extra">
@@ -187,11 +306,6 @@
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                                 <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                             </div>
                                         </div>
@@ -231,31 +345,6 @@
                                     <div class="rating-line">
                                         <label>Rating:</label>
                                         <div class="form-rating" name="rating">
-                                            <input type="radio" id="rating-10" name="rating" value="10" />
-                                            <label for="rating-10">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-9" name="rating" value="9" />
-                                            <label for="rating-9">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-8" name="rating" value="8" />
-                                            <label for="rating-8">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-7" name="rating" value="7" />
-                                            <label for="rating-7">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-6" name="rating" value="6" />
-                                            <label for="rating-6">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
                                             <input type="radio" id="rating-5" name="rating" value="5" />
                                             <label for="rating-5">
                                                 <span class="rating-active-icon"><i class="fas fa-star"></i></span>

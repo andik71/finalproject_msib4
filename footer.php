@@ -34,10 +34,10 @@
                     <div class="col-4">
                         <ul class="list-unstyled list-wide footer-content">
                             <li>
-                                <a class="content-link" href="#">Action</a>
+                                <a class="content-link" href="index.php?page=genre">Action</a>
                             </li>
                             <li>
-                                <a class="content-link" href="#">Crime</a>
+                                <a class="content-link" href="index.php?page=genre">Crime</a>
                             </li>
                             <li>
                                 <a class="content-link" href="#">Thriller</a>

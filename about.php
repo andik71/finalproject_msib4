@@ -21,10 +21,10 @@
       <div class="card p-3">
         <div class="grid row">
           <div class="col-md-3">
-            <img src="images/svg/moviegif.gif" alt="" srcset="" width="250px">
+            <img src="images/svg/gif.gif" alt="" srcset="" width="250px">
           </div>
-          <div class="col-md-8">
-            <p align="left" style="letter-spacing: 2px; line-height: 30px; font-weight:bold; text-align:justify;" class="text-dark px-5">Film Kita merupakan sebuah web movie, sering dikenal sebagai situs streaming film, adalah platform online di mana pengguna dapat menonton film melalui internet. Web movie telah menjadi salah satu cara yang populer bagi orang untuk mengakses konten hiburan secara online.</p>
+          <div class="col-md-9">
+            <p align="left" style="letter-spacing: 2px; line-height: 30px; font-weight:550; text-align:justify; " class="text-dark px-5">Website streaming online dengan film kita adalah platform yang memungkinkan pengguna untuk menonton film secara online. Situs ini menawarkan koleksi film yang beragam dan dapat diakses melalui internet dari perangkat laptop atau komputer yang terhubung ke web. Desain situs ini didasarkan pada kenyamanan pengguna dan memastikan navigasi yang mudah. Pengguna dapat mencari film berdasarkan judul, genre,rilis tahun. Setiap film dalam koleksi diberikan deskripsi yang meliputi sinopsis, sutradara, pemain utama, genre, negara, bahasa, produksi dan ulasan pengguna. Pengguna juga dapat melihat trailer atau cuplikan singkat sebelum memutuskan untuk menonton film tersebut.</p>
           </div>
         </div>
       </div>
@@ -33,9 +33,9 @@
     <br>
   </div>
 </section>
-  <section class="bg-white">
+  <section class="bg-white p-4 pt-4">
     <div class="container">
-      <h2 class="text-dark font-weight-bold px-4">The Team</h2>
+      <h2 class="text-dark font-weight-bold">The Team</h2>
       <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
       `` <div class="col">
           <div class="card">

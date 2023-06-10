@@ -63,7 +63,12 @@
                                         <a class="content-link" href="index.php?page=actor">Song Joong-ki</a>,
                                         <a class="content-link" href="index.php?page=actor">Kim Tae-ri</a>,
                                         <a class="content-link" href="index.php?page=actor">Jin Seon-kyu</a>,
-
+                                    </li>
+                                    <li>
+                                        <span class="entity-list-title">Genre:</span>
+                                        <a class="content-link" href="index.php?page=actor">Action</a>,
+                                        <a class="content-link" href="index.php?page=actor">Sci-fi</a>,
+                                        <a class="content-link" href="index.php?page=actor">Adventure</a>,
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Production company:</span>
@@ -234,7 +239,7 @@
                             </div>
                         </div>
                         <div class="section-bottom">
-                            <a class="btn btn-theme" href="index.php?page=genre">View All</a>
+                            <a class="btn btn-theme" href="index.php?page=movie-list">View All</a>
                         </div>
                     </div>
                     <div class="section-line">
@@ -392,7 +397,7 @@
                         </span>
                         <div class="entity-content ">
                             <h4 class="entity-title  text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
+                                <a class="content-link" href="index.php?page=movie-info">Train  Busan</a>
                             </h4>
                             <p class="entity-subtext">20 Jul 2016</p>
                         </div>

@@ -169,7 +169,7 @@
                 <div class="entity-info text-dark">
                     <div class="info-lines">
                         <div class="info info-short">
-                        
+
                             <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
                             <span class="info-text">8,4</span>
                             <span class="info-rest">/10</span>

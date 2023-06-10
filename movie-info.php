@@ -121,8 +121,8 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/northman.png" alt="" height="200px"/>
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/northman.png" alt=""/>
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
@@ -140,7 +140,7 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="embed-responsive embed-responsive-1by1">
                                             <img class="embed-responsive-item" src="images/gundala.jpg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
@@ -159,7 +159,7 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="embed-responsive embed-responsive-1by1">
                                             <img class="embed-responsive-item" src="images/top.png" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
@@ -178,7 +178,7 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="embed-responsive embed-responsive-1by1">
                                             <img class="embed-responsive-item" src="images/tanpaampun.jpg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
@@ -197,7 +197,7 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
+                                        <div class="embed-responsive embed-responsive-1by1">
                                             <img class="embed-responsive-item" src="images/vicenzo.jpeg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
@@ -216,7 +216,7 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive  embed-responsive-4by3">
+                                        <div class="embed-responsive embed-responsive-1by1">
                                             <img class="embed-responsive-item" src="images/uncharted.png" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
@@ -383,11 +383,11 @@
             </div>
             <div class="sidebar section-long order-lg-last">
                 <section class="section-sidebar">
-                    <div class="section-head">
+                    <div class="section-head mb-3">
                         <h2 class="section-title text-uppercase text-dark">Latest movies</h2>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
+                    <div class="movie-short-line-entity pt-0">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
                             <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
                         </span>
                         <div class="entity-content ">
@@ -397,9 +397,9 @@
                             <p class="entity-subtext">20 Jul 2016</p>
                         </div>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
-                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
+                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt=""  />
                         </span>
                         <div class="entity-content">
                             <h4 class="entity-title text-dark">
@@ -408,8 +408,8 @@
                             <p class="entity-subtext">5 Feb 2021</p>
                         </div>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
                             <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
                         </span>
                         <div class="entity-content">

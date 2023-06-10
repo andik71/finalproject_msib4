@@ -392,7 +392,7 @@
                         </span>
                         <div class="entity-content ">
                             <h4 class="entity-title  text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
+                                <a class="content-link" href="index.php?page=movie-info">Train  Busan</a>
                             </h4>
                             <p class="entity-subtext">20 Jul 2016</p>
                         </div>

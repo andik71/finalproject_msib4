@@ -15,7 +15,7 @@
 <!-- Movies List -->
 <section class="bg-white pt-5 pb-5 ">
     <div class="container">
-        <div class="section-pannel">
+        <div class="section-pannel shadow-lg">
             <div class="grid row">
                 <div class="col-md-10">
                     <form autocomplete="off">
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <article class="movie-line-entity bg-white">
+        <article class="movie-line-entity bg-white shadow-lg">
             <div class="entity-poster" data-role="hover-wrap">
                 <div class="embed-responsive embed-responsive-poster">
                     <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
@@ -137,7 +137,7 @@
                 </div>
             </div>
         </article>
-        <article class="movie-line-entity bg-white">
+        <article class="movie-line-entity bg-white shadow-lg">
             <div class="entity-poster" data-role="hover-wrap">
                 <div class="embed-responsive embed-responsive-poster">
                     <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
@@ -201,7 +201,7 @@
                 </div>
             </div>
         </article>
-        <article class="movie-line-entity bg-white">
+        <article class="movie-line-entity bg-white shadow-lg">
             <div class="entity-poster" data-role="hover-wrap">
                 <div class="embed-responsive embed-responsive-poster">
                     <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />

@@ -96,7 +96,7 @@
                                     <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
                                 </h4>
                                 <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">Action</a>
+                                    <a class="content-link" href="index.php?page=genre">Action</a>
                                     <a class="content-link" href="movies-blocks.html">Adventure</a>
                                 </div>
                                 <div class="entity-info">
@@ -235,7 +235,7 @@
                     <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
                 </h4>
                 <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">horror</a>,
+                    <a class="content-link" href="index.php?page=genre">horror</a>,
                     <a class="content-link" href="movies-blocks.html">action</a>
                 </div>
                 <div class="entity-info">
@@ -299,7 +299,7 @@
                     <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
                 </h4>
                 <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">Action</a>,
+                    <a class="content-link" href="index.php?page=genre">Action</a>,
                     <a class="content-link" href="movies-blocks.html">Adventure</a>
                 </div>
                 <div class="entity-info">
@@ -596,12 +596,12 @@
             </div>
         </div>
         <div class="section-bottom">
-            <a class="btn btn-theme" href="index.php?page=movie-list">View All Movies</a>
+            <a class="btn btn-theme" href="index.php?page=movies_list">View All Movies</a>
         </div>
     </div>
 </section>
 
-<!-- COntact -->
+<!-- Contact -->
 <section>
     <div class="gmap-with-map bg-white">
         <div class="gmap" data-lat="-40.878897" data-lng="151.103737">

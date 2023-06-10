@@ -2,7 +2,7 @@
         <header class="header header-horizontal header-view-pannel position-fixed">
             <div class="container">
                 <nav class="navbar">
-                    <a class="navbar-brand" href="./">
+                    <a class="navbar-brand" href="index.php">
                         <span class="logo-element">
                             <span class="logo-tape">
                                 <img src="images/svg/logo-kita.png" alt="" srcset="" width="200px">

@@ -6,7 +6,7 @@
                     <a class="footer-logo" href="./">
                         <span class="logo-element">
                             <span class="logo-tape">
-                                <img src="images/svg/logo-kita.png" alt="" srcset="" width="200px">
+                                <img src="images/svg/logo-footer.png" alt="" srcset="" width="200px">
                             </span>
                         </span>
                     </a>

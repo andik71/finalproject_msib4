@@ -1,11 +1,12 @@
 <body class="body">
-    <header class="header header-horizontal header-view-pannel position-fixed">
-        <div class="container">
-            <nav class="navbar">
-                <a class="navbar-brand" href="./">
-                    <span class="logo-element">
-                        <span class="logo-tape">
-                            <img src="images/svg/logo-kita.png" alt="" srcset="" width="200px">
+        <header class="header header-horizontal header-view-pannel position-fixed">
+            <div class="container">
+                <nav class="navbar">
+                    <a class="navbar-brand" href="./">
+                        <span class="logo-element">
+                            <span class="logo-tape">
+                                <img src="images/svg/logo-kita.png" alt="" srcset="" width="200px">
+                            </span>
                         </span>
                     </span>
                 </a>

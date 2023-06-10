@@ -121,17 +121,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/parker.png" alt="" height="200px"/>
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/northman.png" alt=""/>
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://https://www.youtube.com/watch?v=HkL_zVPniI8" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Parker</a>
+                                                <a class="content-link" href="index.php?page=movie-info">Northman</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -140,17 +140,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/theking.png" alt="" />
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/gundala.jpg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=OpCgaYWYkgs" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">In The Name Of The King</a>
+                                                <a class="content-link" href="index.php?page=movie-info">Gundala</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -159,17 +159,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/war.png" alt="" />
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/top.png" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=tQ0mzXRk-oM" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">War</a>
+                                                <a class="content-link" href="index.php?page=movie-info">Top Gun: Maverick</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -178,17 +178,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/Expendables.png" alt="" />
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/tanpaampun.jpg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=DhlaBO-SwVE" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Expendables</a>
+                                                <a class="content-link" href="index.php?page=movie-info">Tanpa Ampun</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -197,17 +197,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/crank.png" alt="" />
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/vicenzo.jpeg" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=8rvYrVTnSWw" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Crank</a>
+                                                <a class="content-link" href="index.php?page=movie-info">Vicenzo</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -216,17 +216,17 @@
                             <div class="col-sm-6 col-lg-4">
                                 <div class="gallery-entity">
                                     <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive  embed-responsive-4by3">
-                                            <img class="embed-responsive-item" src="images/inception.png" alt="" />
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/uncharted.png" alt="" />
                                         </div>
                                         <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                             <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=YoHD9XEInc0" data-magnific-popup="iframe">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
                                                     <span class="icon-content"><i class="fas fa-play"></i></span>
                                                 </a>
                                             </div>
                                             <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Inception </a>
+                                                <a class="content-link" href="index.php?page=movie-info">uncharted</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -260,12 +260,6 @@
                                                 <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                             </div>
                                         </div>
-                                        <div class="ml-sm-auto col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -279,12 +273,7 @@
                                     </div>
                                     <div class="entity-extra">
                                         <div class="grid-md row">
-                                            <div class="ml-sm-auto col-auto">
-                                                <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                            </div>
-                                            <div class="col-auto">
-                                                <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
-                                            </div>
+                                    
                                         </div>
                                     </div>
                                 </div>
@@ -309,12 +298,7 @@
                                                 <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
                                             </div>
                                         </div>
-                                        <div class="ml-sm-auto col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -383,23 +367,23 @@
             </div>
             <div class="sidebar section-long order-lg-last">
                 <section class="section-sidebar">
-                    <div class="section-head">
+                    <div class="section-head mb-3">
                         <h2 class="section-title text-uppercase text-dark">Latest movies</h2>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
+                    <div class="movie-short-line-entity pt-0">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
                             <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
                         </span>
                         <div class="entity-content ">
                             <h4 class="entity-title  text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
+                                <a class="content-link" href="index.php?page=movie-info">Train  Busan</a>
                             </h4>
                             <p class="entity-subtext">20 Jul 2016</p>
                         </div>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
-                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
+                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt=""  />
                         </span>
                         <div class="entity-content">
                             <h4 class="entity-title text-dark">
@@ -408,8 +392,8 @@
                             <p class="entity-subtext">5 Feb 2021</p>
                         </div>
                     </div>
-                    <div class="movie-short-line-entity">
-                        <span class="entity-preview embed-responsive embed-responsive-16by9">
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
                             <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
                         </span>
                         <div class="entity-content">

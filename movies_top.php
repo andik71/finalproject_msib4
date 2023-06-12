@@ -382,8 +382,6 @@
                     </div>
                 </article>
             </div>
-
         </div>
-
     </div>
 </section>

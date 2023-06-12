@@ -955,3 +955,56 @@ function upload_file_movie($id = NULL)
 }
 
 // ==== END MOVIE CONTROLLER ==== //
+
+// ==== USER CONTROLLER ==== //
+// USER DELETE
+function delete_user($id)
+{
+    global $koneksi;
+
+    // Mengambil path file foto dari database berdasarkan id_user
+    $query = "SELECT img FROM user WHERE id_user = '$id'";
+    $result = mysqli_query($koneksi, $query);
+
+    if (!$result) {
+        // Query error handling
+        echo "<script>
+                alert('Terjadi kesalahan saat mengambil data dari database');
+                window.location.href = 'index.php?page=user';
+                </script>";
+        die();
+    }
+
+    // Mendapatkan path file foto sebelumnya (misalnya dari database)
+    $row = mysqli_fetch_assoc($result);
+    $img = $row['img'];
+
+    if ($img) {
+        // Menghapus file foto sebelumnya (jika ada)
+        if (file_exists($img)) {
+            unlink($img);
+        }
+    }
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "DELETE FROM user WHERE id_user = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
+// ==== END USER CONTROLLER ==== //

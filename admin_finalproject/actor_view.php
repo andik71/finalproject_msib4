@@ -30,11 +30,6 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                     <div class="mb-3">
                         <img src="<?= $data_actor['img'] ?>" class="img-thumbnail" alt="<?= $data_actor['img'] ?>">
                     </div>
-                    <!-- <div class="mb-3 me-2 text-center d-block">
-                       <h6 class="mx-3 text-light fw-bold"><?= strtoupper($data_actor['name']) ?></h6> 
-                        <label for="exampleFormControlInput4" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="" value="<?= strtoupper($data_actor['name']) ?>" disabled readonly>
-                    </div> -->
                 </div>
                 <!-- Right Grid -->
                 <div class="col-lg-8 col-md-6">

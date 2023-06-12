@@ -23,7 +23,7 @@ $no = 1;
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data category</p>
+    <p class="mb-4">Data Movie</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

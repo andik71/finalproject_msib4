@@ -33,13 +33,28 @@ if (isset($_POST['save'])) {
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="genre">Genre Name</label>
-                    <input class="form-control" id="genre" name="genre" type="text" placeholder="genre Name" data-sb-validations="required" />
+                    <input class="form-control" id="genre" name="genre" type="text" placeholder="Genre Name" data-sb-validations="required" />
                     <div class="invalid-feedback" data-sb-feedback="genre:required">Genre Name is required.</div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-sm" id="submitButton" name="save" type="submit">Submit</button>
-                    <button class="btn btn-secondary btn-sm" id="resetButton" type="reset">Reset</button>
-                    <a class="btn btn-warning btn-sm" id="resetButton" href="index.php?page=genre">Go Back</a>
+                    <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Submit</span>
+                    </button>
+                    <button class="btn btn-secondary btn-icon-split btn-sm" id="resetButton" type="reset">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-undo"></i>
+                        </span>
+                        <span class="text">Reset</span>
+                    </button>
+                    <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=genre">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                 </div>
             </form>
 

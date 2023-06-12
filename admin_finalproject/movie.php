@@ -1,12 +1,12 @@
 <?php
 
-$data_movie = select("SELECT m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
 INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
-INNER JOIN tag as t ON c.tag_id = t.id_tag;
+INNER JOIN tag as t ON c.tag_id = t.id_tag
 ORDER BY id_movie DESC
 ");
 
@@ -15,8 +15,6 @@ $arr_obj = [
 ];
 
 $no = 1;
-
-// Delete Query
 
 ?>
 
@@ -30,7 +28,7 @@ $no = 1;
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="index.php?page=category_add" class="btn btn-primary btn-icon-split btn-sm">
+            <a href="index.php?page=movie_add" class="btn btn-primary btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
@@ -52,10 +50,10 @@ $no = 1;
                         <?php foreach ($data_movie as $row) { ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><?= $row['img'] ?></td>
+                                <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['title'] ?></td>
-                                <td><?= $row['synopsis'] ?></td>
-                                <td><?= $row['release_date'] ?></td>
+                                <td><?= short_text($row['synopsis']) ?></td>
+                                <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
                                 <td><?= $row['genre'] ?></td>
                                 <td><?= $row['tags'] ?></td>
                                 <td><?= $row['director_name'] ?></td>

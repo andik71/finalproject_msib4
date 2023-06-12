@@ -65,10 +65,26 @@ if (isset($_POST['save'])) {
                         ?>
                     </select>
                 </div>
+                <!-- Tombol -->
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-sm" id="submitButton" name="save" type="submit">Submit</button>
-                    <button class="btn btn-secondary btn-sm" id="resetButton" type="reset">Reset</button>
-                    <a class="btn btn-warning btn-sm" id="resetButton" href="index.php?page=category">Go Back</a>
+                    <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Submit</span>
+                    </button>
+                    <button class="btn btn-secondary btn-icon-split btn-sm" id="resetButton" type="reset">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-undo"></i>
+                        </span>
+                        <span class="text">Reset</span>
+                    </button>
+                    <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=category">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                 </div>
             </form>
 

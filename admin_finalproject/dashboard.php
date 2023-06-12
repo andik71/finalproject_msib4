@@ -7,8 +7,24 @@ $data_genre = select("SELECT * FROM genre");
 $data_category = select("SELECT * FROM category");
 $data_reviewer = select("SELECT * FROM reviewer");
 $data_user = select("SELECT * FROM user");
-?>
 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+ORDER BY id_movie DESC
+");
+
+$arr_obj = [
+    'No', 'Image', 'Title', 'Synopis', 'Release Date', 'Genre', 'Tags', 'Director Name', 'Actor Name', 'Rating'
+];
+
+$no = 1;
+
+?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -199,74 +215,28 @@ $data_user = select("SELECT * FROM user");
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <?php
+                                    foreach ($arr_obj as $row) { ?>
+                                        <th class="text-center"><?= $row ?></th>
+                                    <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Airi Satou</td>
-                                    <td>Accountant</td>
-                                    <td>Tokyo</td>
-                                    <td>33</td>
-                                    <td>2008/11/28</td>
-                                    <td>$162,700</td>
-                                </tr>
-                                <tr>
-                                    <td>Serge Baldwin</td>
-                                    <td>Data Coordinator</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2012/04/09</td>
-                                    <td>$138,575</td>
-                                </tr>
-                                <tr>
-                                    <td>Zenaida Frank</td>
-                                    <td>Software Engineer</td>
-                                    <td>New York</td>
-                                    <td>63</td>
-                                    <td>2010/01/04</td>
-                                    <td>$125,250</td>
-                                </tr>
-                                <tr>
-                                    <td>Zorita Serrano</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>56</td>
-                                    <td>2012/06/01</td>
-                                    <td>$115,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Jennifer Acosta</td>
-                                    <td>Junior Javascript Developer</td>
-                                    <td>Edinburgh</td>
-                                    <td>43</td>
-                                    <td>2013/02/01</td>
-                                    <td>$75,650</td>
-                                </tr>
-                                <tr>
-                                    <td>Cara Stevens</td>
-                                    <td>Sales Assistant</td>
-                                    <td>New York</td>
-                                    <td>46</td>
-                                    <td>2011/12/06</td>
-                                    <td>$145,600</td>
-                                </tr>
+                                <?php foreach ($data_movie as $row) { ?>
+                                    <tr>
+                                        <td><?= $no++ ?></td>
+                                        <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
+                                        <td><?= $row['title'] ?></td>
+                                        <td><?= short_text($row['synopsis']) ?></td>
+                                        <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
+                                        <td><?= $row['genre'] ?></td>
+                                        <td><?= $row['tags'] ?></td>
+                                        <td><?= $row['director_name'] ?></td>
+                                        <td><?= $row['actor_name'] ?></td>
+                                        <td><?= $row['rating'] ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

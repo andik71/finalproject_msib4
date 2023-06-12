@@ -16,7 +16,12 @@ INNer JOIN tag as t ON c.tag_id = t.id_tag WHERE id_category = '$id_category'")[
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary"><?= strtoupper($data_category['id_category']) ?></h6>
+            <a href="index.php?page=category" class="btn btn-info btn-icon-split btn-sm">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Go Back</span>
+            </a>
         </div>
         <div class="card-body">
             <!-- CATEGORY -->
@@ -36,9 +41,6 @@ INNer JOIN tag as t ON c.tag_id = t.id_tag WHERE id_category = '$id_category'")[
             <div class="mb-3">
                 <label for="exampleFormControlInput2" class="form-label">Name</label>
                 <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="" value="<?= $data_category['tags'] ?>" disabled readonly>
-            </div>
-            <div class="mb-3">
-                <a href="index.php?page=category" class="btn btn-primary">Go back</a>
             </div>
         </div>
     </div>

@@ -91,10 +91,8 @@ function edit_actor($post)
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?, img = ? WHERE id_actor = ?");
     mysqli_stmt_bind_param($stmt, "ssssi", $name, $birth, $bio, $img, $id);
-    // $query = "UPDATE actor SET name = '$name', birth = '$birth', bio = '$bio', img = '$img' WHERE id_actor = '$id'";
 
     // Execute statement
-    // $result = mysqli_query($koneksi, $query);
     $result = mysqli_stmt_execute($stmt);
 
     // Check for errors
@@ -105,13 +103,12 @@ function edit_actor($post)
 
     // Get the number of affected rows
     $affectedRows = mysqli_stmt_affected_rows($stmt);
-    // $risoles = mysqli_affected_rows($koneksi, $result);
 
     // Close statement
     mysqli_stmt_close($stmt);
 
     return $affectedRows;
-    // return $risoles;
+
 }
 
 
@@ -241,7 +238,6 @@ function upload_file_actor($id = NULL)
 }
 
 // ==== END ACTOR CONTROLLER ==== //
-
 // ==== DIRECTOR CONTROLLER ==== //
 
 // DIRECTOR CREATE
@@ -445,7 +441,6 @@ function upload_file_director($id = NULL)
 }
 
 // ==== END DIRECTOR CONTROLLER ==== //
-
 // ==== TAG CONTROLLER ==== //
 
 // TAG CREATE
@@ -718,7 +713,7 @@ function delete_category($id)
 // ==== END CATEGORY CONTROLLER ==== //
 // ==== REVIEWER CONTROLLER ==== //
 
-// CATEGORY DELETE
+// REVIEWER DELETE
 function delete_reviewer($id)
 {
     global $koneksi;
@@ -744,3 +739,219 @@ function delete_reviewer($id)
 
     return $affectedRows;
 }
+
+// ==== MOVIE CONTROLLER ==== //
+// MOVIE CREATE
+function add_movie($post)
+{
+    // Koneksi database
+    global $koneksi;
+
+    $title          = mysqli_real_escape_string($koneksi, $post['title']);
+    $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
+    $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
+    $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
+    $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
+    $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
+    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
+    $img            = upload_file_movie();
+
+    // Validasi Upload File
+    if (!$img) {
+        return false;
+    }
+    
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id, reviewer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
+
+
+// MOVIE UPDATE
+function edit_movie($post)
+{
+    global $koneksi;
+
+    $id     = $post['id_movie'];
+
+    $title          = mysqli_real_escape_string($koneksi, $post['title']);
+    $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
+    $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
+    $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
+    $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
+    $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
+    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
+    $img            = upload_file_movie($id);
+
+    // Validasi Upload File
+    if (!$img) {
+        return false;
+    }
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?, reviewer_id = ?  WHERE id_movie = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating, $id);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+    // return $risoles;
+}
+
+
+// MOVIE DELETE
+function delete_movie($id)
+{
+    global $koneksi;
+
+    // Mengambil path file foto dari database berdasarkan id_movie
+    $query = "SELECT img FROM movie WHERE id_movie = '$id'";
+    $result = mysqli_query($koneksi, $query);
+
+    if (!$result) {
+        // Query error handling
+        echo "<script>
+                alert('Terjadi kesalahan saat mengambil data dari database');
+                window.location.href = 'index.php?page=movie';
+                </script>";
+        die();
+    }
+
+    // Mendapatkan path file foto sebelumnya (misalnya dari database)
+    $row = mysqli_fetch_assoc($result);
+    $img = $row['img'];
+
+    if ($img) {
+        // Menghapus file foto sebelumnya (jika ada)
+        if (file_exists($img)) {
+            unlink($img);
+        }
+    }
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "DELETE FROM movie WHERE id_movie = ?");
+    mysqli_stmt_bind_param($stmt, "i", $id);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
+
+// UPLOAD FILE MOVIE
+function upload_file_movie($id = NULL)
+{
+    // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
+    if ($id) {
+        global $koneksi;
+
+        // Mengambil path file foto sebelumnya dari database berdasarkan id_movie
+        $query = "SELECT img FROM movie WHERE id_movie = '$id'";
+        $result = mysqli_query($koneksi, $query);
+
+        if (!$result) {
+            // Query error handling
+            echo "<script>
+                alert('Terjadi kesalahan saat mengambil data dari database');
+                window.location.href = 'index.php?page=movie';
+                </script>";
+            die();
+        }
+
+        // Mendapatkan path file foto sebelumnya (misalnya dari database)
+        $row = mysqli_fetch_assoc($result);
+        $previousFile = $row['img'];
+
+        // Menghapus file foto sebelumnya (jika ada)
+        if (file_exists($previousFile)) {
+            unlink($previousFile);
+        }
+    }
+
+    // Tangkap name
+    $fileName        = $_FILES['img']['name'];
+    $fileSize        = $_FILES['img']['size'];
+    $fileError       = $_FILES['img']['error'];
+    $fileTmp         = $_FILES['img']['tmp_name'];
+
+    // Cek Upload File
+    $extension_valid = ['jpg', 'jpeg', 'png'];
+    $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension       = strtolower($extension);
+
+    // Validasi Ekstensi File Upload
+    if (!in_array($extension, $extension_valid)) {
+        echo "<script>
+            alert('Format File Tidak Valid');
+            window.location.href = 'index.php?page=movie';
+            </script>";
+        die();
+    }
+
+    // Validasi Ukuran File Upload > 2 MB
+    if ($fileSize > 2048000) {
+        echo "<script>
+            alert('Ukuran File Max: 2 MB');
+            window.location.href = 'index.php?page=movie';
+            </script>";
+        die();
+    }
+
+    // Generate New File
+    $newFile = 'img/' . uniqid('', true) . '.' . $extension;
+
+    // Pindahkan File Ke Local Storage
+    if (move_uploaded_file($fileTmp, $newFile)) {
+        return $newFile;
+    } else {
+        echo "<script>
+            alert('Gagal mengunggah file');
+            window.location.href = 'index.php?page=movie';
+            </script>";
+        die();
+    }
+}
+
+// ==== END MOVIE CONTROLLER ==== //

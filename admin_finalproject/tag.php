@@ -22,7 +22,12 @@ $no = 1;
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <a href="index.php?page=tag_add" class="btn btn-primary">Add Data</a>
+            <a href="index.php?page=tag_add" class="btn btn-primary btn-icon-split btn-sm">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Add Data</span>
+            </a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,7 +46,7 @@ $no = 1;
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['tags'] ?></td>
                                 <td class="text-center">
-                                <div class="d-inline">
+                                    <div class="d-inline">
                                         <a href="index.php?page=tag_view&id=<?= $row['id_tag'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=tag_edit&id=<?= $row['id_tag'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>
                                         <a href="index.php?page=tag_delete&id=<?= $row['id_tag'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Remove this data?');"><i class="fas fa-trash"></i></a>

@@ -20,13 +20,13 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Add Data tag</p>
+    <h1 class="h3 mb-2 text-gray-800">Add Data Tag</h1>
+    <p class="mb-4">Master Data</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Add Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
         </div>
         <div class="card-body">
 
@@ -37,9 +37,24 @@ if (isset($_POST['save'])) {
                     <div class="invalid-feedback" data-sb-feedback="tag:required">Tag Name is required.</div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-sm" id="submitButton" name="save" type="submit">Submit</button>
-                    <button class="btn btn-secondary btn-sm" id="resetButton" type="reset">Reset</button>
-                    <a class="btn btn-warning btn-sm" id="resetButton" href="index.php?page=tag">Go Back</a>
+                    <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Submit</span>
+                    </button>
+                    <button class="btn btn-secondary btn-icon-split btn-sm" id="resetButton" type="reset">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-undo"></i>
+                        </span>
+                        <span class="text">Reset</span>
+                    </button>
+                    <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=tag">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                 </div>
             </form>
 

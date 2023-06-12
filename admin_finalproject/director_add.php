@@ -5,14 +5,13 @@ if (isset($_POST['save'])) {
         <script>
             alert('Data Berhasil Ditambahkan');
             window.location.href = 'index.php?page=director';
-        </script>";    
-                
-    }else {
+        </script>";
+    } else {
         echo "
         <script>
             alert('Data Gagal Ditambahkan');
             window.location.href = 'index.php?page=director';
-        </script>";   
+        </script>";
     }
 }
 ?>
@@ -49,12 +48,27 @@ if (isset($_POST['save'])) {
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="formFile">Image</label>
-                    <input class="form-control" id="formFile" name="img" type="file" data-sb-validations="required" />
+                    <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
                 </div>
                 <div class="d-grid">
-                    <button class="btn btn-primary btn-sm" id="submitButton" name="save" type="submit">Submit</button>
-                    <button class="btn btn-secondary btn-sm" id="resetButton" type="reset">Reset</button>
-                    <a class="btn btn-warning btn-sm" id="resetButton" href="index.php?page=director">Go Back</a>
+                    <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Submit</span>
+                    </button>
+                    <button class="btn btn-secondary btn-icon-split btn-sm" id="resetButton" type="reset">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-undo"></i>
+                        </span>
+                        <span class="text">Reset</span>
+                    </button>
+                    <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=director">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="text">Cancel</span>
+                    </a>
                 </div>
             </form>
 

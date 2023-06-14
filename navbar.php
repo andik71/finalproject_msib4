@@ -1,12 +1,17 @@
+<?php
+$data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
+?>
+
 <body class="body">
     <header class="header header-horizontal header-view-pannel position-fixed">
         <div class="container">
             <nav class="navbar">
-                <a class="navbar-brand" href="./">
+                <a class="navbar-brand" href="index.php">
                     <span class="logo-element">
                         <span class="logo-tape">
                             <img src="images/svg/logo-kita.png" alt="" srcset="" width="200px">
                         </span>
+                    </span>
                     </span>
                 </a>
                 <button class="navbar-toggler" type="button">
@@ -26,30 +31,17 @@
                             <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
                             <ul class="collapse nav" style="width: 250px;">
                                 <div class="row">
-                                    <div class="col-4">
-                                        <ul class="list-unstyled px-2">
-                                            <li><a href="index.php?page=genre">Action</a></li>
-                                            <li><a href="">Crime</a></li>
-                                            <li><a href="">Thriller</a></li>
-                                            <li><a href="">Adventure</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-4">
-                                        <ul class="list-unstyled px-2">
-                                            <li><a href="">Fantasy</a></li>
-                                            <li><a href="">Horror</a></li>
-                                            <li><a href="">Biography</a></li>
-                                            <li><a href="">History</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-4">
-                                        <ul class="list-unstyled px-2">
-                                            <li><a href="">Family</a></li>
-                                            <li><a href="">Drama</a></li>
-                                            <li><a href="">Romance</a></li>
-                                            <li><a href="">Comedy</a></li>
-                                        </ul>
-                                    </div>
+                                    <?php foreach ($data_genre as $list) { ?>
+
+                                        <div class="col-4">
+                                            <ul class="list-unstyled px-2">
+                                                <li> <a class="nav-link" href="index.php?page=movies_list&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    <?php } ?>
+
                                 </div>
                             </ul>
                         </li>

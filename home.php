@@ -1,3 +1,50 @@
+<?php
+
+$data_latest = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre,g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+ORDER BY id_movie DESC LIMIT 3
+");
+
+//menampilkan movie top
+$data_top = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video, g.id_genre,g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+ORDER BY rating DESC
+");
+
+//menampilkan movie list
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+ORDER BY id_movie ASC LIMIT 2
+");
+
+//menampilkan movie com
+$data_com = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+WHERE release_date > NOW()
+ORDER BY id_movie ASC LIMIT 2
+");
+?>
+
 <section class="section-text-white position-relative" style="background-image: url(images/image1.png);">
     <div class="mt-auto container position-relative">
         <div class="top-block-head text-uppercase">
@@ -8,186 +55,43 @@
         <div class="top-block-footer">
             <div class="slick-spaced slick-carousel" data-slick-view="navigation responsive-4">
                 <div class="slick-slides">
-                    <div class="slick-slide">
-                        <article class="poster-entity" data-role="hover-wrap">
-                            <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
-                            </div>
-                            <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
-                            <div class="d-over bg-highlight-bottom">
-                                <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=1ovgxN2VWNc" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
+                    <?php foreach ($data_top as $movie) { ?>
+                        <div class="slick-slide">
+                            <article class="poster-entity" data-role="hover-wrap">
+                                <div class="embed-responsive embed-responsive-poster">
+                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $movie['img'] ?>" alt="" />
                                 </div>
-                                <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
-                                </h4>
-                                <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">horror</a>,
-                                    <a class="content-link" href="movies-blocks.html">action</a>
-                                </div>
-                                <div class="entity-info">
-                                    <div class="info-lines">
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">8,1</span>
-                                            <span class="info-rest">/10</span>
-                                        </div>
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">125</span>
-                                            <span class="info-rest">&nbsp;min</span>
+                                <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
+                                <div class="d-over bg-highlight-bottom">
+                                    <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $movie['video'] ?>" data-magnific-popup="iframe">
+                                            <span class="icon-content"><i class="fas fa-play"></i></span>
+                                        </a>
+                                    </div>
+                                    <h4 class="entity-title">
+                                        <a class="content-link" href="index.php?page=movie-info&id=<?= $movie['id_movie'] ?>"><?= $movie['title'] ?></a>
+                                    </h4>
+                                    <div class="entity-category">
+                                        <a class="content-link" href="index.php?page=movies_list&id=<?= $movie['id_genre'] ?>"><?= $movie['genre'] ?></a>,
+                                    </div>  
+                                    <div class="entity-info">
+                                        <div class="info-lines">
+                                            <div class="info info-short">
+                                                <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
+                                                <span class="info-text"><?= $movie['rating'] ?></span>
+                                                <span class="info-rest">/5</span>
+                                            </div>
+                                            <div class="info info-short">
+                                                <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
+                                                <span class="info-text"><?= $movie['duration'] ?></span>
+                                                <span class="info-rest">&nbsp;min</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="slick-slide">
-                        <article class="poster-entity" data-role="hover-wrap">
-                            <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="images/joose.jpeg" alt="" />
-                            </div>
-                            <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
-                            <div class="d-over bg-highlight-bottom">
-                                <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=T0uRwQHQgEQ" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
-                                </div>
-                                <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">Joose</a>
-                                </h4>
-                                <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">Melodrama</a>,
-                                    <a class="content-link" href="movies-blocks.html">Romance</a>
-                                </div>
-                                <div class="entity-info">
-                                    <div class="info-lines">
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">6,8</span>
-                                            <span class="info-rest">/10</span>
-                                        </div>
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">95</span>
-                                            <span class="info-rest">&nbsp;min</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="slick-slide">
-                        <article class="poster-entity" data-role="hover-wrap">
-                            <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
-                            </div>
-                            <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
-                            <div class="d-over bg-highlight-bottom">
-                                <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=H1WYnJF1Pwo" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
-                                </div>
-                                <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
-                                </h4>
-                                <div class="entity-category">
-                                    <a class="content-link" href="index.php?page=genre">Action</a>
-                                    <a class="content-link" href="movies-blocks.html">Adventure</a>
-                                </div>
-                                <div class="entity-info">
-                                    <div class="info-lines">
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">7,4</span>
-                                            <span class="info-rest">/10</span>
-                                        </div>
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">105</span>
-                                            <span class="info-rest">&nbsp;min</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="slick-slide">
-                        <article class="poster-entity" data-role="hover-wrap">
-                            <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="images/true-beauty.jpg" alt="" />
-                            </div>
-                            <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
-                            <div class="d-over bg-highlight-bottom">
-                                <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=vbESjnp3yKw" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
-                                </div>
-                                <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">True Beauty</a>
-                                </h4>
-                                <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">drama</a>,
-                                    <a class="content-link" href="movies-blocks.html">romance</a>
-                                </div>
-                                <div class="entity-info">
-                                    <div class="info-lines">
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">7,1</span>
-                                            <span class="info-rest">/10</span>
-                                        </div>
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">113</span>
-                                            <span class="info-rest">&nbsp;min</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="slick-slide">
-                        <article class="poster-entity" data-role="hover-wrap">
-                            <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="images/doomatys.jpg" alt="" />
-                            </div>
-                            <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
-                            <div class="d-over bg-highlight-bottom">
-                                <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=pn-Y9XjyB1M" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
-                                </div>
-                                <h4 class="entity-title">
-                                    <a class="content-link" href="index.php?page=movie-info">Doom At Your Service</a>
-                                </h4>
-                                <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">Fantasy</a>,
-                                    <a class="content-link" href="movies-blocks.html">Romance</a>
-                                </div>
-                                <div class="entity-info">
-                                    <div class="info-lines">
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">9,1</span>
-                                            <span class="info-rest">/10</span>
-                                        </div>
-                                        <div class="info info-short">
-                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">125</span>
-                                            <span class="info-rest">&nbsp;min</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                            </article>
+                        </div>
+                    <?php } ?>
                 </div>
                 <div class="slick-arrows">
                     <div class="slick-arrow-prev">
@@ -215,200 +119,60 @@
     <div class="container">
         <div class="section-head">
             <h2 class="section-title text-uppercase">LATEST MOVIES</h2>
-            <p class="section-text">Dates: 13 - 15 Mei 2023</p>
         </div>
-        <article class="movie-line-entity">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="ttps://www.youtube.com/watch?v=1ovgxN2VWNc" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
+        <?php foreach ($data_latest as $row) { ?>
+
+            <article class="movie-line-entity">
+                <div class="entity-poster" data-role="hover-wrap">
+                    <div class="embed-responsive embed-responsive-poster">
+                        <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
                     </div>
-                </div>
-            </div>
-            <div class="entity-content">
-                <h4 class="entity-title">
-                    <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="index.php?page=genre">horror</a>,
-                    <a class="content-link" href="movies-blocks.html">action</a>
-                </div>
-                <div class="entity-info">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">8,1</span>
-                            <span class="info-rest">/10</span>
-                        </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">125</span>
-                            <span class="info-rest">&nbsp;min</span>
+                    <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                        <div class="entity-play">
+                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
+                                <span class="icon-content"><i class="fas fa-play"></i></span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <p class="text-short entity-text">Aenean molestie turpis eu aliquam bibendum. Nulla facilisi. Vestibulum quis risus in lorem suscipit tempor. Morbi consectetur enim vitae justo finibus consectetur. Mauris volutpat nunc dui, quis condimentum dolor efficitur et. Phasellus rhoncus porta nunc eu fermentum. Nullam vitae erat hendrerit, tempor arcu eget, eleifend tortor.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Action</a>
+                <div class="entity-content">
+                    <h4 class="entity-title">
+                        <a class="content-link" href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
+                    </h4>
+                    <div class="entity-category">
+                        <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>
+                    </div>
+                    <div class="entity-info">
+                        <div class="info-lines">
+                            <div class="info info-short">
+                                <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
+                                <span class="info-text"><?= $row['rating'] ?></span>
+                                <span class="info-rest">/5</span>
+                            </div>
+                            <div class="info info-short">
+                                <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
+                                <span class="info-text">125</span>
+                                <span class="info-rest">&nbsp;min</span>
+                            </div>
                         </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Fantasy</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
+                    </div>
+                    <p class="text-short entity-text"><?= short_text($row['synopsis']) ?>
+                    </p>
+                </div>
+                <div class="entity-extra">
+                    <div class="text-uppercase entity-extra-title">Tags</div>
+                    <div class="entity-showtime">
+                        <div class="showtime-wrap">
+                            <?php foreach ($data_latest as $row) { ?>
+                                <div class="showtime-item">
+                                    <a class="btn-time btn" aria-disabled="false" href="#"><?= $row['tags'] ?></a>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
-            </div>
-        </article>
-        <article class="movie-line-entity">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=T0uRwQHQgEQ" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entity-content">
-                <h4 class="entity-title">
-                    <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="index.php?page=genre">Action</a>,
-                    <a class="content-link" href="movies-blocks.html">Adventure</a>
-                </div>
-                <div class="entity-info">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">6,8</span>
-                            <span class="info-rest">/10</span>
-                        </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">95</span>
-                            <span class="info-rest">&nbsp;min</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-short entity-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur ultrices justo a pellentesque. Praesent venenatis dolor nec tempus lacinia. Donec ac condimentum dolor. Nullam sit amet nisl hendrerit, pharetra nulla convallis, malesuada diam. Donec ornare nisl eu lectus rhoncus, at malesuada metus rutrum. Aliquam a nisl vulputate, sodales ipsum aliquam, tempus purus. Suspendisse convallis, lectus nec vehicula sollicitudin, lorem sapien rhoncus dolor, vel lacinia urna velit ullamcorper nisi. Phasellus pellentesque, magna nec gravida feugiat, est magna suscipit ligula, vel porttitor nunc enim at nibh. Sed varius sit amet leo vitae consequat.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Drama</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Fantasy</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="movie-line-entity">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=H1WYnJF1Pwo" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entity-content">
-                <h4 class="entity-title">
-                    <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">Horror</a>,
-                    <a class="content-link" href="movies-blocks.html">Family</a>
-                </div>
-                <div class="entity-info">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">8,7</span>
-                            <span class="info-rest">/10</span>
-                        </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">130</span>
-                            <span class="info-rest">&nbsp;min</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-short entity-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur ultrices justo a pellentesque. Praesent venenatis dolor nec tempus lacinia. Donec ac condimentum dolor. Nullam sit amet nisl hendrerit, pharetra nulla convallis, malesuada diam. Donec ornare nisl eu lectus rhoncus, at malesuada metus rutrum. Aliquam a nisl vulputate, sodales ipsum aliquam, tempus purus. Suspendisse convallis, lectus nec vehicula sollicitudin, lorem sapien rhoncus dolor, vel lacinia urna velit ullamcorper nisi. Phasellus pellentesque, magna nec gravida feugiat, est magna suscipit ligula, vel porttitor nunc enim at nibh. Sed varius sit amet leo vitae consequat.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Horror</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Indo</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Drama</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">RELIGI</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
+            </article>
+        <?php } ?>
     </div>
 </section>
 
@@ -420,15 +184,16 @@
         </div>
         <div class="slick-spaced slick-carousel" data-slick-view="navigation single">
             <div class="slick-slides">
-                <div class="slick-slide">
+                <?php foreach ($data_com as $comm) {?>
+                    <div class="slick-slide">
                     <article class="movie-line-entity">
                         <div class="entity-preview">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <img class="embed-responsive-item" src="images/TheConjuring.jpg" alt="" />
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $comm['img'] ?>" alt="" />
                             </div>
                             <div class="d-over">
                                 <div class="entity-play">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=FiZM3x7q46I" data-magnific-popup="iframe">
+                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $comm['video'] ?>" data-magnific-popup="iframe">
                                         <span class="icon-content"><i class="fas fa-play"></i></span>
                                     </a>
                                 </div>
@@ -436,70 +201,32 @@
                         </div>
                         <div class="entity-content">
                             <h4 class="entity-title">
-                                <a class="content-link" href="index.php?page=movie-info">The Conjuring 4</a>
+                                <a class="content-link" href="index.php?page=movie-info&id=<?= $comm['id_movie'] ?>"><?= $comm['title'] ?></a>
                             </h4>
                             <div class="entity-category">
-                                <a class="content-link" href="movies-blocks.html">Horror</a>,
-                                <a class="content-link" href="movies-blocks.html">Drama</a>
+                                <a class="content-link" href="index.php?page=movies_list&id=<?= $comm['id_genre'] ?>"><?= $comm['genre'] ?></a>,
                             </div>
                             <div class="entity-info">
                                 <div class="info-lines">
                                     <div class="info info-short">
                                         <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
-                                        <span class="info-text">18 jul 2020</span>
+                                        <span class="info-text"><?= date_format(date_create($comm['release_date']), 'd F Y') ?></span>
                                     </div>
                                     <div class="info info-short">
                                         <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                        <span class="info-text">130</span>
+                                        <span class="info-text"><?= $comm['duration'] ?></span>
                                         <span class="info-rest">&nbsp;min</span>
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-short entity-text">In luctus ac nisi vel vulputate. Sed blandit augue ut ex eleifend, ac posuere dolor sollicitudin. Mauris tempus euismod mauris id semper. Vestibulum ut vulputate elit, id ultricies libero. Aenean laoreet mi augue, at iaculis nisi aliquam eu. Quisque nec ipsum vehicula diam egestas porttitor eu vitae ex. Curabitur auctor tortor elementum leo faucibus, sit amet imperdiet ante maximus. Nulla viverra tortor dignissim purus placerat dapibus nec ut orci. Quisque efficitur nulla quis pulvinar dapibus. Phasellus sodales tortor sit amet sagittis condimentum. Donec ac ultricies ex. In odio leo, rhoncus aliquam bibendum sit amet, varius sit amet nisl.
+                            <p class="text-short entity-text"><?= $comm['synopsis'] ?>
                             </p>
                         </div>
                     </article>
                 </div>
-                <div class="slick-slide">
-                    <article class="movie-line-entity">
-                        <div class="entity-preview">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <img class="embed-responsive-item" src="images/MiracleInCell.jpeg" alt="" />
-                            </div>
-                            <div class="d-over">
-                                <div class="entity-play">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=0uf6QUacVgs" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="entity-content">
-                            <h4 class="entity-title">
-                                <a class="content-link" href="index.php?page=movie-info">Miracle In Cell</a>
-                            </h4>
-                            <div class="entity-category">
-                                <a class="content-link" href="movies-blocks.html">drama</a>,
-                                <a class="content-link" href="movies-blocks.html">Family</a>
-                            </div>
-                            <div class="entity-info">
-                                <div class="info-lines">
-                                    <div class="info info-short">
-                                        <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
-                                        <span class="info-text">19 oct 2020</span>
-                                    </div>
-                                    <div class="info info-short">
-                                        <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                        <span class="info-text">110</span>
-                                        <span class="info-rest">&nbsp;min</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-short entity-text">Vivamus dolor ex, viverra ut facilisis et, euismod et quam. Aliquam sit amet mattis velit, ullamcorper venenatis magna. Aenean ac maximus magna. Proin pharetra venenatis tortor, ac suscipit est ultrices vitae. Mauris vulputate, nisl in lacinia dignissim, libero justo vehicula arcu, a porttitor quam erat ac dui. Suspendisse potenti. Maecenas sit amet interdum sem. Vestibulum sit amet volutpat mauris, ut gravida velit. Donec ultricies, eros ut finibus volutpat, enim ligula tempus enim, non bibendum libero tellus at velit. Aenean placerat egestas ullamcorper.
-                            </p>
-                        </div>
-                    </article>
-                </div>
+               <?php }?>
+               
+            
             </div>
             <div class="slick-arrows">
                 <div class="slick-arrow-prev">
@@ -528,72 +255,42 @@
             <h2 class="section-title text-uppercase">movies</h2>
         </div>
         <div class="grid row">
-            <div class="col-md-6">
-                <article class="article-tape-entity">
-                    <a class="entity-preview" href="https://www.youtube.com/watch?v=j92YfcwLacM" data-magnific-popup="iframe" data-role="hover-wrap">
-                        <span class="embed-responsive embed-responsive-16by9">
-                            <img class="embed-responsive-item" src="images/gitacinta.jpg" alt="" />
-                        </span>
-                        <span class="entity-date">
-                            <span class="tape-block tape-horizontal tape-single bg-theme text-white">
-                                <span class="tape-dots"></span>
-                                <span class="tape-content m-auto">11 may 2023</span>
-                                <span class="tape-dots"></span>
+            <?php foreach ($data_movie as $list) { ?>
+                <div class="col-md-6">
+                    <article class="article-tape-entity">
+                        <a class="entity-preview" href="<?= $list['video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
+                            <span class="embed-responsive embed-responsive-4by3">
+                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $list['img'] ?>" alt="" />
                             </span>
-                        </span>
-                        <span class="d-over bg-black-80 collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                            <span class="m-auto"><i class="fas fa-play"></i></span>
-                        </span>
-                    </a>
-                    <div class="entity-content">
-                        <h4 class="entity-title">
-                            <a class="content-link" href="index.php?page=movie-info">Gita Cinta Dari SMP</a>
-                        </h4>
-                        <div class="entity-category">
-                            <a class="content-link" href="news-blocks-sidebar-right.html">Drama</a>,
-                            <a class="content-link" href="news-blocks-sidebar-right.html">Romance</a>
-                        </div>
-                        <p class="text-short entity-text">Aenean molestie turpis eu aliquam bibendum. Nulla facilisi. Vestibulum quis risus in lorem suscipit tempor. Morbi consectetur enim vitae justo finibus consectetur. Mauris volutpat nunc dui, quis condimentum dolor efficitur et. Phasellus rhoncus porta nunc eu fermentum. Nullam vitae erat hendrerit, tempor arcu eget, eleifend tortor.
-                        </p>
-                        <div class="entity-actions">
-                            <a class="text-uppercase" href="article-sidebar-right.html">Read More</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="article-tape-entity">
-                    <a class="entity-preview" href="https://www.youtube.com/watch?v=fAQnkdaGisM" data-magnific-popup="iframe" data-role="hover-wrap">
-                        <span class="embed-responsive embed-responsive-16by9">
-                            <img class="embed-responsive-item" src="images/BuyaHamka.jpeg" alt="" />
-                        </span>
-                        <span class="entity-date">
-                            <span class="tape-block tape-horizontal tape-single bg-theme text-white">
-                                <span class="tape-dots"></span>
-                                <span class="tape-content m-auto">11 may 2023</span>
-                                <span class="tape-dots"></span>
+                            <span class="entity-date">
+                                <span class="tape-block tape-horizontal tape-single bg-theme text-white">
+                                    <span class="tape-dots"></span>
+                                    <span class="tape-content m-auto"><?= date_format(date_create($list['release_date']), 'd F Y') ?></span>
+                                    <span class="tape-dots"></span>
+                                </span>
                             </span>
-                        </span>
-                        <span class="d-over bg-black-80 collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                            <span class="m-auto"><i class="fas fa-play"></i></span>
-                        </span>
-                    </a>
-                    <div class="entity-content">
-                        <h4 class="entity-title">
-                            <a class="content-link" href="index.php?page=movie-info">Buya Hamka</a>
-                        </h4>
-                        <div class="entity-category">
-                            <a class="content-link" href="news-blocks-sidebar-right.html">drama</a>,
-                            <a class="content-link" href="news-blocks-sidebar-right.html">biografi</a>,
+                            <span class="d-over bg-black-80 collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                <span class="m-auto"><i class="fas fa-play"></i></span>
+                            </span>
+                        </a>
+                        <div class="entity-content">
+                            <h4 class="entity-title">
+                                <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>"><?= $list['title'] ?></a>
+                            </h4>
+                            <div class="entity-category">
+                                <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>,
+                            </div>
+                            <p class="text-short entity-text"><?= $list['synopsis'] ?>
+                            </p>
+                            <div class="entity-actions">
+                                <a class="text-uppercase" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>">Read More</a>
+                            </div>
                         </div>
-                        <p class="text-short entity-text">Aenean molestie turpis eu aliquam bibendum. Nulla facilisi. Vestibulum quis risus in lorem suscipit tempor. Morbi consectetur enim vitae justo finibus consectetur. Mauris volutpat nunc dui, quis condimentum dolor efficitur et. Phasellus rhoncus porta nunc eu fermentum. Nullam vitae erat hendrerit, tempor arcu eget, eleifend tortor.
-                        </p>
-                        <div class="entity-actions">
-                            <a class="text-uppercase" href="article-sidebar-right.html">Read More</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
+                    </article>
+                </div>
+            <?php  } ?>
+
+
         </div>
         <div class="section-bottom">
             <a class="btn btn-theme" href="index.php?page=movies_list">View All Movies</a>
@@ -601,7 +298,7 @@
     </div>
 </section>
 
-<!-- COntact -->
+<!-- Contact -->
 <section>
     <div class="gmap-with-map bg-white">
         <div class="gmap" data-lat="-40.878897" data-lng="151.103737">
@@ -643,3 +340,6 @@
         </div>
     </div>
 </section>
+
+
+

@@ -1,3 +1,32 @@
+<?php
+// Tangkap ID berdasarkan URL
+$id_movie = (int)$_GET['id'];
+// SQL
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.genre, t.tags, m.director_id,d.name as director_name,m.actor_id, a.name as actor_name, r.rating FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag 
+WHERE id_movie = '$id_movie'")[0];
+
+//SQL Film yang berkaitan berdasarkan genre 
+$data_genre = $data_movie['genre'];
+$data_recommend = select("SELECT m.id_movie, m.title, m.img, g.genre FROM movie as m 
+                        INNER JOIN category as c ON m.category_id = c.id_category 
+                        INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+                        WHERE genre = '$data_genre' AND NOT id_movie = '$id_movie'");
+
+//SQL Data terakhir
+$data_latest = select("SELECT m.id_movie, m.title, m.img, m.release_date FROM movie as m ORDER BY id_movie DESC LIMIT 3");
+
+$data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM reviewer as r
+                        INNER JOIN user as u ON r.user_id = u.id_user");
+
+
+?>
+
 <section class="after-head d-flex section-text-white pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
     <div class="top-block top-inner container">
@@ -11,6 +40,9 @@
         </div>
     </div>
 </section>
+
+
+
 <section class="bg-white">
     <div class="container ">
         <div class="sidebar-container">
@@ -20,61 +52,56 @@
                         <div class="movie-info-entity">
                             <div class="entity-poster" data-role="hover-wrap">
                                 <div class="embed-responsive embed-responsive-poster">
-                                    <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
+                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $data_movie['img'] ?>" alt="" />
                                 </div>
                                 <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                     <div class="entity-play">
-                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=T0uRwQHQgEQ" data-magnific-popup="iframe">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $data_movie['video'] ?>" data-magnific-popup="iframe">
                                             <span class="icon-content"><i class="fas fa-play"></i></span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="entity-content">
-                                <h2 class="entity-title text-dark">Space Sweepers</h2>
+                                <h2 class="entity-title text-dark"><?= $data_movie['title'] ?></h2>
                                 <div class="entity-category">
-                                    <a class="content-link" href="movies-blocks.html">Adventure</a>,
-                                    <a class="content-link" href="movies-blocks.html">action</a>
+                                    <a class="content-link" href="index.php?page=movies_list"><?= $data_movie['genre'] ?>
                                 </div>
                                 <div class="entity-info">
                                     <div class="info-lines text-dark">
                                         <div class="info info-short">
                                             <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                            <span class="info-text">8,7</span>
-                                            <span class="info-rest">/10</span>
+                                            <span class="info-text"><?= $data_movie['rating'] ?></span>
+                                            <span class="info-rest">/5</span>
                                         </div>
                                         <div class="info info-short">
                                             <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                            <span class="info-text">130</span>
+                                            <span class="info-text"><?= $data_movie['duration'] ?></span>
                                             <span class="info-rest">&nbsp;min</span>
                                         </div>
                                     </div>
                                 </div>
                                 <ul class="entity-list">
                                     <li>
-                                        <span class="entity-list-title">Release:</span> February 5, 2021
+                                        <span class="entity-list-title">Release:</span>
+                                        <?= date_format(date_create($data_movie['release_date']), 'd F Y') ?>
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Directed:</span>
-                                        <a class="content-link" href="#">Sung-hee Jo</a>
+                                        <a class="content-link" href="index.php?page=director&id=<?= $data_movie['director_id'] ?>"><?= $data_movie['director_name'] ?></a>
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Actor:</span>
-                                        <a class="content-link" href="index.php?page=actor">Song Joong-ki</a>,
-                                        <a class="content-link" href="index.php?page=actor">Kim Tae-ri</a>,
-                                        <a class="content-link" href="index.php?page=actor">Jin Seon-kyu</a>,
-
+                                        <a class="content-link" href="index.php?page=actor&id=<?= $data_movie['actor_id'] ?>"><?= $data_movie['actor_name'] ?></a>
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Production company:</span>
-                                        Bidangil Pictures, Dexter Studios
+                                        <?= $data_movie['Production'] ?>
                                     </li>
                                     <li>
-                                        <span class="entity-list-title">Country:</span>South Korea
+                                        <span class="entity-list-title">Country:</span><?= $data_movie['Country'] ?>
                                     </li>
-                                    <li>
-                                        <span class="entity-list-title">Language:</span>Korean, English
-                                    </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -84,11 +111,7 @@
                             <h2 class="section-title text-uppercase text-dark">Synopsis</h2>
                         </div>
                         <div class="section-description">
-                            <p class="lead">The movie is set in the year 2092 where Earth is uninhabitable. A new orbiting home for humanity is built by UTS corporation, but only the elite are permitted to become citizens while others are left on Earth. The film follows a crew of space sweepers who work for UTS collecting space debris and selling it to the company factory. The crew discovers a child robot named Dorothy who contains a weapon of mass destruction created by the terrorist group Black Fox. They negotiate a ransom for returning Dorothy, but their plan is foiled when UTS soldiers stage a massacre at the club where the exchange was supposed to take place.
-                                The crew must navigate this dangerous situation while also dealing with their own personal struggles.</p>
-                            <h6 class="text-dark">Cast</h6>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                            <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                            <p class="lead"><?= $data_movie['synopsis'] ?></p>
                         </div>
                         <div class="section-bottom">
                             <div class="row">
@@ -105,9 +128,7 @@
                                 <div class="col-auto">
                                     <div class="entity-links">
                                         <div class="entity-list-title">Tags:</div>
-                                        <a class="content-link" href="#">family</a>,&nbsp;
-                                        <a class="content-link" href="#">action</a>,&nbsp;
-                                        <a class="content-link" href="#">adventure</a>
+                                        <a class="content-link disabled" href="#"><?= $data_movie['tags'] ?></a>,&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -118,258 +139,101 @@
                             <h2 class="section-title text-uppercase text-dark">Recommended For You</h2>
                         </div>
                         <div class="grid row">
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/northman.png" alt=""/>
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
+                            <?php foreach ($data_recommend as $film) { ?>
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="gallery-entity">
+                                        <div class="entity-preview" data-role="hover-wrap">
+                                            <div class="embed-responsive embed-responsive-1by1">
+                                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $film['img'] ?>" alt="" height="200px" />
                                             </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Northman</a>
-                                            </h4>
+                                            <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                                <div class="entity-view-popup">
+                                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://https://www.youtube.com/watch?v=HkL_zVPniI8" data-magnific-popup="iframe">
+                                                        <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                    </a>
+                                                </div>
+                                                <h4 class="entity-title">
+                                                    <a class="content-link" href="index.php?page=movie-info"><?= $film['title'] ?></a>
+                                                </h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/gundala.jpg" alt="" />
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
-                                            </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Gundala</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/top.png" alt="" />
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
-                                            </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Top Gun: Maverick</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/tanpaampun.jpg" alt="" />
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
-                                            </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Tanpa Ampun</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/vicenzo.jpeg" alt="" />
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
-                                            </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">Vicenzo</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-4">
-                                <div class="gallery-entity">
-                                    <div class="entity-preview" data-role="hover-wrap">
-                                        <div class="embed-responsive embed-responsive-1by1">
-                                            <img class="embed-responsive-item" src="images/uncharted.png" alt="" />
-                                        </div>
-                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                            <div class="entity-view-popup">
-                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
-                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
-                                                </a>
-                                            </div>
-                                            <h4 class="entity-title">
-                                                <a class="content-link" href="index.php?page=movie-info">uncharted</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } ?>
                         </div>
                         <div class="section-bottom">
-                            <a class="btn btn-theme" href="index.php?page=genre">View All</a>
+                            <a class="btn btn-theme" href="index.php?page=movies_list">View All</a>
                         </div>
                     </div>
                     <div class="section-line">
                         <div class="section-head">
                             <h2 class="section-title text-uppercase text-dark">Comments</h2>
                         </div>
-                        <div class="comment-entity">
-                            <div class="entity-inner">
-                                <div class="entity-content">
-                                    <h4 class="entity-title text-dark">Lie Stone</h4>
-                                    <p class="entity-subtext">07.08.2018, 14:33</p>
-                                    <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
-                                    </p>
-                                </div>
-                                <div class="entity-extra">
-                                    <div class="grid-md row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="entity-rating">
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="ml-sm-auto col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php foreach ($data_comments as $comment) { ?>
                             <div class="comment-entity">
                                 <div class="entity-inner">
                                     <div class="entity-content">
-                                        <h4 class="entity-title text-dark">Gabriel Norris</h4>
-                                        <p class="entity-subtext">09.08.2018, 11:33</p>
-                                        <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
-                                        </p>
+                                        <h4 class="entity-title text-dark"><?= $comment['name'] ?></h4>
+                                        <p class="entity-subtext "><?= date_format(date_create($comment['date']), 'd F Y') ?>
+
+                                        <p class="entity-text text-dark"><?= $comment['comment'] ?>.</p>
                                     </div>
                                     <div class="entity-extra">
                                         <div class="grid-md row">
-                                            <div class="ml-sm-auto col-auto">
-                                                <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                            </div>
-                                            <div class="col-auto">
-                                                <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
+                                            <div class="col-12 col-sm-auto">
+                                                <div class="entity-rating">
+                                                    <span class="entity-rating-icon text-theme">
+                                                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                            <?php if ($i <= $comment['rating']) { ?>
+                                                                <i class="fas fa-star"></i>
+                                                            <?php } else { ?>
+                                                                <i class="text-muted fas fa-star"></i>
+                                                            <?php } ?>
+                                                        <?php } ?>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="comment-entity">
-                            <div class="entity-inner">
-                                <div class="entity-content">
-                                    <h4 class="entity-title text-dark">Keith Earlee</h4>
-                                    <p class="entity-subtext">11.05.2018, 07:23</p>
-                                    <p class="entity-text text-dark">Comment example here. Nulla risus lacus, vehicula id mi vitae, auctor accumsan nulla. Sed a mi quam. In euismod urna ac massa adipiscing interdum.
-                                    </p>
-                                </div>
-                                <div class="entity-extra">
-                                    <div class="grid-md row">
-                                        <div class="col-12 col-sm-auto">
-                                            <div class="entity-rating">
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon text-theme"><i class="fas fa-star"></i></span>
-                                                <span class="entity-rating-icon"><i class="fas fa-star"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="ml-sm-auto col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-reply"></i>&nbsp;&nbsp;reply</a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a class="content-link" href="#"><i class="fas fa-quote-left"></i>&nbsp;&nbsp;quote</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php } ?>
+
                     </div>
-                    <div class="section-line">
+                    <div class="section-line mt-4">
                         <div class="section-head">
                             <h2 class="section-title text-uppercase text-dark">Add comment</h2>
                         </div>
-                        <form autocomplete="off">
+                        <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                             <div class="row form-grid">
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-7">
                                     <div class="input-view-flat input-group">
-                                        <input class="form-control" name="name" type="text" placeholder="Name" />
+                                        <input class="form-control" id="user_id" name="user_id" type="text" placeholder="Name" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6">
+                                <div class="col-12 col-sm-7">
                                     <div class="input-view-flat input-group">
-                                        <input class="form-control" name="email" type="email" placeholder="Email" />
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="input-view-flat input-group">
-                                        <textarea class="form-control" name="review" placeholder="Add your review"></textarea>
+                                        <textarea class="form-control" name="review" placeholder="Add your comment"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="rating-line">
                                         <label>Rating:</label>
                                         <div class="form-rating" name="rating">
-                                            <input type="radio" id="rating-5" name="rating" value="5" />
-                                            <label for="rating-5">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-4" name="rating" value="4" />
-                                            <label for="rating-4">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-3" name="rating" value="3" />
-                                            <label for="rating-3">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-2" name="rating" value="2" />
-                                            <label for="rating-2">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
-                                            <input type="radio" id="rating-1" name="rating" value="1" />
-                                            <label for="rating-1">
-                                                <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                <span class="rating-icon"><i class="far fa-star"></i></span>
-                                            </label>
+                                            <input type="radio" id="rating-input" name="rating" />
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <?php if ($i <= 0) { ?>
+                                                    <label>
+                                                        <span class="rating-active-icon"><i class="fas fa-star"></i></span>
+                                                        <span class="rating-icon"><i class="far fa-star"></i></span>
+                                                    </label>
+                                                <?php } else { ?>
+                                                    <label>
+                                                        <span class="rating-active-icon"><i class="fas fa-star"></i></span>
+                                                        <span class="rating-icon"><i class="far fa-star"></i></span>
+                                                    </label>
+                                                <?php } ?>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
@@ -386,42 +250,23 @@
                     <div class="section-head mb-3">
                         <h2 class="section-title text-uppercase text-dark">Latest movies</h2>
                     </div>
-                    <div class="movie-short-line-entity pt-0">
-                        <span class="entity-preview embed-responsive embed-responsive-4by3">
-                            <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
-                        </span>
-                        <div class="entity-content ">
-                            <h4 class="entity-title  text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Train  Busan</a>
-                            </h4>
-                            <p class="entity-subtext">20 Jul 2016</p>
+                    <?php foreach ($data_latest as $row) { ?>
+                        <div class="movie-short-line-entity mt-2">
+                            <span class="entity-preview embed-responsive embed-responsive-4by3">
+                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
+                            </span>
+                            <div class="entity-content ">
+                                <h4 class="entity-title  text-dark">
+                                    <a class="content-link" href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
+                                </h4>
+                                <p class="entity-subtext"><?= date_format(date_create($row['release_date']), 'd F Y') ?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="movie-short-line-entity mt-2">
-                        <span class="entity-preview embed-responsive embed-responsive-4by3">
-                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt=""  />
-                        </span>
-                        <div class="entity-content">
-                            <h4 class="entity-title text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
-                            </h4>
-                            <p class="entity-subtext">5 Feb 2021</p>
-                        </div>
-                    </div>
-                    <div class="movie-short-line-entity mt-2">
-                        <span class="entity-preview embed-responsive embed-responsive-4by3">
-                            <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
-                        </span>
-                        <div class="entity-content">
-                            <h4 class="entity-title  text-dark">
-                                <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
-                            </h4>
-                            <p class="entity-subtext">13 Jan 2023</p>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </section>
             </div>
         </div>
     </div>
 </section>
 <a class="scroll-top disabled" href="#"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+

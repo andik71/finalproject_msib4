@@ -48,7 +48,7 @@ if (isset($_POST['save'])) {
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="formFile">Image</label>
-                    <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
+                    <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="release_date">Release Date</label>

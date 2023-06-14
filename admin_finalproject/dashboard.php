@@ -82,16 +82,7 @@ $no = 1;
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Reviewer
                             </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_reviewer) ?></div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_reviewer) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -146,8 +137,7 @@ $no = 1;
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Categories</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Categories</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($data_category) ?></div>
                         </div>
                         <div class="col-auto">
@@ -165,16 +155,7 @@ $no = 1;
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Movies</div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_movie) ?></div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_movie) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -224,16 +205,16 @@ $no = 1;
                             <tbody>
                                 <?php foreach ($data_movie as $row) { ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
+                                        <td class="text-center"><?= $no++ ?></td>
                                         <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                         <td><?= $row['title'] ?></td>
                                         <td><?= short_text($row['synopsis']) ?></td>
                                         <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
-                                        <td><?= $row['genre'] ?></td>
-                                        <td><?= $row['tags'] ?></td>
+                                        <td class="text-center"><?= $row['genre'] ?></td>
+                                        <td class="text-center"><?= $row['tags'] ?></td>
                                         <td><?= $row['director_name'] ?></td>
                                         <td><?= $row['actor_name'] ?></td>
-                                        <td><?= $row['rating'] ?></td>
+                                        <td class="text-center"><?= $row['rating'] ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

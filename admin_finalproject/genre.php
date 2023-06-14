@@ -42,10 +42,10 @@ $no = 1;
                     </thead>
                     <tbody>
                         <?php foreach ($data_genre as $row) { ?>
-                            <tr>
+                            <tr class="text-center">
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['genre'] ?></td>
-                                <td class="text-center">
+                                <td>
                                     <div class="d-inline">
                                         <a href="index.php?page=genre_view&id=<?= $row['id_genre'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=genre_edit&id=<?= $row['id_genre'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>

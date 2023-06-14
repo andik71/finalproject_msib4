@@ -41,10 +41,10 @@ $no = 1;
                     <tbody>
                         <?php foreach ($data_actor as $row) { ?>
                             <tr>
-                                <td><?= $no++ ?></td>
+                                <td class="text-center"><?= $no++ ?></td>
                                 <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['name'] ?></td>
-                                <td><?= date('d/m/Y', strtotime($row['birth'])) ?></td>
+                                <td class="text-center"><?= date('d/m/Y', strtotime($row['birth'])) ?></td>
                                 <td><?= short_text($row['bio']) ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">

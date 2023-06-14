@@ -49,16 +49,16 @@ $no = 1;
                     <tbody>
                         <?php foreach ($data_movie as $row) { ?>
                             <tr>
-                                <td><?= $no++ ?></td>
+                                <td class="text-center"><?= $no++ ?></td>
                                 <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['title'] ?></td>
                                 <td><?= short_text($row['synopsis']) ?></td>
                                 <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
-                                <td><?= $row['genre'] ?></td>
-                                <td><?= $row['tags'] ?></td>
+                                <td class="text-center"><?= $row['genre'] ?></td>
+                                <td class="text-center"><?= $row['tags'] ?></td>
                                 <td><?= $row['director_name'] ?></td>
                                 <td><?= $row['actor_name'] ?></td>
-                                <td><?= $row['rating'] ?></td>
+                                <td class="text-center"><?= $row['rating'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=movie_view&id=<?= $row['id_movie'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

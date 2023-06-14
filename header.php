@@ -1,3 +1,5 @@
+<?php include_once './admin_finalproject/config/app.php'; ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,4 +24,7 @@
         <!-- Theme styles -->
         <link href="css/dot-icons.css" rel="stylesheet" type="text/css">
         <link href="css/theme.css" rel="stylesheet" type="text/css">
+
+        
+
     </head>

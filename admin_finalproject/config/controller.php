@@ -753,7 +753,6 @@ function add_movie($post)
     $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
     $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
     $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
     $img            = upload_file_movie();
 
     // Validasi Upload File
@@ -762,8 +761,8 @@ function add_movie($post)
     }
     
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id, reviewer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -797,7 +796,6 @@ function edit_movie($post)
     $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
     $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
     $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
     $img            = upload_file_movie($id);
 
     // Validasi Upload File
@@ -806,8 +804,8 @@ function edit_movie($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?, reviewer_id = ?  WHERE id_movie = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?  WHERE id_movie = ?");
+    mysqli_stmt_bind_param($stmt, "sssssssi", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);

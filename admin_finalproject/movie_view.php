@@ -2,11 +2,10 @@
 // Tangkap ID berdasarkan URL
 $id_movie = (int)$_GET['id'];
 // SQL
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag WHERE id_movie = '$id_movie'")[0];
 
@@ -52,10 +51,6 @@ INNER JOIN tag as t ON c.tag_id = t.id_tag WHERE id_movie = '$id_movie'")[0];
                     <div class="mb-3">
                         <label class="form-label" for="release_date">Release Date</label>
                         <input class="form-control" id="release_date" name="release_date" type="date" placeholder="" value="<?= $data_movie['release_date'] ?>" disabled readonly />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="rating">Ratings</label>
-                        <input class="form-control" id="rating" name="rating" type="number" placeholder="" value="<?= $data_movie['rating'] ?>" disabled readonly />
                     </div>
                 </div>
                 <!-- Right Grid -->

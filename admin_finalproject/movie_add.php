@@ -1,7 +1,6 @@
 <?php
 
 $data_category  = select("SELECT c.id_category, g.genre, t.tags FROM category as c INNER JOIN genre as g ON g.id_genre = c.genre_id INNER JOIN tag as t ON t.id_tag = c.tag_id ORDER BY id_category DESC");
-$data_reviewer  = select("SELECT * FROM reviewer ORDER BY id_reviewer DESC");
 $data_director  = select("SELECT * FROM director ORDER BY id_director DESC");
 $data_actor     = select("SELECT * FROM actor ORDER BY id_actor DESC");
 if (isset($_POST['save'])) {
@@ -79,15 +78,6 @@ if (isset($_POST['save'])) {
                         <?php
                         foreach ($data_actor as $da) { ?>
                             <option value="<?= $da['id_actor'] ?>"> <?= $da['name'] ?> </option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="id_reviewer">Rating</label>
-                    <select class="form-control form-select" id="id_reviewer" name="id_reviewer" aria-label="Rating">
-                        <?php
-                        foreach ($data_reviewer as $dr) { ?>
-                            <option value="<?= $dr['id_reviewer'] ?>"> <?= $dr['rating'] ?> </option>
                         <?php } ?>
                     </select>
                 </div>

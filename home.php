@@ -1,43 +1,35 @@
 <?php
-
-$data_latest = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre,g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+//menampilkan movie top
+$data_top = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM reviewer as r 
+INNER JOIN movie as m ON r.movie_id = m.id_movie 
 INNER JOIN category as c ON m.category_id = c.id_category 
-INNER JOIN director as d ON m.director_id = d.id_director 
-INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
-INNER JOIN genre as g ON c.genre_Id = g.id_genre 
-INNER JOIN tag as t ON c.tag_id = t.id_tag
+INNER JOIN genre as g ON c.genre_id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag ORDER BY rating DESC;");
+
+//menampilkan latest movies
+$data_latest = select("SELECT  m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM movie as m
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN genre as g ON c.genre_id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag 
+WHERE NOT release_date > NOW()
 ORDER BY id_movie DESC LIMIT 3
 ");
 
-//menampilkan movie top
-$data_top = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video, g.id_genre,g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
-INNER JOIN category as c ON m.category_id = c.id_category 
-INNER JOIN director as d ON m.director_id = d.id_director 
-INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
-INNER JOIN genre as g ON c.genre_Id = g.id_genre 
-INNER JOIN tag as t ON c.tag_id = t.id_tag
-ORDER BY rating DESC
-");
-
 //menampilkan movie list
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.Video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
-ORDER BY id_movie ASC LIMIT 2
+ORDER BY id_movie ASC LIMIT 3
 ");
 
 //menampilkan movie com
-$data_com = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_com = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 WHERE release_date > NOW()
@@ -64,7 +56,7 @@ ORDER BY id_movie ASC LIMIT 2
                                 <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
                                 <div class="d-over bg-highlight-bottom">
                                     <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $movie['video'] ?>" data-magnific-popup="iframe">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $movie['Video'] ?>" data-magnific-popup="iframe">
                                             <span class="icon-content"><i class="fas fa-play"></i></span>
                                         </a>
                                     </div>
@@ -129,7 +121,7 @@ ORDER BY id_movie ASC LIMIT 2
                     </div>
                     <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                         <div class="entity-play">
-                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
+                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['Video'] ?>" data-magnific-popup="iframe">
                                 <span class="icon-content"><i class="fas fa-play"></i></span>
                             </a>
                         </div>
@@ -145,13 +137,8 @@ ORDER BY id_movie ASC LIMIT 2
                     <div class="entity-info">
                         <div class="info-lines">
                             <div class="info info-short">
-                                <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                <span class="info-text"><?= $row['rating'] ?></span>
-                                <span class="info-rest">/5</span>
-                            </div>
-                            <div class="info info-short">
                                 <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                <span class="info-text">125</span>
+                                <span class="info-text"><?= $row['duration'] ?></span>
                                 <span class="info-rest">&nbsp;min</span>
                             </div>
                         </div>
@@ -256,16 +243,16 @@ ORDER BY id_movie ASC LIMIT 2
         </div>
         <div class="grid row">
             <?php foreach ($data_movie as $list) { ?>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <article class="article-tape-entity">
-                        <a class="entity-preview" href="<?= $list['video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
-                            <span class="embed-responsive embed-responsive-4by3">
+                        <a class="entity-preview" href="<?= $list['Video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
+                            <span class="embed-responsive embed-responsive-1by1">
                                 <img class="embed-responsive-item" src="./admin_finalproject/<?= $list['img'] ?>" alt="" />
                             </span>
                             <span class="entity-date">
                                 <span class="tape-block tape-horizontal tape-single bg-theme text-white">
                                     <span class="tape-dots"></span>
-                                    <span class="tape-content m-auto"><?= date_format(date_create($list['release_date']), 'd F Y') ?></span>
+                                    <span class="display-5 m-auto"><?= date_format(date_create($list['release_date']), 'd F Y') ?></span>
                                     <span class="tape-dots"></span>
                                 </span>
                             </span>

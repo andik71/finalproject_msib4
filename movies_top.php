@@ -1,13 +1,10 @@
 <?php
 
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.video, m.duration, m.release_date, g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM reviewer as r 
+INNER JOIN movie as m ON r.movie_id = m.id_movie 
 INNER JOIN category as c ON m.category_id = c.id_category 
-INNER JOIN director as d ON m.director_id = d.id_director 
-INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
-INNER JOIN genre as g ON c.genre_Id = g.id_genre 
-INNER JOIN tag as t ON c.tag_id = t.id_tag
-ORDER BY rating DESC 
+INNER JOIN genre as g ON c.genre_id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag ORDER BY rating DESC;
 ");
 
 ?>
@@ -44,7 +41,7 @@ ORDER BY rating DESC
                                 </div>
                                 <div class="d-over bg-highlight-bottom">
                                     <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['Video'] ?>" data-magnific-popup="iframe">
                                             <span class="icon-content"><i class="fas fa-play"></i></span>
                                         </a>
                                     </div>

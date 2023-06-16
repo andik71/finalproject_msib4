@@ -2,13 +2,13 @@
 // Tangkap ID berdasarkan URL
 $id_movie = (int)$_GET['id'];
 // SQL
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.genre, t.tags, m.director_id,d.name as director_name,m.actor_id, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.Video , m.release_date, m.duration ,m.Production, m.Country, d.id_director, a.id_actor, m.Video, g.id_genre, g.genre , t.tags, d.name as director_name, a.name as actor_name FROM reviewer as r 
+INNER JOIN movie as m ON r.movie_id = m.id_movie 
 INNER JOIN category as c ON m.category_id = c.id_category 
-INNER JOIN director as d ON m.director_id = d.id_director 
-INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
-INNER JOIN genre as g ON c.genre_Id = g.id_genre 
-INNER JOIN tag as t ON c.tag_id = t.id_tag 
+INNER JOIN genre as g ON c.genre_id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+INNER JOIN director as d ON m.director_id = d.id_director
+INNER JOIN actor as a ON m.actor_id = a.id_actor
 WHERE id_movie = '$id_movie'")[0];
 
 //SQL Film yang berkaitan berdasarkan genre 
@@ -19,10 +19,15 @@ $data_recommend = select("SELECT m.id_movie, m.title, m.img, g.genre FROM movie 
                         WHERE genre = '$data_genre' AND NOT id_movie = '$id_movie'");
 
 //SQL Data terakhir
-$data_latest = select("SELECT m.id_movie, m.title, m.img, m.release_date FROM movie as m ORDER BY id_movie DESC LIMIT 3");
+$data_latest = select("SELECT m.id_movie, m.title, m.img, m.release_date FROM movie as m WHERE NOT release_date > NOW() 
+ORDER BY id_movie DESC LIMIT 3");
 
+//SQL reviewer
+$data_reviewer = $data_movie['id_movie'];
 $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM reviewer as r
-                        INNER JOIN user as u ON r.user_id = u.id_user");
+                        INNER JOIN movie as m ON r.movie_id= m.id_movie 
+                        INNER JOIN user as u ON r.user_id = u.id_user 
+                        WHERE movie_id = '$data_reviewer'");
 
 
 ?>
@@ -56,7 +61,7 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                                 </div>
                                 <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                     <div class="entity-play">
-                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $data_movie['video'] ?>" data-magnific-popup="iframe">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $data_movie['Video'] ?>" data-magnific-popup="iframe">
                                             <span class="icon-content"><i class="fas fa-play"></i></span>
                                         </a>
                                     </div>
@@ -88,11 +93,11 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Directed:</span>
-                                        <a class="content-link" href="index.php?page=director&id=<?= $data_movie['director_id'] ?>"><?= $data_movie['director_name'] ?></a>
+                                        <a class="content-link" href="index.php?page=director&id=<?= $data_movie['id_director'] ?>"><?= $data_movie['director_name'] ?></a>
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Actor:</span>
-                                        <a class="content-link" href="index.php?page=actor&id=<?= $data_movie['actor_id'] ?>"><?= $data_movie['actor_name'] ?></a>
+                                        <a class="content-link" href="index.php?page=actor&id=<?= $data_movie['id_actor'] ?>"><?= $data_movie['actor_name'] ?></a>
                                     </li>
                                     <li>
                                         <span class="entity-list-title">Production company:</span>
@@ -108,10 +113,10 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                     </div>
                     <div class="section-line">
                         <div class="section-head">
-                            <h2 class="section-title text-uppercase text-dark">Synopsis</h2>
+                            <h2 class="section-title text-uppercase text-dark ">Synopsis</h2>
                         </div>
                         <div class="section-description">
-                            <p class="lead"><?= $data_movie['synopsis'] ?></p>
+                            <p class="lead text-justify"><?= $data_movie['synopsis'] ?></p>
                         </div>
                         <div class="section-bottom">
                             <div class="row">

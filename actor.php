@@ -2,14 +2,14 @@
 // Tangkap ID berdasarkan URL
 $id_actor = (int)$_GET['id'];
 // SQL
-$data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
+$data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
 ?>
 
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
     <div class="top-block top-inner container">
         <div class="top-block-content">
-            <h1 class="section-title"><?= $data_movie['name'] ?></h1>
+            <h1 class="section-title"><?= $data_actor['name'] ?></h1>
             <div class="page-breadcrumbs">
                 <a class="content-link" href="index.php?page=home">Home</a>
                 <span class="text-theme mx-2"><i class="fas fa-chevron-right"></i></span>
@@ -27,7 +27,7 @@ $data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
             <div class="card p-4">
                 <div class="grid row">
                     <div class="col-md-3">
-                        <img src="./admin_finalproject/<?= $data_movie['img'] ?>" alt="" srcset="" width="150px">
+                        <img src="./admin_finalproject/<?= $data_actor['img'] ?>" alt="" srcset="" width="150px">
                     </div>
                     <div class="col-md-6 p-4">
                         <div class="row">
@@ -35,7 +35,7 @@ $data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                                 <span class="font-weight-bold text-dark"><b>Born</b></span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_movie['birth'] ?>
+                                <?= $data_actor['birth'] ?>
                             </div>
                         </div>
                         <hr>
@@ -44,7 +44,7 @@ $data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                                 <span class="font-weight-bold text-dark">Occupation</span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_movie['Occupation'] ?>
+                                <?= $data_actor['Occupation'] ?>
                             </div>
                         </div>
                         <hr>
@@ -53,7 +53,7 @@ $data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                                 <span class="font-weight-bold text-dark">Country</span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_movie['Country'] ?>
+                                <?= $data_actor['Country'] ?>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@ $data_movie = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
             <h2 class="section-title text-uppercase text-dark">mini bio</h2>
         </div>
         <div class="card section-description p-5">
-            <p class="lead"><?= $data_movie['bio'] ?></p>
+            <p class="lead"><?= $data_actor['bio'] ?></p>
         </div>
         <br>
     </div>

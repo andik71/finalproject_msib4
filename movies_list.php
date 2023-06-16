@@ -4,22 +4,20 @@ $id_genre = (int)$_GET['id'];
 $data_genre = select("SELECT g.id_genre, g.genre FROM genre as g");
 
 //menampilkan movie berdasarkan id genre
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags, r.rating FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 WHERE id_genre = '$id_genre'
 ");
 
 //menampilkan movie berdasarkan seluruh movie
-$data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags, r.rating FROM movie as m 
+$data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 ORDER BY id_movie DESC  
@@ -77,7 +75,6 @@ ORDER BY id_movie DESC
                                         <option>tags
                                         </option>
                                         <option>release date</option>
-                                        <option>rating</option>
                                     </select>
                                 </div>
                             </div>
@@ -123,11 +120,6 @@ ORDER BY id_movie DESC
                         </div>
                         <div class="entity-info text-dark">
                             <div class="info-lines">
-                                <div class="info info-short">
-                                    <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                    <span class="info-text"><?= $row['rating'] ?></span>
-                                    <span class="info-rest">/5</span>
-                                </div>
                                 <div class="info info-short">
                                     <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
                                     <span class="info-text"><?= $row['duration'] ?></span>
@@ -175,11 +167,6 @@ ORDER BY id_movie DESC
                         </div>
                         <div class="entity-info text-dark">
                             <div class="info-lines">
-                                <div class="info info-short">
-                                    <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                                    <span class="info-text"><?= $row['rating'] ?></span>
-                                    <span class="info-rest">/5</span>
-                                </div>
                                 <div class="info info-short">
                                     <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
                                     <span class="info-text"><?= $row['duration'] ?></span>

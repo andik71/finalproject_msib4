@@ -45,6 +45,14 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
                         <label for="exampleFormControlInput3" class="form-label">Birth</label>
                         <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_director['birth'] ?>" disabled readonly>
                     </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Occupation</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_director['Occupation'] ?>" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_director['Country'] ?>" disabled readonly>
+                    </div>
                     <div class="mb-4">
                         <label for="exampleFormControlTextarea1" class="form-label">Bio</label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" disabled readonly><?= $data_director['bio'] ?></textarea>

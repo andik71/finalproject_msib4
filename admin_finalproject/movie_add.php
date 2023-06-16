@@ -83,14 +83,26 @@ if (isset($_POST['save'])) {
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="id_reviewer">Rating</label>
-                    <select class="form-control form-select" id="id_reviewer" name="id_reviewer" aria-label="Rating">
-                        <?php
-                        foreach ($data_reviewer as $dr) { ?>
-                            <option value="<?= $dr['id_reviewer'] ?>"> <?= $dr['rating'] ?> </option>
-                        <?php } ?>
-                    </select>
+                    <label class="form-label" for="Production">Production</label>
+                    <input class="form-control" id="Production" name="Production" type="text" placeholder="" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="Production:required">Production is required.</div>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Country">Country</label>
+                    <input class="form-control" id="Country" name="Country" type="text" placeholder="" data-sb-validations="required"/>
+                    <div class="invalid-feedback" data-sb-feedback="Country:required">Title is required.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="Video">Video</label>
+                    <input class="form-control" id="Video" name="Video" type="text" placeholder="" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="Video:required">Video is required.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="duration">Duration</label>
+                    <input class="form-control" id="duration" name="duration" type="number" placeholder="" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="duration:required">duration is required.</div>
+                </div>
+
                 <!-- Tombol -->
                 <div class="d-grid">
                     <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">

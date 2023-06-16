@@ -2,8 +2,10 @@
 // Tangkap ID berdasarkan URL
 $id_reviewer = (int)$_GET['id'];
 // SQL
-$data_reviewer = select("SELECT r.id_reviewer, u.username, r.comment, r.date, r.rating FROM reviewer as r
-INNER JOIN user as u ON u.id_user = r.user_id WHERE id_reviewer = '$id_reviewer'")[0];
+$data_reviewer = select("SELECT r.id_reviewer, m.title, u.username, r.comment, r.date, r.rating FROM reviewer as r
+INNER JOIN user as u ON u.id_user = r.user_id 
+INNER JOIN movie as m ON m.id_movie = r.movie_id
+WHERE id_reviewer = '$id_reviewer'")[0];
 ?>
 
 <!-- Begin Page Content -->
@@ -27,6 +29,10 @@ INNER JOIN user as u ON u.id_user = r.user_id WHERE id_reviewer = '$id_reviewer'
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Username</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="<?= $data_reviewer['username'] ?>" disabled readonly>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Movie Title</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" value="<?= $data_reviewer['title'] ?>" disabled readonly>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput2" class="form-label">Comment</label>

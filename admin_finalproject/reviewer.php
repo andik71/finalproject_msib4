@@ -1,10 +1,12 @@
 <?php
 
-$data_reviewer = select("SELECT r.id_reviewer, u.username, r.comment, r.date, r.rating FROM reviewer as r
-INNER JOIN user as u ON u.id_user = r.user_id ORDER BY id_reviewer DESC");
+$data_reviewer = select("SELECT r.id_reviewer, m.title, u.username, r.comment, r.date, r.rating FROM reviewer as r
+INNER JOIN user as u ON u.id_user = r.user_id 
+INNER JOIN movie as m ON m.id_movie = r.movie_id
+ORDER BY id_reviewer DESC");
 
 $arr_obj = [
-    'No', 'Username', 'Comment', 'Date', 'Rating', 'Action'
+    'No', 'Username', 'Movie Title','Comment', 'Date', 'Rating', 'Action'
 ];
 
 $no = 1;
@@ -47,9 +49,9 @@ $no = 1;
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['username'] ?></td>
+                                <td><?= $row['title'] ?></td>
                                 <td><?= short_text($row['comment'], 50) ?></td>
                                 <td><?= date('d/m/Y H:i:s', strtotime($row['date'])) ?></td>
-                                <td><?= $row['rating'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=reviewer_view&id=<?= $row['id_reviewer'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

@@ -4,7 +4,6 @@
 $id_movie = (int)$_GET['id'];
 // Select Data yang terintegrasi
 $data_category = select("SELECT c.id_category, g.genre, t.tags FROM category as c INNER JOIN genre as g ON g.id_genre = c.genre_id INNER JOIN tag as t ON t.id_tag = c.tag_id ORDER BY id_tag DESC");
-$data_reviewer  = select("SELECT * FROM reviewer ORDER BY id_reviewer DESC");
 $data_director  = select("SELECT * FROM director ORDER BY id_director DESC");
 $data_actor     = select("SELECT * FROM actor ORDER BY id_actor DESC");
 // Tangkap ID Movie
@@ -102,15 +101,19 @@ window.location.href = 'index.php?page=movie';
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="id_reviewer">Rating</label>
-                            <select class="form-control form-select" id="id_reviewer" name="id_reviewer" aria-label="Rating">
-                                <?php
-                                foreach ($data_reviewer as $dr) {
-                                    $selected = ($dr['id_reviewer'] == $data_movie['reviewer_id']) ? 'selected' : '';
-                                    echo '<option ' . $selected . ' value="' . $dr['id_reviewer'] . '">' . $dr['rating'] . '</option>';
-                                }
-                                ?>
-                            </select>
+                            <label class="form-label" for="Production">Production</label>
+                            <input class="form-control" id="Production" name="Production" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Production'] ?>" />
+                            <div class="invalid-feedback" data-sb-feedback="Production:required">Production is required.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Country">Country</label>
+                            <input class="form-control" id="Country" name="Country" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Country'] ?>" />
+                            <div class="invalid-feedback" data-sb-feedback="Country:required">Title is required.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="Video">Video</label>
+                            <input class="form-control" id="Video" name="Video" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Video'] ?>" />
+                            <div class="invalid-feedback" data-sb-feedback="Video:required">Video is required.</div>
                         </div>
                     </div>
                 </div>

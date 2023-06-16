@@ -45,6 +45,14 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                         <label for="exampleFormControlInput3" class="form-label">Birth</label>
                         <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['birth'] ?>" disabled readonly>
                     </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Occupation</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['Occupation'] ?>" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Country</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['Country'] ?>" disabled readonly>
+                    </div>
                 </div>
             </div>
             <!-- Second Row -->

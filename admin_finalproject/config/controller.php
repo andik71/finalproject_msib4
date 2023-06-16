@@ -36,10 +36,12 @@ function add_actor($post)
     // Koneksi database
     global $koneksi;
 
-    $name   = mysqli_real_escape_string($koneksi, $post['name']);
-    $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
-    $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
-    $img    = upload_file_actor();
+    $name           = mysqli_real_escape_string($koneksi, $post['name']);
+    $birth          = mysqli_real_escape_string($koneksi, $post['birth']);
+    $bio            = mysqli_real_escape_string($koneksi, $post['bio']);
+    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
+    $img            = upload_file_actor();
 
     // Validasi Upload File
     if (!$img) {
@@ -47,8 +49,8 @@ function add_actor($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO actor (name, birth, bio, img) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $birth, $bio, $img);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO actor (name, birth, bio,Occupation, Country img) VALUES (?, ?, ?, ?,?,?)");
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio,  $occupation, $country, $img);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -81,6 +83,8 @@ function edit_actor($post)
     $name   = mysqli_real_escape_string($koneksi, $post['name']);
     $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
     $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
+    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
     $img    = upload_file_actor($id);
 
     // Validasi Upload File
@@ -89,8 +93,8 @@ function edit_actor($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?, img = ? WHERE id_actor = ?");
-    mysqli_stmt_bind_param($stmt, "ssssi", $name, $birth, $bio, $img, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?,Occupation = ?, Country = ?, img = ? WHERE id_actor = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation , $country,  $img, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -248,6 +252,8 @@ function add_director($post)
     $name   = mysqli_real_escape_string($koneksi, $post['name']);
     $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
     $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
+    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
     $img    = upload_file_director();
 
     // Validasi Upload File
@@ -256,8 +262,8 @@ function add_director($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO director (name, birth, bio, img) VALUES (?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $birth, $bio, $img);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO director (name, birth, bio, Occupation, Country,img) VALUES (?, ?, ?, ?,?,?)");
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio,  $occupation, $country,$img);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -286,16 +292,18 @@ function edit_director($post)
     $name   = mysqli_real_escape_string($koneksi, $post['name']);
     $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
     $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
+    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
     $img    = upload_file_director($id);
 
     // Validasi Upload File
     if (!$img) {
         return false;
     }
-
+ 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE director SET name = ?, birth = ?, bio = ?, img = ? WHERE id_director = ?");
-    mysqli_stmt_bind_param($stmt, "ssssi", $name, $birth, $bio, $img, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE director SET name = ?, birth = ?, bio = ?, Occupation = ?, Country = ?, img = ? WHERE id_director = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation , $country,  $img, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -750,10 +758,12 @@ function add_movie($post)
     $title          = mysqli_real_escape_string($koneksi, $post['title']);
     $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
     $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
+    $video          = mysqli_real_escape_string($koneksi, $post['Video']);
     $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
     $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
     $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
+    $production     = mysqli_real_escape_string($koneksi, $post['Production']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
     $img            = upload_file_movie();
 
     // Validasi Upload File
@@ -762,8 +772,8 @@ function add_movie($post)
     }
     
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id, reviewer_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, Video, release_date, category_id, director_id, actor_id , Production, Country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssssssss", $title, $synopsis, $img, $video , $release_date, $category, $director_name, $actor_name,  $production , $country);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -794,10 +804,12 @@ function edit_movie($post)
     $title          = mysqli_real_escape_string($koneksi, $post['title']);
     $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
     $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
+    $video          = mysqli_real_escape_string($koneksi, $post['Video']);
     $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
     $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
     $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $rating         = mysqli_real_escape_string($koneksi, $post['id_reviewer']);
+    $production     = mysqli_real_escape_string($koneksi, $post['Production']);
+    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
     $img            = upload_file_movie($id);
 
     // Validasi Upload File
@@ -806,8 +818,8 @@ function edit_movie($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?, reviewer_id = ?  WHERE id_movie = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssssi", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $rating, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, Video = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?, Production = ?, Country = ?  WHERE id_movie = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssssssi", $title, $synopsis, $img, $video, $release_date, $category, $director_name, $actor_name, $production, $country, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);

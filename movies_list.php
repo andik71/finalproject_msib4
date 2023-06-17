@@ -1,3 +1,31 @@
+<?php
+$id_genre = (int)$_GET['id'];
+// $list = (int)$_GET['id_genre'];
+$data_genre = select("SELECT g.id_genre, g.genre FROM genre as g");
+
+//menampilkan movie berdasarkan id genre
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+WHERE id_genre = '$id_genre'
+");
+
+//menampilkan movie berdasarkan seluruh movie
+$data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
+INNER JOIN category as c ON m.category_id = c.id_category 
+INNER JOIN director as d ON m.director_id = d.id_director 
+INNER JOIN actor as a ON m.actor_id = a.id_actor 
+INNER JOIN genre as g ON c.genre_Id = g.id_genre 
+INNER JOIN tag as t ON c.tag_id = t.id_tag
+ORDER BY id_movie DESC  
+");
+
+
+?>
+
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
     <div class="top-block top-inner container">
@@ -20,22 +48,15 @@
                 <div class="col-md-10">
                     <form autocomplete="off">
                         <div class="row form-grid">
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="input-view-flat input-group">
-                                    <select class="form-control" name="genre">
+                            <div class="col-sm-6 col-lg-3 ">
+                                <div class="input-view-flat">
+                                    <select id="fruit" name="fruit" class="form-control" onchange="redirectToLink(this)">
                                         <option selected="true">genre</option>
-                                        <option>Action</option>
-                                        <option>Crime</option>
-                                        <option>Thriller</option>
-                                        <option>Adventure</option>
-                                        <option>Fantasy</option>
-                                        <option>Horror</option>
-                                        <option>Biography</option>
-                                        <option>History</option>
-                                        <option>Family</option>
-                                        <option>Drama</option>
-                                        <option>Romance</option>
-                                        <option>Comedy</option>
+                                        <?php foreach ($data_genre as $genre) { ?>
+                                            <option value="index.php?page=movies_list&id=<?= $genre['id_genre'] ?>">
+                                                <?= $genre['genre'] ?>
+                                            </option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -51,9 +72,9 @@
                                 <div class="input-view-flat input-group">
                                     <select class="form-control" name="sortBy">
                                         <option selected="true">sort by</option>
-                                        <option>name</option>
-                                        <option>release year</option>
-                                        <option>rating</option>
+                                        <option>tags
+                                        </option>
+                                        <option>release date</option>
                                     </select>
                                 </div>
                             </div>
@@ -73,198 +94,107 @@
                 </div>
             </div>
         </div>
-        <article class="movie-line-entity bg-white shadow-lg">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="ttps://www.youtube.com/watch?v=1ovgxN2VWNc" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entity-content">
-                <h4 class="entity-title text-dark">
-                    <a class="content-link " href="index.php?page=movie-info">Train To Busan</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">horror</a>,
-                    <a class="content-link" href="movies-blocks.html">action</a>
-                </div>
-                <div class="entity-info text-dark">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">8,1</span>
-                            <span class="info-rest">/10</span>
+
+        <!-- Kondisi ketika url memiliki id dan jika url tidak memiliki id -->
+        <?php if ($id_genre) { ?>
+            <?php foreach ($data_movie as $row) { ?>
+                <article class="movie-line-entity bg-white shadow-lg">
+                    <div class="entity-poster" data-role="hover-wrap">
+                        <div class="embed-responsive embed-responsive-poster">
+                            <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
                         </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">125</span>
-                            <span class="info-rest">&nbsp;min</span>
+                        <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                            <div class="entity-play">
+                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
+                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <p class="text-short entity-text text-dark">Aenean molestie turpis eu aliquam bibendum. Nulla facilisi. Vestibulum quis risus in lorem suscipit tempor. Morbi consectetur enim vitae justo finibus consectetur. Mauris volutpat nunc dui, quis condimentum dolor efficitur et. Phasellus rhoncus porta nunc eu fermentum. Nullam vitae erat hendrerit, tempor arcu eget, eleifend tortor.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Action</a>
+                    <div class="entity-content">
+                        <h4 class="entity-title text-dark">
+                            <a class="content-link " href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
+                        </h4>
+                        <div class="entity-category">
+                            <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>,
                         </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
+                        <div class="entity-info text-dark">
+                            <div class="info-lines">
+                                <div class="info info-short">
+                                    <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
+                                    <span class="info-text"><?= $row['duration'] ?></span>
+                                    <span class="info-rest">&nbsp;min</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Fantasy</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
+                        <p class="text-short entity-text text-dark"><?= short_text($row['synopsis']) ?></p>
+                    </div>
+                    <div class="entity-extra">
+                        <div class="text-uppercase entity-extra-title">Tags</div>
+                        <div class="entity-showtime">
+                            <div class="showtime-wrap">
+                                <?php foreach ($data_movie as $row) { ?>
+                                    <div class="showtime-item">
+                                        <a class="btn-time btn" aria-disabled="false" href="#"><?= $row['tags'] ?></a>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </article>
-        <article class="movie-line-entity bg-white shadow-lg">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=T0uRwQHQgEQ" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entity-content ">
-                <h4 class="entity-title text-dark">
-                    <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">Action</a>,
-                    <a class="content-link" href="movies-blocks.html">Adventure</a>
-                </div>
-                <div class="entity-info text-dark">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">6,8</span>
-                            <span class="info-rest">/10</span>
+                </article>
+            <?php } ?>
+        <?php } else {  ?>
+            <?php foreach ($data_movie2 as $row) { ?>
+                <article class="movie-line-entity bg-white shadow-lg">
+                    <div class="entity-poster" data-role="hover-wrap">
+                        <div class="embed-responsive embed-responsive-poster">
+                            <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
                         </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">95</span>
-                            <span class="info-rest">&nbsp;min</span>
+                        <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                            <div class="entity-play">
+                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
+                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <p class="text-short entity-text text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur ultrices justo a pellentesque. Praesent venenatis dolor nec tempus lacinia. Donec ac condimentum dolor. Nullam sit amet nisl hendrerit, pharetra nulla convallis, malesuada diam. Donec ornare nisl eu lectus rhoncus, at malesuada metus rutrum. Aliquam a nisl vulputate, sodales ipsum aliquam, tempus purus. Suspendisse convallis, lectus nec vehicula sollicitudin, lorem sapien rhoncus dolor, vel lacinia urna velit ullamcorper nisi. Phasellus pellentesque, magna nec gravida feugiat, est magna suscipit ligula, vel porttitor nunc enim at nibh. Sed varius sit amet leo vitae consequat.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Drama</a>
+                    <div class="entity-content">
+                        <h4 class="entity-title text-dark">
+                            <a class="content-link " href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
+                        </h4>
+                        <div class="entity-category">
+                            <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>,
                         </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
+                        <div class="entity-info text-dark">
+                            <div class="info-lines">
+                                <div class="info info-short">
+                                    <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
+                                    <span class="info-text"><?= $row['duration'] ?></span>
+                                    <span class="info-rest">&nbsp;min</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Fantasy</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Korea</a>
+                        <p class="text-short entity-text text-dark"><?= short_text($row['synopsis']) ?></p>
+                    </div>
+                    <div class="entity-extra">
+                        <div class="text-uppercase entity-extra-title">Tags</div>
+                        <div class="entity-showtime">
+                            <div class="showtime-wrap">
+                                <?php foreach ($data_movie2 as $row) { ?>
+                                    <div class="showtime-item">
+                                        <a class="btn-time btn" aria-disabled="false" href="#"><?= $row['tags'] ?></a>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </article>
-        <article class="movie-line-entity bg-white shadow-lg">
-            <div class="entity-poster" data-role="hover-wrap">
-                <div class="embed-responsive embed-responsive-poster">
-                    <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
-                </div>
-                <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                    <div class="entity-play">
-                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=H1WYnJF1Pwo" data-magnific-popup="iframe">
-                            <span class="icon-content"><i class="fas fa-play"></i></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="entity-content">
-                <h4 class="entity-title text-dark">
-                    <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
-                </h4>
-                <div class="entity-category">
-                    <a class="content-link" href="movies-blocks.html">Horror</a>,
-                    <a class="content-link" href="movies-blocks.html">Family</a>
-                </div>
-                <div class="entity-info text-dark">
-                    <div class="info-lines">
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
-                            <span class="info-text">8,7</span>
-                            <span class="info-rest">/10</span>
-                        </div>
-                        <div class="info info-short">
-                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                            <span class="info-text">130</span>
-                            <span class="info-rest">&nbsp;min</span>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-short entity-text text-dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consectetur ultrices justo a pellentesque. Praesent venenatis dolor nec tempus lacinia. Donec ac condimentum dolor. Nullam sit amet nisl hendrerit, pharetra nulla convallis, malesuada diam. Donec ornare nisl eu lectus rhoncus, at malesuada metus rutrum. Aliquam a nisl vulputate, sodales ipsum aliquam, tempus purus. Suspendisse convallis, lectus nec vehicula sollicitudin, lorem sapien rhoncus dolor, vel lacinia urna velit ullamcorper nisi. Phasellus pellentesque, magna nec gravida feugiat, est magna suscipit ligula, vel porttitor nunc enim at nibh. Sed varius sit amet leo vitae consequat.
-                </p>
-            </div>
-            <div class="entity-extra">
-                <div class="text-uppercase entity-extra-title">Tags</div>
-                <div class="entity-showtime">
-                    <div class="showtime-wrap">
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Horror</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Indo</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Drama</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">Family</a>
-                        </div>
-                        <div class="showtime-item">
-                            <a class="btn-time btn" aria-disabled="false" href="#">RELIGI</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </article>
+                </article>
+            <?php } ?>
+        <?php } ?>
+
+
+
+
         <div class="section-bottom">
             <div class="paginator">
                 <a class="paginator-item" href="#"><i class="fas fa-chevron-left"></i></a>
@@ -278,3 +208,13 @@
         </div>
     </div>
 </section>
+
+<!-- Function select genre -->
+<script>
+    function redirectToLink(selectElement) {
+        var selectedValue = selectElement.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    }
+</script>

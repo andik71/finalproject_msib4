@@ -42,8 +42,16 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                         <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="" value="<?= strtoupper($data_actor['name']) ?>" disabled readonly>
                     </div>
                     <div class="mb-3">
-                        <label for="birth" class="form-label">Birth</label>
-                        <input type="date" class="form-control" id="birth" placeholder="" value="<?= $data_actor['birth'] ?>" disabled readonly>
+                        <label for="exampleFormControlInput3" class="form-label">Birth</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['birth'] ?>" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Occupation</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['Occupation'] ?>" disabled readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Country</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput3" placeholder="" value="<?= $data_actor['Country'] ?>" disabled readonly>
                     </div>
                 </div>
             </div>

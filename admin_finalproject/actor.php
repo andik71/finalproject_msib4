@@ -3,7 +3,7 @@
 $data_actor = select("SELECT * FROM actor ORDER BY id_actor DESC");
 
 $arr_obj = [
-    'No', 'Image', 'Name', 'Birth', 'Bio', 'Action'
+    'No', 'Image', 'Name', 'Birth', 'Bio', 'Occupation','Country', 'Action'
 ];
 
 $no = 1;
@@ -41,11 +41,13 @@ $no = 1;
                     <tbody>
                         <?php foreach ($data_actor as $row) { ?>
                             <tr>
-                                <td class="text-center"><?= $no++ ?></td>
+                                <td><?= $no++ ?></td>
                                 <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['name'] ?></td>
-                                <td class="text-center"><?= date('d/m/Y', strtotime($row['birth'])) ?></td>
+                                <td><?= date('d/m/Y', strtotime($row['birth'])) ?></td>
                                 <td><?= short_text($row['bio']) ?></td>
+                                <td><?= $row['Occupation'] ?></td>
+                                <td><?= $row['Country'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=actor_view&id=<?= $row['id_actor'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

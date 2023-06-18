@@ -66,7 +66,7 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
             <h2 class="section-title text-uppercase text-dark">mini bio</h2>
         </div>
         <div class="card section-description p-5">
-            <p class="lead"><?=  $data_director['bio'] ?></p>             
+            <p class="lead text-justify"><?=  $data_director['bio'] ?></p>             
         </div>
         <br>
     </div>

@@ -24,21 +24,21 @@
                             <span class="text-theme">us</span>
                         </h4>
                         <p class="form-text">We understand your requirement and provide quality works</p>
-                        <form autocomplete="off">
+                        <form id="contact-form" action="https://formspree.io/f/xdovqldo" method="POST">
                             <div class="row form-grid">
                                 <div class="col-sm-6">
                                     <div class="input-view-flat input-group">
-                                        <input class="form-control" name="name" type="text" placeholder="Name" />
+                                        <input class="form-control" id="name" name="name" type="text" placeholder="Name" />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="input-view-flat input-group">
-                                        <input class="form-control" name="email" type="email" placeholder="Email" />
+                                        <input class="form-control" id="email" name="email" type="email" placeholder="Email" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="input-view-flat input-group">
-                                        <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                                        <textarea class="form-control" id="message" name="message" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -69,7 +69,7 @@
             </div>
             <div class="col-md-6">
                 <h4 class="entity-title text-dark">Email</h4>
-                <p class="entity-text text-dark">info@filmkita.net
+                <p class="entity-text text-dark">filmkita1service@gmail.com
                     <br />service@filmkita.net
                 </p>
             </div>

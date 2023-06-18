@@ -33,7 +33,7 @@ INNER JOIN actor as a ON m.actor_id = a.id_actor
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 WHERE release_date > NOW()
-ORDER BY id_movie ASC LIMIT 2
+ORDER BY id_movie ASC 
 ");
 ?>
 

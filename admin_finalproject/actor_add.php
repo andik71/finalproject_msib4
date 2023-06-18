@@ -42,23 +42,13 @@ if (isset($_POST['save'])) {
                     <div class="invalid-feedback" data-sb-feedback="birth:required">Birth is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="Occupation">Occupation</label>
-                    <input class="form-control" id="Occupation" name="Occupation" type="text" placeholder="Occupation" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="Occupation:required">Occupation is required.</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="Country">Country</label>
-                    <input class="form-control" id="Country" name="Country" type="text" placeholder="Country" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="Country:required">Country is required.</div>
-                </div>
-                <div class="mb-3">
                     <label class="form-label" for="bio">Bio</label>
                     <textarea class="form-control" id="bio" name="bio" type="text" placeholder="Bio" style="height: 10rem;" data-sb-validations="required"></textarea>
                     <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="formFile">Image</label>
-                    <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
+                    <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" />
                 </div>
                 <div class="d-grid">
                     <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">

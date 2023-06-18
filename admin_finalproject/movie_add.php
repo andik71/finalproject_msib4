@@ -1,7 +1,6 @@
 <?php
 
 $data_category  = select("SELECT c.id_category, g.genre, t.tags FROM category as c INNER JOIN genre as g ON g.id_genre = c.genre_id INNER JOIN tag as t ON t.id_tag = c.tag_id ORDER BY id_category DESC");
-$data_reviewer  = select("SELECT * FROM reviewer ORDER BY id_reviewer DESC");
 $data_director  = select("SELECT * FROM director ORDER BY id_director DESC");
 $data_actor     = select("SELECT * FROM actor ORDER BY id_actor DESC");
 if (isset($_POST['save'])) {
@@ -48,7 +47,7 @@ if (isset($_POST['save'])) {
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="formFile">Image</label>
-                    <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
+                    <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="release_date">Release Date</label>
@@ -82,27 +81,6 @@ if (isset($_POST['save'])) {
                         <?php } ?>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="Production">Production</label>
-                    <input class="form-control" id="Production" name="Production" type="text" placeholder="" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="Production:required">Production is required.</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="Country">Country</label>
-                    <input class="form-control" id="Country" name="Country" type="text" placeholder="" data-sb-validations="required"/>
-                    <div class="invalid-feedback" data-sb-feedback="Country:required">Title is required.</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="Video">Video</label>
-                    <input class="form-control" id="Video" name="Video" type="text" placeholder="" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="Video:required">Video is required.</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="duration">Duration</label>
-                    <input class="form-control" id="duration" name="duration" type="number" placeholder="" data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="duration:required">duration is required.</div>
-                </div>
-
                 <!-- Tombol -->
                 <div class="d-grid">
                     <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">

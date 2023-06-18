@@ -18,12 +18,12 @@ WHERE id_reviewer = '$id_reviewer'")[0];
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-        <a href="index.php?page=reviewer" class="btn btn-info btn-icon-split btn-sm">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-arrow-left"></i>
-                    </span>
-                    <span class="text">Go Back</span>
-                </a>
+            <a href="index.php?page=reviewer" class="btn btn-info btn-icon-split btn-sm">
+                <span class="icon text-white-50">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span class="text">Go Back</span>
+            </a>
         </div>
         <div class="card-body">
             <div class="mb-3">

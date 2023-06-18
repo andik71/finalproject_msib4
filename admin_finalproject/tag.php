@@ -42,10 +42,10 @@ $no = 1;
                     </thead>
                     <tbody>
                         <?php foreach ($data_tag as $row) { ?>
-                            <tr>
+                            <tr class="text-center">
                                 <td><?= $no++ ?></td>
                                 <td><?= $row['tags'] ?></td>
-                                <td class="text-center">
+                                <td>
                                     <div class="d-inline">
                                         <a href="index.php?page=tag_view&id=<?= $row['id_tag'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=tag_edit&id=<?= $row['id_tag'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>

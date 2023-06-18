@@ -77,3 +77,8 @@ if (isset($_POST['save'])) {
 
 </div>
 <!-- /.container-fluid -->
+
+<!-- Skrip untuk memanggil CKEditor -->
+<script>
+    CKEDITOR.replace('bio');
+</script>

@@ -100,18 +100,3 @@ window.location.href = 'index.php?page=director';
 
 </div>
 <!-- /.container-fluid -->
-
-<script>
-    // Fungsi untuk preview gambar
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var imgPreview = document.querySelector('.img-thumbnail');
-            imgPreview.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-
-    var fileInput = document.querySelector('#formFile');
-    fileInput.addEventListener('change', previewImage);
-</script>

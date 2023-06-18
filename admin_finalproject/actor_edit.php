@@ -26,7 +26,7 @@ window.location.href = 'index.php?page=actor';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Edit Data Director</h1>
+    <h1 class="h3 mb-2 text-gray-800">Edit Data Actor</h1>
     <p class="mb-4">Master Data</p>
 
     <!-- Basic Card Example -->
@@ -101,3 +101,7 @@ window.location.href = 'index.php?page=actor';
 </div>
 <!-- /.container-fluid -->
 
+<!-- Skrip untuk memanggil CKEditor -->
+<script>
+    CKEDITOR.replace('bio');
+</script>

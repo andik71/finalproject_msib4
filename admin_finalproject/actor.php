@@ -45,7 +45,7 @@ $no = 1;
                                 <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['name'] ?></td>
                                 <td class="text-center"><?= date('d/m/Y', strtotime($row['birth'])) ?></td>
-                                <td><?= short_text($row['bio']) ?></td>
+                                <td><?= $row['bio'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=actor_view&id=<?= $row['id_actor'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

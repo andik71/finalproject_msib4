@@ -116,7 +116,9 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                             <h2 class="section-title text-uppercase text-dark ">Synopsis</h2>
                         </div>
                         <div class="section-description">
-                            <p class="lead text-justify"><?= $data_movie['synopsis'] ?></p>
+                            <p class="lead text-justify">
+                                <?= $data_movie['synopsis'] ?>
+                            </p>
                         </div>
                         <div class="section-bottom">
                             <div class="row">
@@ -211,12 +213,12 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                         </div>
                         <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                             <div class="row form-grid">
-                                <div class="col-12 col-sm-7">
+                                <div class="col-12 col-sm-12">
                                     <div class="input-view-flat input-group">
                                         <input class="form-control" id="user_id" name="user_id" type="text" placeholder="Name" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-7">
+                                <div class="col-12 col-sm-12">
                                     <div class="input-view-flat input-group">
                                         <textarea class="form-control" name="review" placeholder="Add your comment"></textarea>
                                     </div>

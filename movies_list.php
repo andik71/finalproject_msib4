@@ -1,25 +1,29 @@
 <?php
 $id_genre = (int)$_GET['id'];
-// $list = (int)$_GET['id_genre'];
 $data_genre = select("SELECT g.id_genre, g.genre FROM genre as g");
 
-//menampilkan movie berdasarkan id genre
+// Konfigurasi pagination
+$dataPerHalaman = 5 ; 
+$queryData = select("SELECT * FROM movie");
+$rowJumlahData = count($queryData);
+
+// Hitung jumlah halaman
+$jumlahHalaman = ceil($rowJumlahData/ $dataPerHalaman);
+if (isset($_GET['halaman'])) {
+    $halamanAktif = $_GET['halaman'];
+} else {
+    $halamanAktif = 1;
+}
+
+$dataAwal = ($halamanAktif*$dataPerHalaman)-$dataPerHalaman;
+//menampilkan movie berdasarkan id genre dan Query untuk mengambil data dengan pagination
 $data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
-WHERE id_genre = '$id_genre'
-");
-
-// Konfigurasi pagination
-$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
-$dataPerHalaman = 5; // Jumlah data per halaman
-$mulai = ($halaman > 1) ? ($halaman * $dataPerHalaman) - $dataPerHalaman : 0;
-
-// Hitung jumlah halaman
-$jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
+WHERE id_genre = '$id_genre' LIMIT $dataAwal, $dataPerHalaman");
 
 //menampilkan movie berdasarkan seluruh movie
 $data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
@@ -28,8 +32,12 @@ INNER JOIN director as d ON m.director_id = d.id_director
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
-ORDER BY id_movie DESC  LIMIT $mulai, $dataPerHalaman
+ORDER BY id_movie DESC  LIMIT $dataAwal, $dataPerHalaman
 ");
+
+
+
+
 ?>
 
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
@@ -52,51 +60,31 @@ ORDER BY id_movie DESC  LIMIT $mulai, $dataPerHalaman
         <div class="section-pannel shadow-lg">
             <div class="grid row">
                 <div class="col-md-10">
-                    <form autocomplete="off">
+                    <form method="GET" action="index.php?page=movies_list" autocomplete="off">
                         <div class="row form-grid">
-                            <div class="col-sm-6 col-lg-3 ">
-                                <div class="input-view-flat">
-                                    <select id="fruit" name="fruit" class="form-control" onchange="redirectToLink(this)">
-                                        <option selected="true">genre</option>
-                                        <?php foreach ($data_genre as $genre) { ?>
-                                            <option value="index.php?page=movies_list&id=<?= $genre['id_genre'] ?>">
-                                                <?= $genre['genre'] ?>
-                                            </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="input-view-flat date input-group" data-toggle="datetimepicker" data-target="#release-year-field">
-                                    <input class="datetimepicker-input form-control" id="release-year-field" name="releaseYear" type="text" placeholder="release year" data-target="#release-year-field" data-date-format="Y" />
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="input-view-flat input-group">
+                                    <input class="form-control" id="search" name="search" type="text" placeholder="Search" />
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                        <button class="input-group-text" type="submit"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-3">
-                                <div class="input-view-flat input-group">
-                                    <select class="form-control" name="sortBy">
-                                        <option selected="true">sort by</option>
-                                        <option>tags
-                                        </option>
-                                        <option>release date</option>
-                                    </select>
-                                </div>
-                            </div>
+                       
                         </div>
                     </form>
-                </div>
-                <div class="col-md-2 my-md-auto d-flex">
-                    <span class="info-title d-md-none mr-3">Select view:</span>
-                    <ul class="ml-md-auto h5 list-inline">
-                        <li class="list-inline-item">
-                            <a class="content-link transparent-link" href="movies-blocks.html"><i class="fas fa-th"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="content-link transparent-link active" href="movies-list.html"><i class="fas fa-th-list"></i></a>
-                        </li>
-                    </ul>
+                </div>  
+                <div class="col-sm-2 my-md-4 d-flex">
+                    <div class="input-view-flat">
+                        <select id="fruit" name="fruit" class="form-control" onchange="redirectToLink(this)">
+                            <option selected="true">genre</option>
+                            <?php foreach ($data_genre as $genre) { ?>
+                                <option value="index.php?page=movies_list&id=<?= $genre['id_genre'] ?>">
+                                    <?= $genre['genre'] ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,21 +186,23 @@ ORDER BY id_movie DESC  LIMIT $mulai, $dataPerHalaman
             <?php } ?>
         <?php } ?>
 
-
-
-
         <div class="section-bottom">
             <div class="paginator">
-                <a class="paginator-item" href="#"><i class="fas fa-chevron-left"></i></a>
-                
-               <?php 
-               
-               for ($i = 1; $i <= $jumlahHalaman; $i++) {
-                echo "<a href='?halaman=$i'>$i</a> ";
-            }
-               
-               ?> <!-- Tampilkan navigasi pagination -->
-                <a class="paginator-item" href="#"><i class="fas fa-chevron-right"></i></a>
+                <!-- Membuat kondisi ketika halaman ke 1 maka previous disabled -->
+                <?php if ($halamanAktif <= 1) { ?>
+                    <a class="paginator-item" href="index.php?page=movies_list&halaman=<?php echo $halamanAktif-1; ?>"><i class="fas fa-chevron-left"></i></a>
+                <?php } else { ?>
+                    <a class="paginator-item" href="index.php?page=movies_list&halaman=<?php echo $halamanAktif-1; ?>"><i class="fas fa-chevron-left"></i></a>
+                <?php } ?>
+                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) { ?>
+                    <a class="paginator-item" href="index.php?page=movies_list&halaman=<?php echo $i; ?>" class="page-link"><?php echo $i; ?></a>
+                <?php } ?>  
+                <!-- Membuat kondisi ketika halaman terakhir maka next disabled -->
+                <?php if ($halamanAktif >= $jumlahHalaman) { ?>
+                    <a class="paginator-item" href="index.php?page=movies_list&halaman=<?php echo $halamanAktif+1; ?>"><i class="fas fa-chevron-right"></i></a>
+                <?php } else { ?>
+                    <a class="paginator-item" href="index.php?page=movies_list&halaman=<?php echo $halamanAktif+1; ?>"><i class="fas fa-chevron-right"></i></a>
+                <?php } ?>    
             </div>
         </div>
     </div>

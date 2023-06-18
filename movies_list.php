@@ -34,10 +34,6 @@ INNER JOIN genre as g ON c.genre_Id = g.id_genre
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 ORDER BY id_movie DESC  LIMIT $dataAwal, $dataPerHalaman
 ");
-
-
-
-
 ?>
 
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">

@@ -28,7 +28,6 @@ function short_text($text, $maxLength = 100)
     }
 }
 // ==== END SHORT TEXT ===== //
-
 // ==== ACTOR CONTROLLER ==== //
 // ACTOR CREATE
 function add_actor($post)
@@ -242,6 +241,7 @@ function upload_file_actor($id = NULL)
 }
 
 // ==== END ACTOR CONTROLLER ==== //
+
 // ==== DIRECTOR CONTROLLER ==== //
 
 // DIRECTOR CREATE
@@ -449,6 +449,9 @@ function upload_file_director($id = NULL)
 }
 
 // ==== END DIRECTOR CONTROLLER ==== //
+
+
+
 // ==== TAG CONTROLLER ==== //
 
 // TAG CREATE
@@ -456,7 +459,7 @@ function add_tag($post)
 {
     global $koneksi;
 
-    $tags   = mysqli_real_escape_string($koneksi, $post['tags']);
+    $tags   = mysqli_real_escape_string($koneksi, strip_tags($post['tags']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "INSERT INTO tag (tags) VALUES (?)");
@@ -486,7 +489,7 @@ function edit_tag($post)
     global $koneksi;
 
     $id     = $post['id_tag'];
-    $tags   = mysqli_real_escape_string($koneksi, $post['tags']);
+    $tags   = mysqli_real_escape_string($koneksi, strip_tags($post['tags']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "UPDATE tag SET tags = ? WHERE id_tag = ?");
@@ -545,7 +548,7 @@ function add_genre($post)
 {
     global $koneksi;
 
-    $genre   = mysqli_real_escape_string($koneksi, $post['genre']);
+    $genre   = mysqli_real_escape_string($koneksi, strip_tags($post['genre']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "INSERT INTO genre (genre) VALUES (?)");
@@ -575,7 +578,7 @@ function edit_genre($post)
     global $koneksi;
 
     $id     = $post['id_genre'];
-    $genre   = mysqli_real_escape_string($koneksi, $post['genre']);
+    $genre   = mysqli_real_escape_string($koneksi, strip_tags($post['genre']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "UPDATE genre SET genre = ? WHERE id_genre = ?");
@@ -634,8 +637,8 @@ function add_category($post)
 {
     global $koneksi;
 
-    $genre_id   = mysqli_real_escape_string($koneksi, $post['id_genre']);
-    $tag_id   = mysqli_real_escape_string($koneksi, $post['id_tag']);
+    $genre_id   = mysqli_real_escape_string($koneksi, strip_tags($post['id_genre']));
+    $tag_id   = mysqli_real_escape_string($koneksi, strip_tags($post['id_tag']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "INSERT INTO category (genre_id, tag_id) VALUES (?,?)");
@@ -665,8 +668,8 @@ function edit_category($post)
     global $koneksi;
 
     $id     = $post['id_category'];
-    $genre_id   = mysqli_real_escape_string($koneksi, $post['id_genre']);
-    $tag_id   = mysqli_real_escape_string($koneksi, $post['id_tag']);
+    $genre_id   = mysqli_real_escape_string($koneksi, strip_tags($post['id_genre']));
+    $tag_id   = mysqli_real_escape_string($koneksi, strip_tags($post['id_tag']));
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "UPDATE category SET genre_id = ?, tag_id = ? WHERE id_category = ?");
@@ -755,25 +758,22 @@ function add_movie($post)
     // Koneksi database
     global $koneksi;
 
-    $title          = mysqli_real_escape_string($koneksi, $post['title']);
-    $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
-    $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
-    $video          = mysqli_real_escape_string($koneksi, $post['Video']);
-    $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
-    $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
-    $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $production     = mysqli_real_escape_string($koneksi, $post['Production']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
+    $title          = mysqli_real_escape_string($koneksi, strip_tags($post['title']));
+    $synopsis       = mysqli_real_escape_string($koneksi, strip_tags($post['synopsis']));
+    $release_date   = mysqli_real_escape_string($koneksi, strip_tags($post['release_date']));
+    $category       = mysqli_real_escape_string($koneksi, strip_tags($post['id_category']));
+    $director_name  = mysqli_real_escape_string($koneksi, strip_tags($post['id_director']));
+    $actor_name     = mysqli_real_escape_string($koneksi, strip_tags($post['id_actor']));
     $img            = upload_file_movie();
 
     // Validasi Upload File
     if (!$img) {
         return false;
     }
-    
+
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, Video, release_date, category_id, director_id, actor_id , Production, Country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "ssssssssss", $title, $synopsis, $img, $video , $release_date, $category, $director_name, $actor_name,  $production , $country);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "sssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -801,15 +801,12 @@ function edit_movie($post)
 
     $id     = $post['id_movie'];
 
-    $title          = mysqli_real_escape_string($koneksi, $post['title']);
-    $synopsis       = mysqli_real_escape_string($koneksi, $post['synopsis']);
-    $release_date   = mysqli_real_escape_string($koneksi, $post['release_date']);
-    $video          = mysqli_real_escape_string($koneksi, $post['Video']);
-    $category       = mysqli_real_escape_string($koneksi, $post['id_category']);
-    $director_name  = mysqli_real_escape_string($koneksi, $post['id_director']);
-    $actor_name     = mysqli_real_escape_string($koneksi, $post['id_actor']);
-    $production     = mysqli_real_escape_string($koneksi, $post['Production']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
+    $title          = mysqli_real_escape_string($koneksi, strip_tags($post['title']));
+    $synopsis       = mysqli_real_escape_string($koneksi, htmlspecialchars($post['synopsis']));
+    $release_date   = mysqli_real_escape_string($koneksi, strip_tags($post['release_date']));
+    $category       = mysqli_real_escape_string($koneksi, strip_tags($post['id_category']));
+    $director_name  = mysqli_real_escape_string($koneksi, strip_tags($post['id_director']));
+    $actor_name     = mysqli_real_escape_string($koneksi, strip_tags($post['id_actor']));
     $img            = upload_file_movie($id);
 
     // Validasi Upload File
@@ -818,8 +815,8 @@ function edit_movie($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, Video = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?, Production = ?, Country = ?  WHERE id_movie = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssssssi", $title, $synopsis, $img, $video, $release_date, $category, $director_name, $actor_name, $production, $country, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE movie SET title = ?, synopsis = ?, img = ?, release_date = ?, category_id = ?, director_id = ?, actor_id = ?  WHERE id_movie = ?");
+    mysqli_stmt_bind_param($stmt, "sssssssi", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -969,6 +966,47 @@ function upload_file_movie($id = NULL)
 // ==== END MOVIE CONTROLLER ==== //
 
 // ==== USER CONTROLLER ==== //
+
+// ADD USER
+function add_user($post)
+{
+    // Koneksi database
+    global $koneksi;
+
+    $username   = mysqli_real_escape_string($koneksi, strip_tags($post['username']));
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['fullname']));
+    $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
+    $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
+    $user_role  = 'admin';
+    $img        = NULL;
+
+    // Password Encryptor
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO user (username, name, email, password, img, user_role) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssss", $username, $name, $email, $password, $img, $user_role);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
+
+
+
 // USER DELETE
 function delete_user($id)
 {

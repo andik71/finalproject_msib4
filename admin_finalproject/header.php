@@ -24,6 +24,9 @@
 
     <link rel="stylesheet" href="vendor\datatables\dataTables.bootstrap4.min.css">
 
+    <!-- CDN CK-Editor 4 -->
+    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
 </head>
 
 <body id="page-top">

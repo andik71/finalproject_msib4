@@ -56,7 +56,7 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
                         </li>
                     </ul>
                     <div class="navbar-extra">
-                        <a class="btn-theme btn" href="#">&nbsp;&nbsp;Login</a>
+                        <a class="btn-theme btn" href="index.php?page=edit_profile">&nbsp;&nbsp;Login</a>
                     </div>
                 </div>
             </nav>

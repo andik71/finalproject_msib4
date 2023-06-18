@@ -3,7 +3,7 @@
 $data_user = select("SELECT * FROM user ORDER BY id_user DESC");
 
 $arr_obj = [
-    'No', 'Image','Username', 'Name', 'Email', 'Password', 'User Role', 'Action'
+    'No', 'Image', 'Username', 'Name', 'Email', 'Password', 'User Role', 'Action'
 ];
 
 $no = 1;
@@ -44,13 +44,13 @@ $no = 1;
                     <tbody>
                         <?php foreach ($data_user as $row) { ?>
                             <tr>
-                                <td><?= $no++ ?></td>
+                                <td class="text-center"><?= $no++ ?></td>
                                 <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                 <td><?= $row['username'] ?></td>
                                 <td><?= $row['name'] ?></td>
                                 <td><?= $row['email'] ?></td>
                                 <td><?= $row['password'] ?></td>
-                                <td><?= $row['user_role'] ?></td>
+                                <td class="text-center"><?= $row['user_role'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=user_view&id=<?= $row['id_user'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

@@ -52,6 +52,7 @@ $no = 1;
                                 <td><?= $row['title'] ?></td>
                                 <td><?= short_text($row['comment'], 50) ?></td>
                                 <td><?= date('d/m/Y H:i:s', strtotime($row['date'])) ?></td>
+                                <td><?= $row['rating'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=reviewer_view&id=<?= $row['id_reviewer'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>

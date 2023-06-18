@@ -63,7 +63,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item <?php if($_REQUEST && $_REQUEST['page'] == 'movie') echo 'active' ?>">
                 <a class="nav-link" href="index.php?page=movie">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-play"></i>
                     <span>Movies</span></a>
             </li>
 
@@ -78,7 +78,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=user">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>User Management</span></a>
             </li>
 

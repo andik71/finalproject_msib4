@@ -5,14 +5,13 @@ $data_director = select("SELECT * FROM director");
 $data_tag = select("SELECT * FROM tag");
 $data_genre = select("SELECT * FROM genre");
 $data_category = select("SELECT * FROM category");
-$data_reviewer = select("SELECT * FROM reviewer");
 $data_user = select("SELECT * FROM user");
+$data_reviewer = select("SELECT * FROM reviewer");
 
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name, r.rating FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, g.genre, t.tags, d.name as director_name, a.name as actor_name FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
-INNER JOIN reviewer as r ON m.reviewer_id = r.id_reviewer 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
 ORDER BY id_movie DESC
@@ -82,16 +81,7 @@ $no = 1;
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Reviewer
                             </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_reviewer) ?></div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_reviewer) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -146,8 +136,7 @@ $no = 1;
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Categories</div>
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Categories</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($data_category) ?></div>
                         </div>
                         <div class="col-auto">
@@ -165,16 +154,7 @@ $no = 1;
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Movies</div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_movie) ?></div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= count($data_movie) ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -204,7 +184,7 @@ $no = 1;
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-xl-12 col-md-6 mb-4">
+        <div class="col-xl-12 mb-4">
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -224,16 +204,15 @@ $no = 1;
                             <tbody>
                                 <?php foreach ($data_movie as $row) { ?>
                                     <tr>
-                                        <td><?= $no++ ?></td>
+                                        <td class="text-center"><?= $no++ ?></td>
                                         <td class="text-center"><img src="<?= $row['img'] ?>" class="img-thumbnail" width="100" alt=""></td>
                                         <td><?= $row['title'] ?></td>
                                         <td><?= short_text($row['synopsis']) ?></td>
                                         <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
-                                        <td><?= $row['genre'] ?></td>
-                                        <td><?= $row['tags'] ?></td>
+                                        <td class="text-center"><?= $row['genre'] ?></td>
+                                        <td class="text-center"><?= $row['tags'] ?></td>
                                         <td><?= $row['director_name'] ?></td>
                                         <td><?= $row['actor_name'] ?></td>
-                                        <td><?= $row['rating'] ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -246,19 +225,3 @@ $no = 1;
 
 </div>
 <!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
-        </div>
-    </div>
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->

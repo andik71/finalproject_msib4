@@ -52,7 +52,7 @@ window.location.href = 'index.php?page=movie';
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="formFile">Replace Image</label>
-                            <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
+                            <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" onchange="previewImage(event)" />
                         </div>
                     </div>
                     <!-- Mid Grid -->
@@ -99,21 +99,6 @@ window.location.href = 'index.php?page=movie';
                                 }
                                 ?>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Production">Production</label>
-                            <input class="form-control" id="Production" name="Production" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Production'] ?>" />
-                            <div class="invalid-feedback" data-sb-feedback="Production:required">Production is required.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Country">Country</label>
-                            <input class="form-control" id="Country" name="Country" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Country'] ?>" />
-                            <div class="invalid-feedback" data-sb-feedback="Country:required">Title is required.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Video">Video</label>
-                            <input class="form-control" id="Video" name="Video" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['Video'] ?>" />
-                            <div class="invalid-feedback" data-sb-feedback="Video:required">Video is required.</div>
                         </div>
                     </div>
                 </div>

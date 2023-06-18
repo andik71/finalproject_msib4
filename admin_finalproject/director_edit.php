@@ -61,23 +61,13 @@ window.location.href = 'index.php?page=director';
                             <div class="invalid-feedback" data-sb-feedback="birth:required">Birth is required.</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="Occupation">Occupation</label>
-                            <input class="form-control" id="Occupation" name="Occupation" type="text"  value="<?= $data_director['Occupation'] ?>" placeholder="Occupation" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="Occupation:required">Occupation is required.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="Country">Country</label>
-                            <input class="form-control" id="Country" name="Country" type="text"  value="<?= $data_director['Country'] ?>" placeholder="Country" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="Country:required">Country is required.</div>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label" for="bio">Bio</label>
                             <textarea class="form-control" id="bio" name="bio" type="text" placeholder="Bio" style="height: 10rem;" data-sb-validations="required"><?= $data_director['bio'] ?></textarea>
                             <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="formFile">Replace Image</label>
-                            <input class="form-control-file" id="formFile" name="img" type="file" data-sb-validations="required" />
+                            <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" onchange="previewImage(event)" />
                         </div>
                         <!-- Tombol -->
                         <div class="d-grid">
@@ -110,3 +100,18 @@ window.location.href = 'index.php?page=director';
 
 </div>
 <!-- /.container-fluid -->
+
+<script>
+    // Fungsi untuk preview gambar
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var imgPreview = document.querySelector('.img-thumbnail');
+            imgPreview.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+    var fileInput = document.querySelector('#formFile');
+    fileInput.addEventListener('change', previewImage);
+</script>

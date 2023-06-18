@@ -1,5 +1,6 @@
 <?php
 $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
+$data_user = select("SELECT username, name, email, img FROM user where id_user = '1'");
 ?>
 
 <body class="body">
@@ -55,8 +56,13 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
                             <a class="nav-link" href="index.php?page=contact">Contact us</a>
                         </li>
                     </ul>
-                    <div class="navbar-extra">
-                        <a class="btn-theme btn" href="index.php?page=edit_profile">&nbsp;&nbsp;Login</a>
+                    <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
+                        <a class="nav-link btn-theme btn text-white" href="#" data-role="nav-toggler">&nbsp;&nbsp;Login</a>
+                        <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
+                        <ul class="collapse nav">
+                            <li> <a class="nav-link" href="index.php?page=edit_profile">Profile</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

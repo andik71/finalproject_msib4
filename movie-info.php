@@ -158,7 +158,7 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                                                     </a>
                                                 </div>
                                                 <h4 class="entity-title">
-                                                    <a class="content-link" href="index.php?page=movie-info"><?= $film['title'] ?></a>
+                                                    <a class="content-link" href="index.php?page=movie-info&id=<?= $film['id_movie'] ?>"><?= $film['title'] ?></a>
                                                 </h4>
                                             </div>
                                         </div>

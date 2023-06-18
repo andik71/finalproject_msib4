@@ -13,6 +13,14 @@ INNER JOIN tag as t ON c.tag_id = t.id_tag
 WHERE id_genre = '$id_genre'
 ");
 
+// Konfigurasi pagination
+$halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+$dataPerHalaman = 5; // Jumlah data per halaman
+$mulai = ($halaman > 1) ? ($halaman * $dataPerHalaman) - $dataPerHalaman : 0;
+
+// Hitung jumlah halaman
+$jumlahHalaman = ceil($jumlahData / $dataPerHalaman);
+
 //menampilkan movie berdasarkan seluruh movie
 $data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
@@ -20,10 +28,8 @@ INNER JOIN director as d ON m.director_id = d.id_director
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
 INNER JOIN genre as g ON c.genre_Id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag
-ORDER BY id_movie DESC  
+ORDER BY id_movie DESC  LIMIT $mulai, $dataPerHalaman
 ");
-
-
 ?>
 
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
@@ -198,11 +204,14 @@ ORDER BY id_movie DESC
         <div class="section-bottom">
             <div class="paginator">
                 <a class="paginator-item" href="#"><i class="fas fa-chevron-left"></i></a>
-                <a class="paginator-item" href="#">1</a>
-                <span class="active paginator-item">2</span>
-                <a class="paginator-item" href="#">3</a>
-                <span class="paginator-item">...</span>
-                <a class="paginator-item" href="#">10</a>
+                
+               <?php 
+               
+               for ($i = 1; $i <= $jumlahHalaman; $i++) {
+                echo "<a href='?halaman=$i'>$i</a> ";
+            }
+               
+               ?> <!-- Tampilkan navigasi pagination -->
                 <a class="paginator-item" href="#"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>

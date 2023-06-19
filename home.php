@@ -7,7 +7,7 @@ INNER JOIN genre as g ON c.genre_id = g.id_genre
 INNER JOIN tag as t ON c.tag_id = t.id_tag ORDER BY rating DESC;");
 
 //menampilkan latest movies
-$data_latest = select("SELECT  m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM movie as m
+$data_latest = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM movie as m
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN genre as g ON c.genre_id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag 
@@ -16,7 +16,7 @@ ORDER BY id_movie DESC LIMIT 3
 ");
 
 //menampilkan movie list
-$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.Video,g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name FROM movie as m 
+$data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.duration, m.video, g.id_genre, g.genre, t.tags, d.name as director_name, a.name as actor_name FROM movie as m 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN director as d ON m.director_id = d.id_director 
 INNER JOIN actor as a ON m.actor_id = a.id_actor 
@@ -65,7 +65,7 @@ ORDER BY id_movie ASC
                                     </h4>
                                     <div class="entity-category">
                                         <a class="content-link" href="index.php?page=movies_list&id=<?= $movie['id_genre'] ?>"><?= $movie['genre'] ?></a>,
-                                    </div>  
+                                    </div>
                                     <div class="entity-info">
                                         <div class="info-lines">
                                             <div class="info info-short">
@@ -171,49 +171,49 @@ ORDER BY id_movie ASC
         </div>
         <div class="slick-spaced slick-carousel" data-slick-view="navigation single">
             <div class="slick-slides">
-                <?php foreach ($data_com as $comm) {?>
+                <?php foreach ($data_com as $comm) { ?>
                     <div class="slick-slide">
-                    <article class="movie-line-entity">
-                        <div class="entity-preview">
-                            <div class="embed-responsive embed-responsive-4by3">
-                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $comm['img'] ?>" alt="" />
-                            </div>
-                            <div class="d-over">
-                                <div class="entity-play">
-                                    <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $comm['video'] ?>" data-magnific-popup="iframe">
-                                        <span class="icon-content"><i class="fas fa-play"></i></span>
-                                    </a>
+                        <article class="movie-line-entity">
+                            <div class="entity-preview">
+                                <div class="embed-responsive embed-responsive-4by3">
+                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $comm['img'] ?>" alt="" />
                                 </div>
-                            </div>
-                        </div>
-                        <div class="entity-content">
-                            <h4 class="entity-title">
-                                <a class="content-link" href="index.php?page=movie-info&id=<?= $comm['id_movie'] ?>"><?= $comm['title'] ?></a>
-                            </h4>
-                            <div class="entity-category">
-                                <a class="content-link" href="index.php?page=movies_list&id=<?= $comm['id_genre'] ?>"><?= $comm['genre'] ?></a>,
-                            </div>
-                            <div class="entity-info">
-                                <div class="info-lines">
-                                    <div class="info info-short">
-                                        <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
-                                        <span class="info-text"><?= date_format(date_create($comm['release_date']), 'd F Y') ?></span>
-                                    </div>
-                                    <div class="info info-short">
-                                        <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
-                                        <span class="info-text"><?= $comm['duration'] ?></span>
-                                        <span class="info-rest">&nbsp;min</span>
+                                <div class="d-over">
+                                    <div class="entity-play">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $comm['video'] ?>" data-magnific-popup="iframe">
+                                            <span class="icon-content"><i class="fas fa-play"></i></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-short entity-text"><?= $comm['synopsis'] ?>
-                            </p>
-                        </div>
-                    </article>
-                </div>
-               <?php }?>
-               
-            
+                            <div class="entity-content">
+                                <h4 class="entity-title">
+                                    <a class="content-link" href="index.php?page=movie-info&id=<?= $comm['id_movie'] ?>"><?= $comm['title'] ?></a>
+                                </h4>
+                                <div class="entity-category">
+                                    <a class="content-link" href="index.php?page=movies_list&id=<?= $comm['id_genre'] ?>"><?= $comm['genre'] ?></a>,
+                                </div>
+                                <div class="entity-info">
+                                    <div class="info-lines">
+                                        <div class="info info-short">
+                                            <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
+                                            <span class="info-text"><?= date_format(date_create($comm['release_date']), 'd F Y') ?></span>
+                                        </div>
+                                        <div class="info info-short">
+                                            <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
+                                            <span class="info-text"><?= $comm['duration'] ?></span>
+                                            <span class="info-rest">&nbsp;min</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-short entity-text"><?= $comm['synopsis'] ?>
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                <?php } ?>
+
+
             </div>
             <div class="slick-arrows">
                 <div class="slick-arrow-prev">
@@ -299,7 +299,7 @@ ORDER BY id_movie ASC
                             <span class="text-theme">us</span>
                         </h4>
                         <p class="form-text">We understand your requirement and provide quality works</p>
-                        <form  id="contact-form" action="https://formspree.io/f/xdovqldo" method="POST">
+                        <form id="contact-form" action="https://formspree.io/f/xdovqldo" method="POST">
                             <div class="row form-grid">
                                 <div class="col-sm-6">
                                     <div class="input-view-flat input-group">
@@ -327,6 +327,3 @@ ORDER BY id_movie ASC
         </div>
     </div>
 </section>
-
-
-

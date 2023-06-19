@@ -21,7 +21,7 @@
 
     if ($search) {
         //menampilkan movie berdasarkan id genre dan Query untuk mengambil data dengan pagination
-        $data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
+        $data_movie = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date, m.category_id,m.duration, m.video, m.production, m.country, g.id_genre,g.genre, t.tags FROM movie as m 
     INNER JOIN category as c ON m.category_id = c.id_category 
     INNER JOIN director as d ON m.director_id = d.id_director 
     INNER JOIN actor as a ON m.actor_id = a.id_actor 
@@ -30,7 +30,7 @@
     WHERE id_genre = '$id_genre' AND (m.title LIKE '%$search%') LIMIT $dataAwal, $dataPerHalaman");
 
         //menampilkan movie berdasarkan seluruh movie
-        $data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.Production, m.Country, g.id_genre,g.genre, t.tags FROM movie as m 
+        $data_movie2 = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.release_date,m.category_id,m.duration, m.video, m.production, m.country, g.id_genre,g.genre, t.tags FROM movie as m 
     INNER JOIN category as c ON m.category_id = c.id_category 
     INNER JOIN director as d ON m.director_id = d.id_director 
     INNER JOIN actor as a ON m.actor_id = a.id_actor 
@@ -94,11 +94,11 @@
             <div class="section-pannel shadow-lg">
                 <div class="grid row">
                     <div class="col-md-10">
-                        <form method="post" action="index.php?page=movies_list&search=<?= $search ?>" >
+                        <form method="post" action="index.php?page=movies_list&search=<?= $search ?>">
                             <div class="row form-grid">
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="input-view-flat input-group">
-                                        <input class="form-control" id="search" name="search" type="text" placeholder="Search" value="<?= $search ?>"/>
+                                        <input class="form-control" id="search" name="search" type="text" placeholder="Search" value="<?= $search ?>" />
                                         <div class="input-group-append">
                                             <button class="input-group-text" type="submit"><i class="fas fa-search"></i></button>
                                         </div>

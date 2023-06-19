@@ -72,12 +72,6 @@
         ORDER BY id_movie DESC  LIMIT $dataAwal, $dataPerHalaman
     ");
     }
-
-
-
-
-
-
     ?>
 
     <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">

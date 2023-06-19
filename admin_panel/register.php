@@ -2,10 +2,10 @@
 include_once 'config/app.php';
 
 if (isset($_POST['register'])) {
-    $fullname = $_POST['fullname'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $fullname        = $_POST['fullname'];
+    $username        = $_POST['username'];
+    $email           = $_POST['email'];
+    $password        = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
 
     if ($password != $confirmPassword) {

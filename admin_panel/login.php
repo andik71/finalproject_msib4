@@ -16,14 +16,14 @@ if (isset($_POST['login'])) {
         // Memeriksa apakah password yang dimasukkan cocok dengan password yang tersimpan di database
         if (password_verify($password, $row['password'])) {
             // Jika cocok, mengatur variabel session dengan data user yang valid
-            $_SESSION['login'] = true;
-            $_SESSION['id_user'] = $row['id_user'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['password'] = $row['password'];
-            $_SESSION['img'] = $row['img'];
-            $_SESSION['user_role'] = $row['user_role'];
+            $_SESSION['login']      = true;
+            $_SESSION['id_user']    = $row['id_user'];
+            $_SESSION['username']   = $row['username'];
+            $_SESSION['name']       = $row['name'];
+            $_SESSION['email']      = $row['email'];
+            $_SESSION['password']   = $row['password'];
+            $_SESSION['img']        = $row['img'];
+            $_SESSION['user_role']  = $row['user_role'];
 
             // Mengarahkan pengguna ke halaman utama setelah berhasil login
             header("Location: index.php");

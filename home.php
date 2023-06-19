@@ -245,7 +245,7 @@ ORDER BY id_movie ASC
             <?php foreach ($data_movie as $list) { ?>
                 <div class="col-md-4">
                     <article class="article-tape-entity">
-                        <a class="entity-preview" href="<?= $list['Video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
+                        <a class="entity-preview" href="<?= $list['video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
                             <span class="embed-responsive embed-responsive-1by1">
                                 <img class="embed-responsive-item" src="./admin_finalproject/<?= $list['img'] ?>" alt="" />
                             </span>

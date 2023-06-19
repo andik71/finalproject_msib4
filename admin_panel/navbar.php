@@ -48,8 +48,6 @@
                     </div>
                 </li>
 
-<?= var_dump($_SESSION['user_role']) ?>
-
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->

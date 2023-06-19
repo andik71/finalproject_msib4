@@ -30,6 +30,22 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                         WHERE movie_id = '$data_reviewer'");
 
 
+
+if (isset($_POST['save'])) {
+    if (add_reviewer($_POST) > 0) {
+        echo "
+        <script>
+            alert('Berhasil Membuat Komentar');
+            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
+        </script>";
+    } else {
+        echo "
+        <script>
+            alert('Gagal Membuat Komentar');
+            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
+        </script>";
+    }
+}
 ?>
 
 <section class="after-head d-flex section-text-white pt-5" style="background-image: url('images/image1.png');">
@@ -179,7 +195,7 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                                 <div class="entity-inner">
                                     <div class="entity-content">
                                         <h4 class="entity-title text-dark"><?= $comment['name'] ?></h4>
-                                        <p class="entity-subtext "><?= date_format(date_create($comment['date']), 'd F Y') ?>
+                                        <p class="entity-subtext "><?= date_format(date_create($comment['date']), 'd F Y | h:i:s') ?>
 
                                         <p class="entity-text text-dark"><?= $comment['comment'] ?>.</p>
                                     </div>
@@ -205,49 +221,50 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                         <?php } ?>
 
                     </div>
-                    <div class="section-line mt-4">
-                        <div class="section-head">
-                            <h2 class="section-title text-uppercase text-dark">Add comment</h2>
-                        </div>
-                        <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
-                            <div class="row form-grid">
-                                <div class="col-12 col-sm-12">
-                                    <div class="input-view-flat input-group">
-                                        <input class="form-control" id="user_id" name="user_id" type="text" placeholder="Name" />
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-12">
-                                    <div class="input-view-flat input-group">
-                                        <textarea class="form-control" name="review" placeholder="Add your comment"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="rating-line">
-                                        <label>Rating:</label>
-                                        <div class="form-rating" name="rating">
-                                            <input type="radio" id="rating-input" name="rating" />
-                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                <?php if ($i <= 0) { ?>
-                                                    <label>
-                                                        <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                        <span class="rating-icon"><i class="far fa-star"></i></span>
-                                                    </label>
-                                                <?php } else { ?>
-                                                    <label>
-                                                        <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                        <span class="rating-icon"><i class="far fa-star"></i></span>
-                                                    </label>
-                                                <?php } ?>
-                                            <?php } ?>
+                    <!-- Cek Login -->
+                    <?php if (isset($_SESSION['login'])) { ?>
+
+                        <div class="section-line mt-4">
+                            <div class="section-head">
+                                <h2 class="section-title text-uppercase text-dark">Add comment</h2>
+                            </div>
+                            <!-- Add Insert Reviewer -->
+                            <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
+                                <div class="row form-grid">
+                                    <div class="col-12 col-sm-12">
+                                        <div class="input-view-flat input-group">
+                                            <textarea class="form-control" id="review" name="review" placeholder="Add your comment"></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="rating-line">
+                                            <label>Rating:</label>
+                                            <div class="form-rating" name="rating">
+                                                <input type="radio" id="rating-input" name="rating" />
+                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                    <?php if ($i <= 0) { ?>
+                                                        <label>
+                                                            <span class="rating-active-icon"><i class="fas fa-star"></i></span>
+                                                            <span class="rating-icon"><i class="far fa-star"></i></span>
+                                                        </label>
+                                                    <?php } else { ?>
+                                                        <label>
+                                                            <span class="rating-active-icon"><i class="fas fa-star"></i></span>
+                                                            <span class="rating-icon"><i class="far fa-star"></i></span>
+                                                        </label>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="px-5 btn btn-theme" type="submit">Send</button>
+                                    </div>
                                 </div>
-                                <div class="col-12">
-                                    <button class="px-5 btn btn-theme" type="submit">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                            </form>
+                            <!-- End. Add Insert Reviewer -->
+                        </div>
+                    <?php } ?>
                 </section>
             </div>
             <div class="sidebar section-long order-lg-last">
@@ -274,4 +291,3 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
     </div>
 </section>
 <a class="scroll-top disabled" href="#"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
-

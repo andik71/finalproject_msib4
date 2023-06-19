@@ -47,6 +47,11 @@ if (isset($_POST['save'])) {
                     <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
                 </div>
                 <div class="mb-3">
+                    <label class="form-label" for="country">Country</label>
+                    <input class="form-control" id="country" name="country" type="text" placeholder="Country" data-sb-validations="required" />
+                    <div class="invalid-feedback" data-sb-feedback="country:required">Country is required.</div>
+                </div>
+                <div class="mb-3">
                     <label class="form-label" for="formFile">Image</label>
                     <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" />
                 </div>

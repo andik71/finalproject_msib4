@@ -1,22 +1,22 @@
 <?php
 
 // Tangkap ID berdasarkan URL
-$id_actor = (int)$_GET['id'];
+$id_user = (int)$_GET['id'];
 
-$data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
+$data_user = select("SELECT * FROM user WHERE id_user = '$id_user'")[0];
 
 if (isset($_POST['save'])) {
-    if (edit_actor($_POST) > 0) {
+    if (edit_user($_POST) > 0) {
         echo "
 <script>
 alert('Data Berhasil Diubah');
-window.location.href = 'index.php?page=actor';
+window.location.href = 'index.php?page=dashboard';
 </script>";
     } else {
         echo "
 <script>
 alert('Data Gagal Diubah');
-window.location.href = 'index.php?page=actor';
+window.location.href = 'index.php?page=dashboard';
 </script>";
     }
 }
@@ -26,7 +26,7 @@ window.location.href = 'index.php?page=actor';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Edit Data Actor</h1>
+    <h1 class="h3 mb-2 text-gray-800">Edit Data User</h1>
     <p class="mb-4">Master Data</p>
 
     <!-- Basic Card Example -->
@@ -42,29 +42,30 @@ window.location.href = 'index.php?page=actor';
                     <!-- Left Grid -->
                     <div class="col-lg-4 col-md-6">
                         <div class="mb-3">
-                            <img src="<?= $data_actor['img'] ?>" class="img-thumbnail" alt="">
+                            <img src="<?= $data_user['img'] ?>" class="img-thumbnail" alt="">
                         </div>
                     </div>
                     <!-- Right Grid -->
                     <div class="col-lg-8 col-md-6">
                         <div class="mb-0">
-                            <input class="form-control" id="id_actor" type="hidden" name="id_actor" value="<?= $data_actor['id_actor'] ?>">
+                            <input class="form-control" id="id_user" type="hidden" name="id_user" value="<?= $data_user['id_user'] ?>">
+                            <input class="form-control" id="password" type="hidden" name="password" value="<?= $data_user['password'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="name">Name</label>
-                            <input class="form-control" id="name" name="name" type="text" value="<?= $data_actor['name'] ?>" placeholder="" data-sb-validations="required" />
+                            <input class="form-control" id="name" name="name" type="text" value="<?= $data_user['name'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="birth">Birth</label>
-                            <input class="form-control" id="birth" name="birth" type="date" value="<?= $data_actor['birth'] ?>" placeholder="" data-sb-validations="required" />
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" id="email" name="email" type="email" value="<?= $data_user['email'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="bio">Bio</label>
-                            <textarea class="form-control" id="bio" name="bio" type="text" placeholder="" style="height: 10rem;" data-sb-validations="required"><?= $data_actor['bio'] ?></textarea>
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" id="username" name="username" type="text" value="<?= $data_user['username'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="country">Country</label>
-                            <input class="form-control" id="country" name="country" type="text" value="<?= $data_actor['country'] ?>"  placeholder="" data-sb-validations="required" />
+                            <label class="form-label" for="user_role">User Level</label>
+                            <input class="form-control" id="user_role" name="user_role" type="text" value="<?= $data_user['user_role'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="formFile">Replace Image</label>
@@ -83,7 +84,7 @@ window.location.href = 'index.php?page=actor';
                                 </span>
                                 <span class="text">Reset</span>
                             </button>
-                            <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=actor">
+                            <a class="btn btn-danger btn-icon-split btn-sm" id="resetButton" href="index.php?page=dashboard">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-times"></i>
                                 </span>

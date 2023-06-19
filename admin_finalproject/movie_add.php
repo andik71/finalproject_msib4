@@ -1,5 +1,15 @@
 <?php
 
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 $data_category  = select("SELECT c.id_category, g.genre, t.tags FROM category as c INNER JOIN genre as g ON g.id_genre = c.genre_id INNER JOIN tag as t ON t.id_tag = c.tag_id ORDER BY id_category DESC");
 $data_director  = select("SELECT * FROM director ORDER BY id_director DESC");
 $data_actor     = select("SELECT * FROM actor ORDER BY id_actor DESC");

@@ -43,55 +43,51 @@
 
 <!-- Mengubah Format Input Tanggal -->
 <script>
-    // Mengambil elemen input tanggal
-    var inputdate = document.getElementById('birth');
-
-    // Event listener saat nilai input berubah
-    input1.addEventListener('input', function() {
+    // Function to format date
+    function formatDate(inputDate) {
         // Mengambil nilai tanggal dari input
-        var date = inputdate.value;
+        var date = inputDate.value;
 
-        // Mengubah format tanggal menjadi d/m/y
+        // Mengubah format tanggal menjadi yyyy-MM-dd
         var dateParts = date.split('/');
         var day = dateParts[0];
         var month = dateParts[1];
         var year = dateParts[2];
 
-        // Mengecek apakah nilai day , month , year tidak undifinied atau kosong
+        // Mengecek apakah nilai day, month, dan year tidak undefined atau kosong
         if (day && month && year) {
-            //mengatur nilai inpur dengan format tanggah yang diubah
-            inputdate.value = year + '-' + month + '-' + day;
+            // Mengatur nilai input dengan format tanggal yang diubah
+            inputDate.value = day + '-' + month + '-' + year;
+        }
+    }
+
+    // Wait for the DOM to load before accessing the elements
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mengambil elemen input tanggal
+        var inputDate1 = document.getElementById('birth');
+        var inputDate2 = document.getElementById('release_date');
+
+        // Check if the elements exist before attaching the event listeners
+        if (inputDate1) {
+            // Event listener saat nilai input berubah
+            inputDate1.addEventListener('input', function() {
+                formatDate(inputDate1);
+            });
+        }
+
+        if (inputDate2) {
+            // Event listener saat nilai input berubah
+            inputDate2.addEventListener('input', function() {
+                formatDate(inputDate2);
+            });
         }
     });
 </script>
 
-<!-- Mengubah Format Input Tanggal 2-->
+<!-- Preview Image -->
 <script>
-    // Mengambil elemen input tanggal
-    var inputdate = document.getElementById('release_date');
-
-    // Event listener saat nilai input berubah
-    input1.addEventListener('input', function() {
-        // Mengambil nilai tanggal dari input
-        var date = inputdate.value;
-
-        // Mengubah format tanggal menjadi d/m/y
-        var dateParts = date.split('/');
-        var day = dateParts[0];
-        var month = dateParts[1];
-        var year = dateParts[2];
-
-        // Mengecek apakah nilai day , month , year tidak undifinied atau kosong
-        if (day && month && year) {
-            //mengatur nilai inpur dengan format tanggah yang diubah
-            inputdate.value = year + '-' + month + '-' + day;
-        }
-    });
-</script>
-
-<script>
-     // Fungsi untuk preview img
-     function previewImage(event) {
+    // Fungsi untuk preview gambar
+    function previewImage(event) {
         const img = document.querySelector('#formFile');
         const imgPreview = document.querySelector('.img-thumbnail');
 
@@ -100,22 +96,42 @@
             imgPreview.src = event.target.result;
         };
 
-        if (img.files[0]) {
+        if (img.files && img.files[0]) {
             reader.readAsDataURL(img.files[0]);
         }
     }
 </script>
 
-<!-- Skrip untuk memanggil CKEditor -->
-
+<!-- CKEditor Initialization - 'bio' element -->
 <script>
-    // CKEDITOR 4
-    CKEDITOR.replace('bio');
-    CKEDITOR.replace('synopsis');
+    // Wait for the DOM to load before accessing the element
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the element with ID 'bio'
+        var element = document.getElementById('bio');
+
+        // Check if the element exists before initializing CKEditor
+        if (element) {
+            // Replace the 'bio' textarea with CKEditor instance
+            CKEDITOR.replace('bio');
+        }
+    });
 </script>
 
-<!-- CDN CK Editor 4 -->
-<script src="https://cdn.ckeditor.com/4.21.0/basic/ckeditor.js"></script>
+<!-- CKEditor Initialization - 'synopsis' element -->
+<script>
+    // Wait for the DOM to load before accessing the element
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve the element with ID 'synopsis'
+        var element = document.getElementById('synopsis');
+
+        // Check if the element exists before initializing CKEditor
+        if (element) {
+            // Replace the 'synopsis' textarea with CKEditor instance
+            CKEDITOR.replace('synopsis');
+        }
+    });
+</script>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

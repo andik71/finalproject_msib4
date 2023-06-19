@@ -1,4 +1,5 @@
 <?php
+
 // Tangkap ID berdasarkan URL
 $id_movie = (int)$_GET['id'];
 // SQL

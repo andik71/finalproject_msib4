@@ -13,7 +13,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?php if($_REQUEST && $_REQUEST['page'] == 'dashboard'):?>active<?php endif; ?>">
+            <li class="nav-item <?php if ($_REQUEST && $_REQUEST['page'] == 'dashboard') : ?>active<?php endif; ?>">
                 <a class="nav-link" href="index.php?page=dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -36,7 +36,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Manager:</h6>
-                        <a class="collapse-item <?php if($_REQUEST && $_REQUEST['page'] == 'actor') echo 'active' ?>" href="index.php?page=actor">Actor</a>
+                        <a class="collapse-item <?php if ($_REQUEST && $_REQUEST['page'] == 'actor') echo 'active' ?>" href="index.php?page=actor">Actor</a>
                         <a class="collapse-item" href="index.php?page=director">Director</a>
                         <a class="collapse-item" href="index.php?page=reviewer">Reviewer</a>
                         <a class="collapse-item" href="index.php?page=tag">Tags</a>
@@ -54,33 +54,39 @@
             </div>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item <?php if($_REQUEST && $_REQUEST['page'] == 'category') echo 'active' ?>">
+            <li class="nav-item <?php if ($_REQUEST && $_REQUEST['page'] == 'category') echo 'active' ?>">
                 <a class="nav-link" href="index.php?page=category">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Category</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item <?php if($_REQUEST && $_REQUEST['page'] == 'movie') echo 'active' ?>">
+            <li class="nav-item <?php if ($_REQUEST && $_REQUEST['page'] == 'movie') echo 'active' ?>">
                 <a class="nav-link" href="index.php?page=movie">
                     <i class="fas fa-fw fa-play"></i>
                     <span>Movies</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- Membatasi Hak Akses -->
+            <?php if ($_SESSION['user_role'] === 'admin') : ?>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                User
-            </div>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php?page=user">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>User Management</span></a>
-            </li>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    User
+                </div>
+
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?page=user">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>User Management</span></a>
+                </li>
+
+            <?php endif; ?>
+            <!-- .End -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -89,13 +95,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-            <!-- Sidebar Message -->
-            <!-- <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div> -->
 
         </ul>
         <!-- End of Sidebar -->

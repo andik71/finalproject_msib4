@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2023 at 05:56 PM
+-- Generation Time: Jun 19, 2023 at 07:29 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -32,8 +32,17 @@ CREATE TABLE `actor` (
   `name` varchar(254) NOT NULL,
   `birth` date NOT NULL,
   `bio` text NOT NULL,
+  `occupation` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
   `img` varchar(254) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `actor`
+--
+
+INSERT INTO `actor` (`id_actor`, `name`, `birth`, `bio`, `occupation`, `country`, `img`) VALUES
+(1, 'Andika', '2023-06-06', '<p>&lt;script&gt;alert(&#39;wakwau&#39;);&lt;/script&gt;</p>\r\n', 'Actor', 'Indonesia', 'img/648fd532269a38.67633995.png');
 
 -- --------------------------------------------------------
 
@@ -67,6 +76,8 @@ CREATE TABLE `director` (
   `name` varchar(254) NOT NULL,
   `birth` date NOT NULL,
   `bio` text NOT NULL,
+  `occupation` varchar(50) NOT NULL,
+  `country` varchar(50) NOT NULL,
   `img` varchar(254) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -108,8 +119,7 @@ CREATE TABLE `movie` (
   `release_date` date NOT NULL,
   `category_id` int(11) NOT NULL,
   `director_id` int(11) NOT NULL,
-  `actor_id` int(11) NOT NULL,
-  `reviewer_id` int(11) NOT NULL
+  `actor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -120,6 +130,7 @@ CREATE TABLE `movie` (
 
 CREATE TABLE `reviewer` (
   `id_reviewer` int(11) NOT NULL,
+  `movie_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `comment` text NOT NULL,
   `date` timestamp NULL DEFAULT NULL,
@@ -150,7 +161,7 @@ INSERT INTO `tag` (`id_tag`, `tags`) VALUES
 (12, 'Germany'),
 (13, 'Russia'),
 (14, 'India'),
-(15, 'Indonesian');
+(15, 'Indonesia');
 
 -- --------------------------------------------------------
 
@@ -173,7 +184,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `name`, `email`, `password`, `img`, `user_role`) VALUES
-(1, 'andika', 'Andika', 'andika@gmail.com', 'andika', 'null', 'admin');
+(7, 'admin123', 'Andika Dwiyanto', 'admin@mail.com', '$2y$10$si4LihtP6jGfrzKq6rwzA.VvTFKoW/YRyMf7yuIVuYtRmRNQK6s2u', 'img/648fe42a8746b9.37999897.png', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -212,15 +223,15 @@ ALTER TABLE `movie`
   ADD PRIMARY KEY (`id_movie`),
   ADD KEY `fk_category` (`category_id`),
   ADD KEY `fk_director` (`director_id`),
-  ADD KEY `fk_actor` (`actor_id`),
-  ADD KEY `fk_reviewer` (`reviewer_id`);
+  ADD KEY `fk_actor` (`actor_id`);
 
 --
 -- Indexes for table `reviewer`
 --
 ALTER TABLE `reviewer`
   ADD PRIMARY KEY (`id_reviewer`),
-  ADD KEY `fk_user` (`user_id`);
+  ADD KEY `fk_user` (`user_id`),
+  ADD KEY `fk_movie` (`movie_id`);
 
 --
 -- Indexes for table `tag`
@@ -243,7 +254,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `actor`
 --
 ALTER TABLE `actor`
-  MODIFY `id_actor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_actor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -255,13 +266,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `director`
 --
 ALTER TABLE `director`
-  MODIFY `id_director` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_director` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `genre`
 --
 ALTER TABLE `genre`
-  MODIFY `id_genre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_genre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `movie`
@@ -273,7 +284,7 @@ ALTER TABLE `movie`
 -- AUTO_INCREMENT for table `reviewer`
 --
 ALTER TABLE `reviewer`
-  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tag`
@@ -285,7 +296,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -303,7 +314,6 @@ ALTER TABLE `category`
 --
 ALTER TABLE `movie`
   ADD CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
-  ADD CONSTRAINT `movie_ibfk_2` FOREIGN KEY (`reviewer_id`) REFERENCES `reviewer` (`id_reviewer`),
   ADD CONSTRAINT `movie_ibfk_3` FOREIGN KEY (`actor_id`) REFERENCES `actor` (`id_actor`),
   ADD CONSTRAINT `movie_ibfk_4` FOREIGN KEY (`director_id`) REFERENCES `director` (`id_director`);
 
@@ -311,7 +321,8 @@ ALTER TABLE `movie`
 -- Constraints for table `reviewer`
 --
 ALTER TABLE `reviewer`
-  ADD CONSTRAINT `reviewer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `reviewer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
+  ADD CONSTRAINT `reviewer_ibfk_2` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id_movie`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

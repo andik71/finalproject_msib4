@@ -28,6 +28,7 @@ function short_text($text, $maxLength = 100)
     }
 }
 // ==== END SHORT TEXT ===== //
+
 // ==== ACTOR CONTROLLER ==== //
 // ACTOR CREATE
 function add_actor($post)
@@ -35,12 +36,12 @@ function add_actor($post)
     // Koneksi database
     global $koneksi;
 
-    $name           = mysqli_real_escape_string($koneksi, $post['name']);
-    $birth          = mysqli_real_escape_string($koneksi, $post['birth']);
-    $bio            = mysqli_real_escape_string($koneksi, $post['bio']);
-    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
-    $img            = upload_file_actor();
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $birth      = mysqli_real_escape_string($koneksi, strip_tags($post['birth']));
+    $bio        = $post['bio'];
+    $occupation = 'Actor';
+    $country    = mysqli_real_escape_string($koneksi, strip_tags($post['country']));
+    $img        = upload_file_actor();
 
     // Validasi Upload File
     if (!$img) {
@@ -48,8 +49,8 @@ function add_actor($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO actor (name, birth, bio,Occupation, Country img) VALUES (?, ?, ?, ?,?,?)");
-    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio,  $occupation, $country, $img);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO actor (name, birth, bio, occupation, country,img) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio, $occupation, $country, $img);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -75,16 +76,14 @@ function edit_actor($post)
 {
     global $koneksi;
 
-    $id     = $post['id_actor'];
-    // var_dump($id);
-    // die();
+    $id         = $post['id_actor'];
 
-    $name   = mysqli_real_escape_string($koneksi, $post['name']);
-    $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
-    $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
-    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
-    $img    = upload_file_actor($id);
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $birth      = mysqli_real_escape_string($koneksi, strip_tags($post['birth']));
+    $bio        = $post['bio'];
+    $occupation = 'Actor';
+    $country    = mysqli_real_escape_string($koneksi, strip_tags($post['country']));
+    $img        = upload_file_actor($id);
 
     // Validasi Upload File
     if (!$img) {
@@ -92,8 +91,8 @@ function edit_actor($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?,Occupation = ?, Country = ?, img = ? WHERE id_actor = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation , $country,  $img, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?, occupation = ?, country = ?, img = ? WHERE id_actor = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation, $country, $img, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -111,7 +110,6 @@ function edit_actor($post)
     mysqli_stmt_close($stmt);
 
     return $affectedRows;
-
 }
 
 
@@ -241,20 +239,20 @@ function upload_file_actor($id = NULL)
 }
 
 // ==== END ACTOR CONTROLLER ==== //
-
 // ==== DIRECTOR CONTROLLER ==== //
 
 // DIRECTOR CREATE
 function add_director($post)
 {
+    // Koneksi database
     global $koneksi;
 
-    $name   = mysqli_real_escape_string($koneksi, $post['name']);
-    $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
-    $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
-    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
-    $img    = upload_file_director();
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $birth      = mysqli_real_escape_string($koneksi, strip_tags($post['birth']));
+    $bio        = $post['bio'];
+    $occupation = 'Director';
+    $country    = mysqli_real_escape_string($koneksi, strip_tags($post['country']));
+    $img        = upload_file_director();
 
     // Validasi Upload File
     if (!$img) {
@@ -262,8 +260,8 @@ function add_director($post)
     }
 
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "INSERT INTO director (name, birth, bio, Occupation, Country,img) VALUES (?, ?, ?, ?,?,?)");
-    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio,  $occupation, $country,$img);
+    $stmt = mysqli_prepare($koneksi, "INSERT INTO director (name, birth, bio, occupation, country,img) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "ssssss", $name, $birth, $bio, $occupation, $country, $img);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -288,22 +286,23 @@ function edit_director($post)
 {
     global $koneksi;
 
-    $id     = $post['id_director'];
-    $name   = mysqli_real_escape_string($koneksi, $post['name']);
-    $birth  = mysqli_real_escape_string($koneksi, $post['birth']);
-    $bio    = mysqli_real_escape_string($koneksi, $post['bio']);
-    $occupation     = mysqli_real_escape_string($koneksi, $post['Occupation']);
-    $country        = mysqli_real_escape_string($koneksi, $post['Country']);
-    $img    = upload_file_director($id);
+    $id         = $post['id_director'];
+
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $birth      = mysqli_real_escape_string($koneksi, strip_tags($post['birth']));
+    $bio        = $post['bio'];
+    $occupation = 'Director';
+    $country    = mysqli_real_escape_string($koneksi, strip_tags($post['country']));
+    $img        = upload_file_director($id);
 
     // Validasi Upload File
     if (!$img) {
         return false;
     }
- 
+
     // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE director SET name = ?, birth = ?, bio = ?, Occupation = ?, Country = ?, img = ? WHERE id_director = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation , $country,  $img, $id);
+    $stmt = mysqli_prepare($koneksi, "UPDATE director SET name = ?, birth = ?, bio = ?, occupation = ?, country = ?, img = ? WHERE id_director = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation, $country, $img, $id);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -449,9 +448,6 @@ function upload_file_director($id = NULL)
 }
 
 // ==== END DIRECTOR CONTROLLER ==== //
-
-
-
 // ==== TAG CONTROLLER ==== //
 
 // TAG CREATE
@@ -773,7 +769,7 @@ function add_movie($post)
 
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "INSERT INTO movie (title, synopsis, img, release_date, category_id, director_id, actor_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "sssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $title, $synopsis, $img, $release_date, $category, $director_name, $actor_name);
 
     // Execute statement
     $result = mysqli_stmt_execute($stmt);
@@ -978,7 +974,7 @@ function add_user($post)
     $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
     $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
     $user_role  = 'admin';
-    $img        = NULL;
+    $img        = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930';
 
     // Password Encryptor
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -1005,6 +1001,44 @@ function add_user($post)
     return $affectedRows;
 }
 
+function edit_user($post)
+{
+    global $koneksi;
+    $id         = $post['id_user'];
+
+    $username   = mysqli_real_escape_string($koneksi, strip_tags($post['username']));
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
+    $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
+    $user_role  = mysqli_real_escape_string($koneksi, strip_tags($post['user_role']));
+    $img        = upload_file_user($id);
+
+    // Validasi Upload File
+    if (!$img) {
+        return false;
+    }
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "UPDATE user SET username = ?, name = ?, email = ?, password = ?, img = ?, user_role = ? WHERE id_user = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $username, $name, $email, $password, $img, $user_role, $id);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
 
 
 // USER DELETE
@@ -1056,5 +1090,79 @@ function delete_user($id)
     mysqli_stmt_close($stmt);
 
     return $affectedRows;
+}
+
+// UPLOAD FILE MOVIE
+function upload_file_user($id = NULL)
+{
+    // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
+    if ($id) {
+        global $koneksi;
+
+        // Mengambil path file foto sebelumnya dari database berdasarkan id_user
+        $query = "SELECT img FROM user WHERE id_user = '$id'";
+        $result = mysqli_query($koneksi, $query);
+
+        if (!$result) {
+            // Query error handling
+            echo "<script>
+                alert('Terjadi kesalahan saat mengambil data dari database');
+                window.location.href = 'index.php?page=user';
+                </script>";
+            die();
+        }
+
+        // Mendapatkan path file foto sebelumnya (misalnya dari database)
+        $row = mysqli_fetch_assoc($result);
+        $previousFile = $row['img'];
+
+        // Menghapus file foto sebelumnya (jika ada)
+        if (file_exists($previousFile)) {
+            unlink($previousFile);
+        }
+    }
+
+    // Tangkap name
+    $fileName        = $_FILES['img']['name'];
+    $fileSize        = $_FILES['img']['size'];
+    $fileError       = $_FILES['img']['error'];
+    $fileTmp         = $_FILES['img']['tmp_name'];
+
+    // Cek Upload File
+    $extension_valid = ['jpg', 'jpeg', 'png'];
+    $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
+    $extension       = strtolower($extension);
+
+    // Validasi Ekstensi File Upload
+    if (!in_array($extension, $extension_valid)) {
+        echo "<script>
+            alert('Format File Tidak Valid');
+            window.location.href = 'index.php?page=user';
+            </script>";
+        die();
+    }
+
+    // Validasi Ukuran File Upload > 2 MB
+    if ($fileSize > 2048000) {
+        echo "<script>
+            alert('Ukuran File Max: 2 MB');
+            window.location.href = 'index.php?page=user';
+            </script>";
+        die();
+    }
+
+    // Generate New File
+    $newFile = 'img/' . uniqid('', true) . '.' . $extension;
+
+    // Pindahkan File Ke Local Storage
+    if (move_uploaded_file($fileTmp, $newFile)) {
+        return $newFile;
+    } else {
+        echo "<script>
+            alert('Gagal mengunggah file');
+            window.location.href = 'index.php?page=user';
+            </script>";
+        die();
+    }
 }
 // ==== END USER CONTROLLER ==== //

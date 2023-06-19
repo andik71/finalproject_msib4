@@ -1,4 +1,15 @@
 <?php
+
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 // Tangkap ID berdasarkan URL
 $id_category = (int)$_GET['id'];
 

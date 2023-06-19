@@ -1,5 +1,15 @@
 <?php
 
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 // Tangkap ID berdasarkan URL
 $id_director = (int)$_GET['id'];
 
@@ -104,18 +114,3 @@ window.location.href = 'index.php?page=director';
 
 </div>
 <!-- /.container-fluid -->
-
-<script>
-    // Fungsi untuk preview gambar
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var imgPreview = document.querySelector('.img-thumbnail');
-            imgPreview.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-    }
-
-    var fileInput = document.querySelector('#formFile');
-    fileInput.addEventListener('change', previewImage);
-</script>

@@ -1,5 +1,15 @@
 <?php
 
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 $data_user = select("SELECT * FROM user ORDER BY id_user DESC");
 
 $arr_obj = [
@@ -49,7 +59,7 @@ $no = 1;
                                 <td><?= $row['username'] ?></td>
                                 <td><?= $row['name'] ?></td>
                                 <td><?= $row['email'] ?></td>
-                                <td><?= $row['password'] ?></td>
+                                <td class="text-center">Encrypted</td>
                                 <td class="text-center"><?= $row['user_role'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">

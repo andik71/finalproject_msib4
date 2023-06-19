@@ -1,5 +1,15 @@
 <?php
 
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 $data_genre = select("SELECT * FROM genre ORDER BY id_genre DESC");
 $data_tag = select("SELECT * FROM tag ORDER BY id_tag DESC");
 

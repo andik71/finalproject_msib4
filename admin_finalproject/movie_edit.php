@@ -1,5 +1,15 @@
 <?php
 
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 // Tangkap ID berdasarkan URL
 $id_movie = (int)$_GET['id'];
 // Select Data yang terintegrasi
@@ -12,16 +22,16 @@ $data_movie = select("SELECT * FROM movie WHERE id_movie = '$id_movie'")[0];
 if (isset($_POST['save'])) {
     if (edit_movie($_POST) > 0) {
         echo "
-<script>
-alert('Data Berhasil Diubah');
-window.location.href = 'index.php?page=movie';
-</script>";
+        <script>
+        alert('Data Berhasil Diubah');
+        window.location.href = 'index.php?page=movie';
+        </script>";
     } else {
         echo "
-<script>
-alert('Data Gagal Diubah');
-window.location.href = 'index.php?page=movie';
-</script>";
+        <script>
+        alert('Data Gagal Diubah');
+        window.location.href = 'index.php?page=movie';
+        </script>";
     }
 }
 ?>

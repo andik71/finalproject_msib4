@@ -1,4 +1,5 @@
 <?php
+
 // Tangkap ID berdasarkan URL
 $id_category = (int)$_GET['id'];
 // SQL

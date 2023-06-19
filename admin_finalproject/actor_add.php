@@ -1,4 +1,15 @@
 <?php
+
+// Cek Hak Akses
+if ($_SESSION['user_role'] != 'admin') {
+    echo "
+        <script>
+        alert('Maaf. hanya Admin yang berhak');
+        window.location.href = 'index.php?page=dashboard';
+        </script>";
+    exit;
+}
+
 if (isset($_POST['save'])) {
     if (add_actor($_POST) > 0) {
         echo "
@@ -14,6 +25,7 @@ if (isset($_POST['save'])) {
         </script>";
     }
 }
+
 ?>
 
 <!-- Begin Page Content -->

@@ -7,7 +7,7 @@ require_once '../config/app.php';
 parse_str(file_get_contents('php://input'), $DELETE);
 
 // Menerima Input data yang akan dihapus
-$id_movie   = $DELETE['id_movie'];
+$id   = $DELETE['id'];
 // Query
 $query      = "SELECT img FROM movie WHERE id_movie = '$id'";
 $result     = mysqli_query($koneksi, $query);

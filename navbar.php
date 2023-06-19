@@ -75,7 +75,7 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
                             <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
                             <ul class="collapse nav">
                                 <li>
-                                    <a class="nav-link" href="index.php?page=edit_profile">Settings</a>
+                                    <a class="nav-link" href="index.php?page=profile">Profile</a>
                                 </li>
                                 <li>
                                     <a class="nav-link" href="index.php?page=changepassword">Change Password</a>

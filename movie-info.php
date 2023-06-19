@@ -29,20 +29,20 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                         INNER JOIN user as u ON r.user_id = u.id_user 
                         WHERE movie_id = '$data_reviewer'");
 
-$rating = 3;
+
 
 if (isset($_POST['save'])) {
     if (add_reviewer($_POST) > 0) {
         echo "
         <script>
             alert('Berhasil Membuat Komentar');
-            window.location.href = 'index.php?page=movie-list';
+            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
         </script>";
     } else {
         echo "
         <script>
             alert('Gagal Membuat Komentar');
-            window.location.href = 'index.php?page=movie-list';
+            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
         </script>";
     }
 }
@@ -229,33 +229,26 @@ if (isset($_POST['save'])) {
                                 <h2 class="section-title text-uppercase text-dark">Add comment</h2>
                             </div>
                             <!-- Add Insert Reviewer -->
-                            <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST">
+                            <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                                 <div class="row form-grid">
-                                    <div class="input-view-flat input-group">
-                                        <input type="hidden" class="form-control" id="movie_id" name="movie_id" value="<?= $id_movie ?>">
-                                    </div>
-                                    <div class="input-view-flat input-group">
-                                        <input type="hidden" class="form-control" id="user_id" name="user_id" value="<?= $_SESSION['id_user'] ?>">
-                                    </div>
                                     <div class="col-12 col-sm-12">
                                         <div class="input-view-flat input-group">
-                                            <textarea class="form-control" id="comment" name="comment" placeholder="Add your comment"></textarea>
+                                            <textarea class="form-control" id="review" name="review" placeholder="Add your comment"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="rating-line">
                                             <label>Rating:</label>
                                             <div class="form-rating" name="rating">
+                                                <input type="radio" id="rating-input" name="rating" />
                                                 <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                    <?php if ($i <= $rating) { ?>
+                                                    <?php if ($i <= 0) { ?>
                                                         <label>
-                                                            <input type="radio" id="rating-input" name="rating" value="<?php echo $i; ?>" checked>
                                                             <span class="rating-active-icon"><i class="fas fa-star"></i></span>
                                                             <span class="rating-icon"><i class="far fa-star"></i></span>
                                                         </label>
                                                     <?php } else { ?>
                                                         <label>
-                                                            <input type="radio" id="rating-input" name="rating" value="<?php echo $i; ?>">
                                                             <span class="rating-active-icon"><i class="fas fa-star"></i></span>
                                                             <span class="rating-icon"><i class="far fa-star"></i></span>
                                                         </label>
@@ -265,7 +258,7 @@ if (isset($_POST['save'])) {
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="px-5 btn btn-theme" id="save" name="save" type="submit">Send</button>
+                                        <button class="px-5 btn btn-theme" type="submit">Send</button>
                                     </div>
                                 </div>
                             </form>

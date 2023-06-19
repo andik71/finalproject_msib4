@@ -46,24 +46,48 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
                                 </div>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-item-arrow-down nav-hover-show-sub">
                             <a class="nav-link" href="index.php?page=movies_list">Movies</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-item-arrow-down nav-hover-show-sub">
                             <a class="nav-link" href="index.php?page=about">About</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item nav-item-arrow-down nav-hover-show-sub">
                             <a class="nav-link" href="index.php?page=contact">Contact us</a>
                         </li>
+
+
                     </ul>
-                    <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
-                        <a class="nav-link btn-theme btn text-white" href="#" data-role="nav-toggler">&nbsp;&nbsp;Login</a>
-                        <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
-                        <ul class="collapse nav">
-                            <li> <a class="nav-link" href="index.php?page=edit_profile">Profile</a>
-                            </li>
-                        </ul>
-                    </div>
+
+                    <?php if (empty($_SESSION)) {  ?>
+
+                        <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
+                            <div class="d-flex">
+                                <a class="nav-link btn-theme btn text-white" href="login.php">&nbsp;&nbsp;Login</a>
+                                <a class="nav-link btn-theme btn text-white" href="register.php">&nbsp;&nbsp;Register</a>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+
+
+                        <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
+                            <a class="nav-link btn-theme btn text-white" href="#" data-role="nav-toggler"><?= $_SESSION['name'] ?></a>
+                            <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
+                            <ul class="collapse nav">
+                                <li>
+                                    <a class="nav-link" href="index.php?page=edit_profile">Settings</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="index.php?page=changepassword">Change Password</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link" href="logout.php">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    <?php } ?>
+
                 </div>
             </nav>
         </div>

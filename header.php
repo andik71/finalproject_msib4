@@ -1,4 +1,4 @@
-<?php include_once './admin_finalproject/config/app.php'; ?>
+<?php include_once 'admin_panel/config/app.php'; ?>
 
 <!DOCTYPE html>
 <html>

@@ -45,7 +45,7 @@ $data_user = select("SELECT username, name, email, img FROM user WHERE id_user =
                 <div class="card h-100 mt-5">
                     <div class="card-body">
                         <form action="" method="post">
-                            <h4 class="form-title text-uppercase">MY 
+                            <h4 class="form-title text-uppercase">MY
                                 <span class="text-theme">account</span>
                             </h4>
                             <div class="mb-3">
@@ -69,7 +69,7 @@ $data_user = select("SELECT username, name, email, img FROM user WHERE id_user =
                             <div class="row">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button type="button" id="submit" name="submit" class="btn btn-secondary mt-3">Cancel</button>
+                                        <a href="index.php" id="submit" name="submit" class="btn btn-secondary mt-3">Cancel</a>
                                         <button type="button" id="submit" name="submit" class="btn-theme btn mt-3">Update</button>
                                     </div>
                                 </div>

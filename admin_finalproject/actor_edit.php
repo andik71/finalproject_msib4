@@ -26,7 +26,7 @@ window.location.href = 'index.php?page=actor';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Edit Data Actor</h1>
+    <h1 class="h3 mb-2 text-gray-800">Edit Data Director</h1>
     <p class="mb-4">Master Data</p>
 
     <!-- Basic Card Example -->
@@ -52,24 +52,24 @@ window.location.href = 'index.php?page=actor';
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="name">Name</label>
-                            <input class="form-control" id="name" name="name" type="text" value="<?= $data_actor['name'] ?>" placeholder="" data-sb-validations="required" />
+                            <input class="form-control" id="name" name="name" type="text" value="<?= $data_actor['name'] ?>" placeholder="Name" data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="birth">Birth</label>
-                            <input class="form-control" id="birth" name="birth" type="date" value="<?= $data_actor['birth'] ?>" placeholder="" data-sb-validations="required" />
+                            <input class="form-control" id="birth" name="birth" type="date" value="<?= $data_actor['birth'] ?>" placeholder="Birth" data-sb-validations="required" />
+                            <div class="invalid-feedback" data-sb-feedback="birth:required">Birth is required.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="bio">Bio</label>
-                            <textarea class="form-control" id="bio" name="bio" type="text" placeholder="" style="height: 10rem;" data-sb-validations="required"><?= $data_actor['bio'] ?></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="country">Country</label>
-                            <input class="form-control" id="country" name="country" type="text" value="<?= $data_actor['country'] ?>"  placeholder="" data-sb-validations="required" />
+                            <textarea class="form-control" id="bio" name="bio" type="text" placeholder="Bio" style="height: 10rem;" data-sb-validations="required"><?= $data_actor['bio'] ?></textarea>
+                            <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="formFile">Replace Image</label>
                             <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" onchange="previewImage(event)" />
                         </div>
+
                         <div class="d-grid">
                             <button class="btn btn-success btn-icon-split btn-sm" id="submitButton" name="save" type="submit">
                                 <span class="icon text-white-50">
@@ -100,3 +100,4 @@ window.location.href = 'index.php?page=actor';
 
 </div>
 <!-- /.container-fluid -->
+

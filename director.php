@@ -35,7 +35,7 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
                                 <span class="font-weight-bold text-dark"><b>Born</b></span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_director['birth'] ?>
+                                <?= date_format(date_create($data_director['birth']), 'd F Y') ?>
                             </div>
                         </div>
                         <hr>
@@ -66,7 +66,7 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
             <h2 class="section-title text-uppercase text-dark">mini bio</h2>
         </div>
         <div class="card section-description p-5">
-            <p class="lead"><?=  $data_director['bio'] ?></p>             
+            <p class="lead text-justify"><?=  $data_director['bio'] ?></p>             
         </div>
         <br>
     </div>

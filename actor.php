@@ -35,7 +35,7 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
                                 <span class="font-weight-bold text-dark"><b>Born</b></span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_actor['birth'] ?>
+                                <?= date_format(date_create($data_actor['birth']), 'd F Y') ?>
                             </div>
                         </div>
                         <hr>
@@ -66,7 +66,7 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
             <h2 class="section-title text-uppercase text-dark">mini bio</h2>
         </div>
         <div class="card section-description p-5">
-            <p class="lead"><?= $data_actor['bio'] ?></p>
+            <p class="lead text-justify"><?= $data_actor['bio'] ?></p>
         </div>
         <br>
     </div>

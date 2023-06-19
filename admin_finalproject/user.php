@@ -49,7 +49,7 @@ $no = 1;
                                 <td><?= $row['username'] ?></td>
                                 <td><?= $row['name'] ?></td>
                                 <td><?= $row['email'] ?></td>
-                                <td class="text-center" >Encrypted</td>
+                                <td><?= $row['password'] ?></td>
                                 <td class="text-center"><?= $row['user_role'] ?></td>
                                 <td class="text-center">
                                     <div class="d-inline">

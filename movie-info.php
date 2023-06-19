@@ -46,8 +46,6 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
     </div>
 </section>
 
-
-
 <section class="bg-white">
     <div class="container ">
         <div class="sidebar-container">
@@ -116,7 +114,9 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                             <h2 class="section-title text-uppercase text-dark ">Synopsis</h2>
                         </div>
                         <div class="section-description">
-                            <p class="lead text-justify"><?= $data_movie['synopsis'] ?></p>
+                            <p class="lead text-justify">
+                                <?= $data_movie['synopsis'] ?>
+                            </p>
                         </div>
                         <div class="section-bottom">
                             <div class="row">
@@ -144,6 +144,7 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                             <h2 class="section-title text-uppercase text-dark">Recommended For You</h2>
                         </div>
                         <div class="grid row">
+<<<<<<< Updated upstream
                             <?php foreach ($data_recommend as $film) { ?>
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="gallery-entity">
@@ -158,8 +159,21 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                                                     </a>
                                                 </div>
                                                 <h4 class="entity-title">
-                                                    <a class="content-link" href="index.php?page=movie-info"><?= $film['title'] ?></a>
+                                                    <a class="content-link" href="index.php?page=movie-info&id=<?= $film['id_movie'] ?>"><?= $film['title'] ?></a>
                                                 </h4>
+=======
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="gallery-entity">
+                                    <div class="entity-preview" data-role="hover-wrap">
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <img class="embed-responsive-item" src="images/northman.png" alt="" />
+                                        </div>
+                                        <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
+                                            <div class="entity-view-popup">
+                                                <a class="action-icon-theme action-icon-bordered rounded-circle" href="https://www.youtube.com/watch?v=d96cjJhvlMA" data-magnific-popup="iframe">
+                                                    <span class="icon-content"><i class="fas fa-play"></i></span>
+                                                </a>
+>>>>>>> Stashed changes
                                             </div>
                                         </div>
                                     </div>
@@ -211,12 +225,12 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                         </div>
                         <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                             <div class="row form-grid">
-                                <div class="col-12 col-sm-7">
+                                <div class="col-12 col-sm-12">
                                     <div class="input-view-flat input-group">
                                         <input class="form-control" id="user_id" name="user_id" type="text" placeholder="Name" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-7">
+                                <div class="col-12 col-sm-12">
                                     <div class="input-view-flat input-group">
                                         <textarea class="form-control" name="review" placeholder="Add your comment"></textarea>
                                     </div>
@@ -255,6 +269,7 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                     <div class="section-head mb-3">
                         <h2 class="section-title text-uppercase text-dark">Latest movies</h2>
                     </div>
+<<<<<<< Updated upstream
                     <?php foreach ($data_latest as $row) { ?>
                         <div class="movie-short-line-entity mt-2">
                             <span class="entity-preview embed-responsive embed-responsive-4by3">
@@ -268,6 +283,41 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
                             </div>
                         </div>
                     <?php } ?>
+=======
+                    <div class="movie-short-line-entity">
+                        <span class="entity-preview embed-responsive embed-responsive-16by9">
+                            <img class="embed-responsive-item" src="images/traintobusan.jpeg" alt="" />
+                        </span>
+                        <div class="entity-content ">
+                            <h4 class="entity-title  text-dark">
+                                <a class="content-link" href="index.php?page=movie-info">Train To Busan</a>
+                            </h4>
+                            <p class="entity-subtext">20 Jul 2016</p>
+                        </div>
+                    </div>
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
+                            <img class="embed-responsive-item" src="images/spacesweepers.jpg" alt="" />
+                        </span>
+                        <div class="entity-content">
+                            <h4 class="entity-title text-dark">
+                                <a class="content-link" href="index.php?page=movie-info">Space Sweepers</a>
+                            </h4>
+                            <p class="entity-subtext">5 Feb 2021</p>
+                        </div>
+                    </div>
+                    <div class="movie-short-line-entity mt-2">
+                        <span class="entity-preview embed-responsive embed-responsive-4by3">
+                            <img class="embed-responsive-item" src="images/hidayah.jpg" alt="" />
+                        </span>
+                        <div class="entity-content">
+                            <h4 class="entity-title  text-dark">
+                                <a class="content-link" href="index.php?page=movie-info">Hidayah</a>
+                            </h4>
+                            <p class="entity-subtext">13 Jan 2023</p>
+                        </div>
+                    </div>
+>>>>>>> Stashed changes
                 </section>
             </div>
         </div>

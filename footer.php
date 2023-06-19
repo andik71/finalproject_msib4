@@ -92,6 +92,29 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre DESC");
 <script src="js/script.js"></script>
 <script async defer src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d493.94212418348434!2d112.61591113524486!3d-7.9433266018527355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e788274e9c41b51%3A0xb66aa2d4fd7ab2e5!2sStudio%20Rupa%20Malang%20Store!5e0!3m2!1sid!2sid!4v1685096592149!5m2!1sid!2sid"></script>
 <script async defer src="https://ia.media-imdb.com/images/G/01/imdb/plugins/rating/js/rating.js"></script>
+
+<!-- Contact Form Menggunakan formspree -->
+<script>
+    const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const url = e.target.action;
+    const formData = new FormData(contactForm);
+
+    fetch(url, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors",
+    })
+    .then((e) => {
+        alert("Successful To Send Message");
+        window.location.href = 'index.php?page=contact'
+    })
+    .catch((e) => alert("Failed To Send Message"));
+})
+</script>
 </body>
 
 </html>

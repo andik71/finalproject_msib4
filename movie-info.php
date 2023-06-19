@@ -46,8 +46,6 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
     </div>
 </section>
 
-
-
 <section class="bg-white">
     <div class="container ">
         <div class="sidebar-container">

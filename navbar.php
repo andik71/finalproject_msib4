@@ -1,6 +1,6 @@
 <?php
 $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
-$data_user = select("SELECT username, name, email, img FROM user where id_user = '1'");
+
 ?>
 
 <body class="body">

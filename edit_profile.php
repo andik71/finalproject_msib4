@@ -1,11 +1,6 @@
 <?php
-
+$id_user = (int)$_GET['id'];
 $data_user = select("SELECT username, name, email, img FROM user WHERE id_user = '$id_user'");
-
-$data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM reviewer as r
-                        INNER JOIN movie as m ON r.movie_id= m.id_movie 
-                        INNER JOIN user as u ON r.user_id = u.id_user 
-                     ");
 
 ?>
 <section class="after-head d-flex section-text-white pt-5" style="background-image: url('images/image1.png');">

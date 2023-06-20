@@ -121,7 +121,7 @@ ORDER BY id_movie ASC
                     </div>
                     <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                         <div class="entity-play">
-                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['Video'] ?>" data-magnific-popup="iframe">
+                            <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $row['video'] ?>" data-magnific-popup="iframe">
                                 <span class="icon-content"><i class="fas fa-play"></i></span>
                             </a>
                         </div>

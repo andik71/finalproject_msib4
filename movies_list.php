@@ -143,7 +143,7 @@
                                 <a class="content-link " href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
                             </h4>
                             <div class="entity-category">
-                                <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>,
+                                <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>
                             </div>
                             <div class="entity-info text-dark">
                                 <div class="info-lines">
@@ -190,7 +190,7 @@
                                 <a class="content-link " href="index.php?page=movie-info&id=<?= $row['id_movie'] ?>"><?= $row['title'] ?></a>
                             </h4>
                             <div class="entity-category">
-                                <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>,
+                                <a class="content-link" href="index.php?page=movies_list&id=<?= $row['id_genre'] ?>"><?= $row['genre'] ?></a>
                             </div>
                             <div class="entity-info text-dark">
                                 <div class="info-lines">

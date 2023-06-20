@@ -64,7 +64,7 @@ ORDER BY id_movie ASC
                                         <a class="content-link" href="index.php?page=movie-info&id=<?= $movie['id_movie'] ?>"><?= $movie['title'] ?></a>
                                     </h4>
                                     <div class="entity-category">
-                                        <a class="content-link" href="index.php?page=movies_list&id=<?= $movie['id_genre'] ?>"><?= $movie['genre'] ?></a>,
+                                        <a class="content-link" href="index.php?page=movies_list&id=<?= $movie['id_genre'] ?>"><?= $movie['genre'] ?></a>
                                     </div>
                                     <div class="entity-info">
                                         <div class="info-lines">
@@ -191,7 +191,7 @@ ORDER BY id_movie ASC
                                     <a class="content-link" href="index.php?page=movie-info&id=<?= $comm['id_movie'] ?>"><?= $comm['title'] ?></a>
                                 </h4>
                                 <div class="entity-category">
-                                    <a class="content-link" href="index.php?page=movies_list&id=<?= $comm['id_genre'] ?>"><?= $comm['genre'] ?></a>,
+                                    <a class="content-link" href="index.php?page=movies_list&id=<?= $comm['id_genre'] ?>"><?= $comm['genre'] ?></a>
                                 </div>
                                 <div class="entity-info">
                                     <div class="info-lines">
@@ -265,7 +265,7 @@ ORDER BY id_movie ASC
                                 <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>"><?= $list['title'] ?></a>
                             </h4> 
                             <div class="entity-category">
-                                <a class="content-link" href="index.php?page=movies_list&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>,
+                                <a class="content-link" href="index.php?page=movies_list&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>
                             </div>
                             <p class="text-short entity-text"><?= short_text($list['synopsis']) ?>
                             </p>

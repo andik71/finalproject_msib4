@@ -1,13 +1,13 @@
 <?php
 //menampilkan movie top
-$data_top = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM reviewer as r 
+$data_top = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.video , m.duration ,g.id_genre, g.genre , t.tags FROM reviewer as r 
 INNER JOIN movie as m ON r.movie_id = m.id_movie 
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN genre as g ON c.genre_id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag ORDER BY rating DESC;");
 
 //menampilkan latest movies
-$data_latest = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.Video , m.duration ,g.id_genre, g.genre , t.tags FROM movie as m
+$data_latest = select("SELECT m.id_movie, m.title, m.synopsis, m.img, m.video , m.duration ,g.id_genre, g.genre , t.tags FROM movie as m
 INNER JOIN category as c ON m.category_id = c.id_category 
 INNER JOIN genre as g ON c.genre_id = g.id_genre 
 INNER JOIN tag as t ON c.tag_id = t.id_tag 
@@ -51,12 +51,12 @@ ORDER BY id_movie ASC
                         <div class="slick-slide">
                             <article class="poster-entity" data-role="hover-wrap">
                                 <div class="embed-responsive embed-responsive-poster">
-                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $movie['img'] ?>" alt="" />
+                                    <img class="embed-responsive-item" src="./admin_panel/<?= $movie['img'] ?>" alt="" />
                                 </div>
                                 <div class="d-background bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show"></div>
                                 <div class="d-over bg-highlight-bottom">
                                     <div class="collapse animated faster entity-play" data-show-class="fadeIn show" data-hide-class="fadeOut show">
-                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $movie['Video'] ?>" data-magnific-popup="iframe">
+                                        <a class="action-icon-theme action-icon-bordered rounded-circle" href="<?= $movie['video'] ?>" data-magnific-popup="iframe">
                                             <span class="icon-content"><i class="fas fa-play"></i></span>
                                         </a>
                                     </div>
@@ -68,7 +68,7 @@ ORDER BY id_movie ASC
                                     </div>
                                     <div class="entity-info">
                                         <div class="info-lines">
-                                            <div class="info info-short">
+                                            <div class="info info-short"> 
                                                 <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
                                                 <span class="info-text"><?= $movie['rating'] ?></span>
                                                 <span class="info-rest">/5</span>
@@ -117,7 +117,7 @@ ORDER BY id_movie ASC
             <article class="movie-line-entity">
                 <div class="entity-poster" data-role="hover-wrap">
                     <div class="embed-responsive embed-responsive-poster">
-                        <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
+                        <img class="embed-responsive-item" src="./admin_panel/<?= $row['img'] ?>" alt="" />
                     </div>
                     <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                         <div class="entity-play">
@@ -176,7 +176,7 @@ ORDER BY id_movie ASC
                         <article class="movie-line-entity">
                             <div class="entity-preview">
                                 <div class="embed-responsive embed-responsive-4by3">
-                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $comm['img'] ?>" alt="" />
+                                    <img class="embed-responsive-item" src="./admin_panel/<?= $comm['img'] ?>" alt="" />
                                 </div>
                                 <div class="d-over">
                                     <div class="entity-play">
@@ -206,7 +206,7 @@ ORDER BY id_movie ASC
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-short entity-text"><?= $comm['synopsis'] ?>
+                                <p class="text-short entity-text"><?= short_text($comm['synopsis']) ?>
                                 </p>
                             </div>
                         </article>
@@ -247,7 +247,7 @@ ORDER BY id_movie ASC
                     <article class="article-tape-entity">
                         <a class="entity-preview" href="<?= $list['video'] ?>" data-magnific-popup="iframe" data-role="hover-wrap">
                             <span class="embed-responsive embed-responsive-1by1">
-                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $list['img'] ?>" alt="" />
+                                <img class="embed-responsive-item" src="./admin_panel/<?= $list['img'] ?>" alt="" />
                             </span>
                             <span class="entity-date">
                                 <span class="tape-block tape-horizontal tape-single bg-theme text-white">
@@ -263,11 +263,11 @@ ORDER BY id_movie ASC
                         <div class="entity-content">
                             <h4 class="entity-title">
                                 <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>"><?= $list['title'] ?></a>
-                            </h4>
+                            </h4> 
                             <div class="entity-category">
-                                <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>,
+                                <a class="content-link" href="index.php?page=movies_list&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>,
                             </div>
-                            <p class="text-short entity-text"><?= $list['synopsis'] ?>
+                            <p class="text-short entity-text"><?= short_text($list['synopsis']) ?>
                             </p>
                             <div class="entity-actions">
                                 <a class="text-uppercase" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>">Read More</a>

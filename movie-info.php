@@ -71,7 +71,7 @@ if (isset($_POST['save'])) {
                         <div class="movie-info-entity">
                             <div class="entity-poster" data-role="hover-wrap">
                                 <div class="embed-responsive embed-responsive-poster">
-                                    <img class="embed-responsive-item" src="./admin_finalproject/<?= $data_movie['img'] ?>" alt="" />
+                                    <img class="embed-responsive-item" src="./admin_panel/<?= $data_movie['img'] ?>" alt="" />
                                 </div>
                                 <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                     <div class="entity-play">
@@ -165,7 +165,7 @@ if (isset($_POST['save'])) {
                                     <div class="gallery-entity">
                                         <div class="entity-preview" data-role="hover-wrap">
                                             <div class="embed-responsive embed-responsive-1by1">
-                                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $film['img'] ?>" alt="" height="200px" />
+                                                <img class="embed-responsive-item" src="./admin_panel/<?= $film['img'] ?>" alt="" height="200px" />
                                             </div>
                                             <div class="bg-theme-lighted d-over collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                                 <div class="entity-view-popup">
@@ -275,7 +275,7 @@ if (isset($_POST['save'])) {
                     <?php foreach ($data_latest as $row) { ?>
                         <div class="movie-short-line-entity mt-2">
                             <span class="entity-preview embed-responsive embed-responsive-4by3">
-                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
+                                <img class="embed-responsive-item" src="./admin_panel/<?= $row['img'] ?>" alt="" />
                             </span>
                             <div class="entity-content ">
                                 <h4 class="entity-title  text-dark">

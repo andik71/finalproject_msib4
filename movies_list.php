@@ -128,7 +128,7 @@
                     <article class="movie-line-entity bg-white shadow-lg">
                         <div class="entity-poster" data-role="hover-wrap">
                             <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
+                                <img class="embed-responsive-item" src="./admin_panel/<?= $row['img'] ?>" alt="" />
                             </div>
                             <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                 <div class="entity-play">
@@ -175,7 +175,7 @@
                     <article class="movie-line-entity bg-white shadow-lg">
                         <div class="entity-poster" data-role="hover-wrap">
                             <div class="embed-responsive embed-responsive-poster">
-                                <img class="embed-responsive-item" src="./admin_finalproject/<?= $row['img'] ?>" alt="" />
+                                <img class="embed-responsive-item" src="./admin_panel/<?= $row['img'] ?>" alt="" />
                             </div>
                             <div class="d-over bg-theme-lighted collapse animated faster" data-show-class="fadeIn show" data-hide-class="fadeOut show">
                                 <div class="entity-play">

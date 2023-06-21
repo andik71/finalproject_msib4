@@ -1,6 +1,7 @@
 <?php
 // Tangkap ID berdasarkan URL
 $id_movie = (int)$_GET['id'];
+$id_user = (int)$_SESSION['id_user'];
 // SQL
 $data_movie = select("SELECT r.* , m.id_movie, m.title, m.synopsis, m.img, m.Video , m.release_date, m.duration ,m.Production, m.Country, d.id_director, a.id_actor, m.Video, g.id_genre, g.genre , t.tags, d.name as director_name, a.name as actor_name FROM reviewer as r 
 INNER JOIN movie as m ON r.movie_id = m.id_movie 
@@ -31,22 +32,23 @@ $data_comments = select("SELECT u.name, r.date, r.comment, r.rating  FROM review
 
 
 
-if (isset($_POST['save'])) {
+if (isset($_POST['submit'])) {
     if (add_reviewer($_POST) > 0) {
         echo "
         <script>
             alert('Berhasil Membuat Komentar');
-            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
+            window.location.href = 'index.php?page=movie-info&id=" . $id_movie . "';
         </script>";
     } else {
         echo "
         <script>
             alert('Gagal Membuat Komentar');
-            window.location.href = 'index.php?page=movie-info&id=<?= $id_movie ?>';
+            window.location.href = 'index.php?page=movie-info&id=" . $id_movie . "';
         </script>";
     }
 }
 ?>
+
 
 <section class="after-head d-flex section-text-white pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
@@ -229,36 +231,32 @@ if (isset($_POST['save'])) {
                                 <h2 class="section-title text-uppercase text-dark">Add comment</h2>
                             </div>
                             <!-- Add Insert Reviewer -->
-                            <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
+                            <form autocomplete="off" id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST">
                                 <div class="row form-grid">
                                     <div class="col-12 col-sm-12">
+                                        <input type="hidden" id="user_id" name="user_id" value="<?= $_SESSION['id_user'] ?>">
+                                        <input type="hidden" id="movie_id" name="movie_id" value="<?= $id_movie ?>">
                                         <div class="input-view-flat input-group">
-                                            <textarea class="form-control" id="review" name="review" placeholder="Add your comment"></textarea>
+                                            <textarea class="form-control" id="comment" name="comment" placeholder="Add your comment"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="rating-line">
                                             <label>Rating:</label>
                                             <div class="form-rating" name="rating">
-                                                <input type="radio" id="rating-input" name="rating" />
                                                 <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                    <?php if ($i <= 0) { ?>
-                                                        <label>
-                                                            <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                            <span class="rating-icon"><i class="far fa-star"></i></span>
-                                                        </label>
-                                                    <?php } else { ?>
-                                                        <label>
-                                                            <span class="rating-active-icon"><i class="fas fa-star"></i></span>
-                                                            <span class="rating-icon"><i class="far fa-star"></i></span>
-                                                        </label>
-                                                    <?php } ?>
+                                                    <input type="radio" id="rating-input-<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" />
+                                                    <label for="rating-input-<?php echo $i; ?>">
+                                                        <span class="rating-active-icon"><i class="fas fa-star"></i></span>
+                                                        <span class="rating-icon"><i class="far fa-star"></i></span>
+                                                    </label>
                                                 <?php } ?>
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="col-12">
-                                        <button class="px-5 btn btn-theme" type="submit">Send</button>
+                                        <button class="px-5 btn btn-theme" name="submit" type="submit">Send</button>
                                     </div>
                                 </div>
                             </form>

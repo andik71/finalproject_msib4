@@ -68,7 +68,7 @@ ORDER BY id_movie ASC
                                     </div>
                                     <div class="entity-info">
                                         <div class="info-lines">
-                                            <div class="info info-short"> 
+                                            <div class="info info-short">
                                                 <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
                                                 <span class="info-text"><?= $movie['rating'] ?></span>
                                                 <span class="info-rest">/5</span>
@@ -263,7 +263,7 @@ ORDER BY id_movie ASC
                         <div class="entity-content">
                             <h4 class="entity-title">
                                 <a class="content-link" href="index.php?page=movie-info&id=<?= $list['id_movie'] ?>"><?= $list['title'] ?></a>
-                            </h4> 
+                            </h4>
                             <div class="entity-category">
                                 <a class="content-link" href="index.php?page=movies_list&id=<?= $list['id_genre'] ?>"><?= $list['genre'] ?></a>
                             </div>

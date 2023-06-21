@@ -11,21 +11,21 @@ if (isset($_POST['save'])) {
     if (validateOldPassword($id_user, $oldPassword)) {
         if (changePassword($id_user, $newPassword)) {
             echo "
-                <script>
-                alert('Password Berhasil Diubah');
-                window.location.href = 'index.php?page=dashboard';
-                </script>";
+<script>
+alert('Password Berhasil Diubah');
+window.location.href = 'index.php?page=dashboard';
+</script>";
         } else {
             echo "
-                <script>
-                alert('Gagal mengubah password');
-                </script>";
+<script>
+alert('Gagal mengubah password');
+</script>";
         }
     } else {
         echo "
-            <script>
-            alert('Password lama tidak valid');
-            </script>";
+<script>
+alert('Password lama tidak valid');
+</script>";
     }
 }
 
@@ -75,19 +75,25 @@ function changePassword($userId, $newPassword)
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="old_password">Old Password</label>
-                    <div class="input-group">
+                    <div class="form-group">
                         <input class="form-control" id="old_password" name="old_password" type="password" placeholder="Old Password" data-sb-validations="required" />
-                        <button class="btn btn-outline-secondary" type="button" id="toggleOldPasswordVisibility"><i class="fas fa-eye"></i></button>
                     </div>
                     <div class="invalid-feedback" data-sb-feedback="old_password:required">Can't be empty!</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="new_password">New Password</label>
-                    <div class="input-group">
+                    <div class="form-group">
                         <input class="form-control" id="new_password" name="new_password" type="password" placeholder="New Password" data-sb-validations="required" />
-                        <button class="btn btn-outline-secondary" type="button" id="toggleNewPasswordVisibility"><i class="fas fa-eye"></i></button>
                     </div>
                     <div class="invalid-feedback" data-sb-feedback="new_password:required">Can't be empty!</div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox small">
+                            <input type="checkbox" class="custom-control-input" id="showPassword">
+                            <label class="custom-control-label" for="showPassword">Show Password</label>
+                        </div>
+                    </div>
                 </div>
                 <!-- Tombol -->
                 <div class="d-grid">
@@ -117,26 +123,19 @@ function changePassword($userId, $newPassword)
 <!-- /.container-fluid -->
 
 <script>
-    const toggleOldPasswordVisibility = document.getElementById('toggleOldPasswordVisibility');
-    const toggleNewPasswordVisibility = document.getElementById('toggleNewPasswordVisibility');
-    const oldPasswordInput = document.getElementById('old_password');
-    const newPasswordInput = document.getElementById('new_password');
+    var showPasswordCheckbox = document.getElementById('showPassword');
+    var passwordInput = document.getElementById('new_password');
+    var passwordInput1 = document.getElementById('old_password');
 
-    toggleOldPasswordVisibility.addEventListener('click', function() {
-        togglePasswordVisibility(oldPasswordInput);
-    });
-
-    toggleNewPasswordVisibility.addEventListener('click', function() {
-        togglePasswordVisibility(newPasswordInput);
-    });
-
-    function togglePasswordVisibility(inputElement) {
-        if (inputElement.type === 'password') {
-            inputElement.type = 'text';
-            toggleOldPasswordVisibility.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    showPasswordCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Mengubah tipe input password menjadi text untuk menampilkan password
+            passwordInput.setAttribute('type', 'text');
+            passwordInput1.setAttribute('type', 'text');
         } else {
-            inputElement.type = 'password';
-            toggleOldPasswordVisibility.innerHTML = '<i class="fas fa-eye"></i>';
+            // Mengubah tipe input password menjadi password untuk menyembunyikan password
+            passwordInput.setAttribute('type', 'password');
+            passwordInput1.setAttribute('type', 'password');
         }
-    }
+    });
 </script>

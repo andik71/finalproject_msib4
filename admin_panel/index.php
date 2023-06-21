@@ -16,7 +16,7 @@ if ($_SESSION['user_role'] === 'viewer') {
     echo "
         <script>
         alert('Anda tidak memiliki hak akses');
-        window.location.href = 'login.php';
+        window.location.href = '../index.php';
         </script>";
     exit;
 }

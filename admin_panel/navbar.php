@@ -1,3 +1,11 @@
+<?php
+
+$id_user = $_SESSION['id_user'];
+$data_user = select("SELECT * FROM user WHERE id_user = '$id_user'")[0];
+
+?>
+
+
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
 
@@ -53,8 +61,8 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['name'] ?></span>
-                        <img class="img-profile rounded-circle" src="<?= $_SESSION['img'] ?>">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $data_user['name'] ?></span>
+                        <img class="img-profile rounded-circle" src="<?= $data_user['img'] ?>">
                     </a>
 
                     <!-- Dropdown - User Information -->
@@ -70,6 +78,11 @@
                         <a class="dropdown-item" href="index.php?page=profile_changepassword&id=<?= $_SESSION['id_user'] ?>">
                             <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                             Change Password
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="../index.php">
+                            <i class="fas fa-film fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Go to Main Page
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

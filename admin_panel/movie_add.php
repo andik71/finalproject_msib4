@@ -85,11 +85,11 @@ if (isset($_POST['save'])) {
                     <div class="invalid-feedback" data-sb-feedback="country:required">Country is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="id_category">Category (Genre || Tags)</label>
+                    <label class="form-label" for="id_category">Category (Genre - Tags)</label>
                     <select class="form-control form-select" id="id_category" name="id_category" aria-label="Tags Name">
                         <?php
                         foreach ($data_category as $dc) { ?>
-                            <option value="<?= $dc['id_category'] ?>"><?= $dc['genre'] ?> || <?= $dc['tags'] ?> </option>
+                            <option value="<?= $dc['id_category'] ?>"><?= $dc['genre'] ?> - <?= $dc['tags'] ?> </option>
                         <?php } ?>
                     </select>
                 </div>

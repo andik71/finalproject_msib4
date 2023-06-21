@@ -8,7 +8,7 @@ if (!isset($_SESSION['login'])) {
     echo "
     <script>
     alert('Login terlebih dahulu');
-    window.location.href = 'login.php';
+    window.location.href = '../index.php';
     </script>";
     exit;
 }
@@ -23,5 +23,5 @@ session_unset();
 session_destroy();
 
 // Arahkan pengguna ke halaman login setelah keluar dari sesi
-header("Location: login.php");
+header("Location: index.php");
 exit;

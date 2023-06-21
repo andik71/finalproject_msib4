@@ -97,24 +97,43 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre DESC");
 <script>
     const contactForm = document.getElementById('contact-form');
 
-contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    const url = e.target.action;
-    const formData = new FormData(contactForm);
+        const url = e.target.action;
+        const formData = new FormData(contactForm);
 
-    fetch(url, {
-        method: "POST",
-        body: formData,
-        mode: "no-cors",
+        fetch(url, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors",
+            })
+            .then((e) => {
+                alert("Successful To Send Message");
+                window.location.href = 'index.php?page=contact'
+            })
+            .catch((e) => alert("Failed To Send Message"));
     })
-    .then((e) => {
-        alert("Successful To Send Message");
-        window.location.href = 'index.php?page=contact'
-    })
-    .catch((e) => alert("Failed To Send Message"));
-})
 </script>
+
+<!-- Preview Image -->
+<script>
+    // Fungsi untuk preview gambar
+    function previewImage(event) {
+        const img = document.querySelector('#formFile');
+        const imgPreview = document.querySelector('.img-thumbnail');
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            imgPreview.src = event.target.result;
+        };
+
+        if (img.files && img.files[0]) {
+            reader.readAsDataURL(img.files[0]);
+        }
+    }
+</script>
+
 </body>
 
 </html>

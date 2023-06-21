@@ -35,8 +35,6 @@ window.location.href = 'index.php?page=dashboard';
             <h4 class="m-0 font-weight-bold text-primary">Edit Data</h4>
         </div>
         <div class="card-body">
-
-
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <!-- Left Grid -->
@@ -63,10 +61,18 @@ window.location.href = 'index.php?page=dashboard';
                             <label class="form-label" for="username">Username</label>
                             <input class="form-control" id="username" name="username" type="text" value="<?= $data_user['username'] ?>" placeholder="" data-sb-validations="required" />
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="user_role">User Level</label>
-                            <input class="form-control" id="user_role" name="user_role" type="text" value="<?= $data_user['user_role'] ?>" placeholder="" data-sb-validations="required" />
-                        </div>
+
+                        <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                            <div class="mb-3">
+                                <label class="form-label" for="user_role">User Role</label>
+                                <select class="form-control form-select" id="user_role" name="user_role" aria-label="User Role">
+                                    <option value="admin" <?= ($data_user['user_role'] == 'admin') ? 'selected' : '' ?>>Admin</option>
+                                    <option value="user" <?= ($data_user['user_role'] == 'user') ? 'selected' : '' ?>>User</option>
+                                    <option value="viewer" <?= ($data_user['user_role'] == 'viewer') ? 'selected' : '' ?>>Viewer</option>
+                                </select>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="mb-3">
                             <label class="form-label" for="formFile">Replace Image</label>
                             <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" onchange="previewImage(event)" />
@@ -93,11 +99,8 @@ window.location.href = 'index.php?page=dashboard';
                         </div>
                     </div>
                 </div>
-
             </form>
-
         </div>
     </div>
-
 </div>
 <!-- /.container-fluid -->

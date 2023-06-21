@@ -1,5 +1,15 @@
 <?php
 
+// Base URL
+function base_url()
+{
+    //$_SERVER['SERVER_NAME'] : alamat website, misalkan websitemu.com
+    // $_SERVER['SCRIPT_NAME'] : directory website, websitemu.com/blog/ $_SERVER['SCRIPT_NAME'] : blog
+    $url_dasar  = "http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']);
+    return $url_dasar;
+}
+// End. Base URL
+
 // ==== SELECT QUERY ==== //
 function select($query)
 {
@@ -97,11 +107,6 @@ function edit_actor($post)
     $country    = mysqli_real_escape_string($koneksi, strip_tags($post['country']));
     $img        = upload_file_actor($id);
 
-    // Validasi Upload File
-    if (!$img) {
-        return false;
-    }
-
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "UPDATE actor SET name = ?, birth = ?, bio = ?, occupation = ?, country = ?, img = ? WHERE id_actor = ?");
     mysqli_stmt_bind_param($stmt, "ssssssi", $name, $birth, $bio, $occupation, $country, $img, $id);
@@ -188,8 +193,8 @@ function upload_file_actor($id = NULL)
     $fileTmp   = isset($_FILES['img']) ? $_FILES['img']['tmp_name'] : '';
 
     // Cek apakah ada file yang diunggah
-    if (empty($fileName) || $fileError === UPLOAD_ERR_NO_FILE) {
-        // Mengambil path file foto sebelumnya dari database berdasarkan id_actor
+    if (empty($fileName)) {
+        // Mendapatkan path file foto sebelumnya dari database berdasarkan id_actor
         $query  = "SELECT img FROM actor WHERE id_actor = '$id'";
         $result = mysqli_query($koneksi, $query);
 
@@ -206,10 +211,12 @@ function upload_file_actor($id = NULL)
         // Mendapatkan path file foto sebelumnya (misalnya dari database)
         $row          = mysqli_fetch_assoc($result);
         $previousFile = $row['img'];
+
+        return $previousFile; // Mengembalikan path file foto sebelumnya
     } else {
         // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
         if ($id) {
-            // Mengambil path file foto sebelumnya dari database berdasarkan id_actor
+            // Mendapatkan path file foto sebelumnya dari database berdasarkan id_actor
             $query  = "SELECT img FROM actor WHERE id_actor = '$id'";
             $result = mysqli_query($koneksi, $query);
 
@@ -278,9 +285,6 @@ function upload_file_actor($id = NULL)
 
     return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
 }
-
-
-
 
 // ==== END ACTOR CONTROLLER ==== //
 // ==== DIRECTOR CONTROLLER ==== //
@@ -420,84 +424,107 @@ function delete_director($id)
 // UPLOAD FILE DIRECTOR
 function upload_file_director($id = NULL)
 {
+    global $koneksi;
+
+    // Tangkap name
+    $fileName  = isset($_FILES['img']) ? $_FILES['img']['name'] : '';
+    $fileSize  = isset($_FILES['img']) ? $_FILES['img']['size'] : '';
+    $fileError = isset($_FILES['img']) ? $_FILES['img']['error'] : '';
+    $fileTmp   = isset($_FILES['img']) ? $_FILES['img']['tmp_name'] : '';
 
     // Cek apakah ada file yang diunggah
-    if (!isset($_FILES['img']) || $_FILES['img']['error'] === UPLOAD_ERR_NO_FILE) {
-        return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
-    }
-
-    // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
-    if ($id) {
-        global $koneksi;
-
-        // Mengambil path file foto sebelumnya dari database berdasarkan id_director
-        $query = "SELECT img FROM director WHERE id_director = '$id'";
+    if (empty($fileName)) {
+        // Mendapatkan path file foto sebelumnya dari database berdasarkan id_director
+        $query  = "SELECT img FROM director WHERE id_director = '$id'";
         $result = mysqli_query($koneksi, $query);
 
         if (!$result) {
             // Query error handling
-            echo "<script>
-                alert('Terjadi kesalahan saat mengambil data dari database');
-                window.location.href = 'index.php?page=director';
+            echo "
+                <script>
+                    alert('Terjadi kesalahan saat mengambil data dari database');
+                    window.location.href = 'index.php?page=director';
                 </script>";
             die();
         }
 
         // Mendapatkan path file foto sebelumnya (misalnya dari database)
-        $row = mysqli_fetch_assoc($result);
+        $row          = mysqli_fetch_assoc($result);
         $previousFile = $row['img'];
 
-        // Menghapus file foto sebelumnya (jika ada)
-        if (file_exists($previousFile)) {
-            unlink($previousFile);
+        return $previousFile; // Mengembalikan path file foto sebelumnya
+    } else {
+        // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
+        if ($id) {
+            // Mendapatkan path file foto sebelumnya dari database berdasarkan id_director
+            $query  = "SELECT img FROM director WHERE id_director = '$id'";
+            $result = mysqli_query($koneksi, $query);
+
+            if (!$result) {
+                // Query error handling
+                echo "
+                    <script>
+                        alert('Terjadi kesalahan saat mengambil data dari database');
+                        window.location.href = 'index.php?page=director';
+                    </script>";
+                die();
+            }
+
+            // Mendapatkan path file foto sebelumnya (misalnya dari database)
+            $row          = mysqli_fetch_assoc($result);
+            $previousFile = $row['img'];
+
+            // Menghapus file foto sebelumnya (jika ada)
+            if (file_exists($previousFile)) {
+                unlink($previousFile);
+            }
         }
     }
 
-    // Tangkap name
-    $fileName        = $_FILES['img']['name'];
-    $fileSize        = $_FILES['img']['size'];
-    $fileError       = $_FILES['img']['error'];
-    $fileTmp         = $_FILES['img']['tmp_name'];
-
     // Cek Upload File
-    $extension_valid = ['jpg', 'jpeg', 'png'];
-    $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
-    $extension       = strtolower($extension);
+    if (!empty($fileName)) {
+        $extension_valid = ['jpg', 'jpeg', 'png'];
+        $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
+        $extension       = strtolower($extension);
 
-    // Validasi Ekstensi File Upload
-    if (!in_array($extension, $extension_valid)) {
-        echo "<script>
-            alert('Format File Tidak Valid');
-            window.location.href = 'index.php?page=director';
-            </script>";
-        die();
+        // Validasi Ekstensi File Upload
+        if (!in_array($extension, $extension_valid)) {
+            echo "
+                <script>
+                    alert('Format File Tidak Valid');
+                    window.location.href = 'index.php?page=director';
+                </script>";
+            die();
+        }
+
+        // Validasi Ukuran File Upload > 2 MB
+        if ($fileSize > 2048000) {
+            echo "
+                <script>
+                    alert('Ukuran File Max: 2 MB');
+                    window.location.href = 'index.php?page=director';
+                </script>";
+            die();
+        }
+
+        // Generate New File
+        $newFile = 'img/' . uniqid('', true) . '.' . $extension;
+
+        // Pindahkan File Ke Local Storage
+        if (move_uploaded_file($fileTmp, $newFile)) {
+            return $newFile;
+        } else {
+            echo "
+                <script>
+                    alert('Gagal mengunggah file');
+                    window.location.href = 'index.php?page=director';
+                </script>";
+            die();
+        }
     }
 
-    // Validasi Ukuran File Upload > 2 MB
-    if ($fileSize > 2048000) {
-        echo "<script>
-            alert('Ukuran File Max: 2 MB');
-            window.location.href = 'index.php?page=director';
-            </script>";
-        die();
-    }
-
-    // Generate New File
-    $newFile = 'img/' . uniqid('', true) . '.' . $extension;
-
-    // Pindahkan File Ke Local Storage
-    if (move_uploaded_file($fileTmp, $newFile)) {
-        return $newFile;
-    } else {
-        echo "<script>
-            alert('Gagal mengunggah file');
-            window.location.href = 'index.php?page=director';
-            </script>";
-        die();
-    }
+    return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
 }
-
-
 
 // ==== END DIRECTOR CONTROLLER ==== //
 // ==== TAG CONTROLLER ==== //
@@ -777,11 +804,12 @@ function add_reviewer($post)
 {
     global $koneksi;
 
-    $movie_id   = mysqli_real_escape_string($koneksi, strip_tags($post['movie_id']));
-    $user_id    = mysqli_real_escape_string($koneksi, strip_tags($post['user_id']));
-    $comment    = mysqli_real_escape_string($koneksi, strip_tags($post['comment']));
-    $date       = date("Y-m-d h:i:s"); // Mengambil waktu sekarang
-    $rating     = mysqli_real_escape_string($koneksi, strip_tags($post['rating']));
+    $movie_id = mysqli_real_escape_string($koneksi, strip_tags($post['movie_id']));
+    $user_id = mysqli_real_escape_string($koneksi, strip_tags($post['user_id']));
+    $comment = mysqli_real_escape_string($koneksi, strip_tags($post['comment']));
+    $date = date("Y-m-d h:i:s"); // Mengambil waktu sekarang
+    $rating = mysqli_real_escape_string($koneksi, strip_tags($post['rating']));
+
     // Prepare statement
     $stmt = mysqli_prepare($koneksi, "INSERT INTO reviewer (movie_id, user_id, comment, date, rating) VALUES (?, ?, ?, ?, ?)");
     mysqli_stmt_bind_param($stmt, "sssss", $movie_id, $user_id, $comment, $date, $rating);
@@ -982,81 +1010,106 @@ function delete_movie($id)
 // UPLOAD FILE MOVIE
 function upload_file_movie($id = NULL)
 {
+    global $koneksi;
+
+    // Tangkap name
+    $fileName  = isset($_FILES['img']) ? $_FILES['img']['name'] : '';
+    $fileSize  = isset($_FILES['img']) ? $_FILES['img']['size'] : '';
+    $fileError = isset($_FILES['img']) ? $_FILES['img']['error'] : '';
+    $fileTmp   = isset($_FILES['img']) ? $_FILES['img']['tmp_name'] : '';
 
     // Cek apakah ada file yang diunggah
-    if (!isset($_FILES['img']) || $_FILES['img']['error'] === UPLOAD_ERR_NO_FILE) {
-        return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
-    }
-
-    // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
-    if ($id) {
-        global $koneksi;
-
-        // Mengambil path file foto sebelumnya dari database berdasarkan id_movie
-        $query = "SELECT img FROM movie WHERE id_movie = '$id'";
+    if (empty($fileName)) {
+        // Mendapatkan path file foto sebelumnya dari database berdasarkan id_movie
+        $query  = "SELECT img FROM movie WHERE id_movie = '$id'";
         $result = mysqli_query($koneksi, $query);
 
         if (!$result) {
             // Query error handling
-            echo "<script>
-                alert('Terjadi kesalahan saat mengambil data dari database');
-                window.location.href = 'index.php?page=movie';
+            echo "
+                <script>
+                    alert('Terjadi kesalahan saat mengambil data dari database');
+                    window.location.href = 'index.php?page=movie';
                 </script>";
             die();
         }
 
         // Mendapatkan path file foto sebelumnya (misalnya dari database)
-        $row = mysqli_fetch_assoc($result);
+        $row          = mysqli_fetch_assoc($result);
         $previousFile = $row['img'];
 
-        // Menghapus file foto sebelumnya (jika ada)
-        if (file_exists($previousFile)) {
-            unlink($previousFile);
+        return $previousFile; // Mengembalikan path file foto sebelumnya
+    } else {
+        // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
+        if ($id) {
+            // Mendapatkan path file foto sebelumnya dari database berdasarkan id_movie
+            $query  = "SELECT img FROM movie WHERE id_movie = '$id'";
+            $result = mysqli_query($koneksi, $query);
+
+            if (!$result) {
+                // Query error handling
+                echo "
+                    <script>
+                        alert('Terjadi kesalahan saat mengambil data dari database');
+                        window.location.href = 'index.php?page=movie';
+                    </script>";
+                die();
+            }
+
+            // Mendapatkan path file foto sebelumnya (misalnya dari database)
+            $row          = mysqli_fetch_assoc($result);
+            $previousFile = $row['img'];
+
+            // Menghapus file foto sebelumnya (jika ada)
+            if (file_exists($previousFile)) {
+                unlink($previousFile);
+            }
         }
     }
 
-    // Tangkap name
-    $fileName        = $_FILES['img']['name'];
-    $fileSize        = $_FILES['img']['size'];
-    $fileError       = $_FILES['img']['error'];
-    $fileTmp         = $_FILES['img']['tmp_name'];
-
     // Cek Upload File
-    $extension_valid = ['jpg', 'jpeg', 'png'];
-    $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
-    $extension       = strtolower($extension);
+    if (!empty($fileName)) {
+        $extension_valid = ['jpg', 'jpeg', 'png'];
+        $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
+        $extension       = strtolower($extension);
 
-    // Validasi Ekstensi File Upload
-    if (!in_array($extension, $extension_valid)) {
-        echo "<script>
-            alert('Format File Tidak Valid');
-            window.location.href = 'index.php?page=movie';
-            </script>";
-        die();
+        // Validasi Ekstensi File Upload
+        if (!in_array($extension, $extension_valid)) {
+            echo "
+                <script>
+                    alert('Format File Tidak Valid');
+                    window.location.href = 'index.php?page=movie';
+                </script>";
+            die();
+        }
+
+        // Validasi Ukuran File Upload > 2 MB
+        if ($fileSize > 2048000) {
+            echo "
+                <script>
+                    alert('Ukuran File Max: 2 MB');
+                    window.location.href = 'index.php?page=movie';
+                </script>";
+            die();
+        }
+
+        // Generate New File
+        $newFile = 'img/' . uniqid('', true) . '.' . $extension;
+
+        // Pindahkan File Ke Local Storage
+        if (move_uploaded_file($fileTmp, $newFile)) {
+            return $newFile;
+        } else {
+            echo "
+                <script>
+                    alert('Gagal mengunggah file');
+                    window.location.href = 'index.php?page=movie';
+                </script>";
+            die();
+        }
     }
 
-    // Validasi Ukuran File Upload > 2 MB
-    if ($fileSize > 2048000) {
-        echo "<script>
-            alert('Ukuran File Max: 2 MB');
-            window.location.href = 'index.php?page=movie';
-            </script>";
-        die();
-    }
-
-    // Generate New File
-    $newFile = 'img/' . uniqid('', true) . '.' . $extension;
-
-    // Pindahkan File Ke Local Storage
-    if (move_uploaded_file($fileTmp, $newFile)) {
-        return $newFile;
-    } else {
-        echo "<script>
-            alert('Gagal mengunggah file');
-            window.location.href = 'index.php?page=movie';
-            </script>";
-        die();
-    }
+    return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
 }
 
 // ==== END MOVIE CONTROLLER ==== //
@@ -1073,8 +1126,8 @@ function add_user($post)
     $name       = mysqli_real_escape_string($koneksi, strip_tags($post['fullname']));
     $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
     $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
-    $user_role  = 'admin';
-    $img        = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930';
+    $user_role  = 'viewer';
+    $img        = 'img/default_user.jpg';
 
     // Password Encryptor
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -1195,88 +1248,149 @@ function delete_user($id)
 // UPLOAD FILE MOVIE
 function upload_file_user($id = NULL)
 {
+    global $koneksi;
+
+    // Tangkap name
+    $fileName  = isset($_FILES['img']) ? $_FILES['img']['name'] : '';
+    $fileSize  = isset($_FILES['img']) ? $_FILES['img']['size'] : '';
+    $fileError = isset($_FILES['img']) ? $_FILES['img']['error'] : '';
+    $fileTmp   = isset($_FILES['img']) ? $_FILES['img']['tmp_name'] : '';
 
     // Cek apakah ada file yang diunggah
-    if (!isset($_FILES['img']) || $_FILES['img']['error'] === UPLOAD_ERR_NO_FILE) {
-        return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
-    }
-
-    // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
-    if ($id) {
-        global $koneksi;
-
-        // Mengambil path file foto sebelumnya dari database berdasarkan id_user
-        $query = "SELECT img FROM user WHERE id_user = '$id'";
+    if (empty($fileName)) {
+        // Mendapatkan path file foto sebelumnya dari database berdasarkan id_user
+        $query  = "SELECT img FROM user WHERE id_user = '$id'";
         $result = mysqli_query($koneksi, $query);
 
         if (!$result) {
             // Query error handling
-            echo "<script>
-                alert('Terjadi kesalahan saat mengambil data dari database');
-                window.location.href = 'index.php?page=user';
+            echo "
+                <script>
+                    alert('Terjadi kesalahan saat mengambil data dari database');
+                    window.location.href = 'index.php?page=user';
                 </script>";
             die();
         }
 
-        $fileName        = $_FILES['img']['name'];
-
-        // Cek apakah ada file yang diunggah
-        if ($fileName === '') {
-            return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
-        }
-
         // Mendapatkan path file foto sebelumnya (misalnya dari database)
-        $row = mysqli_fetch_assoc($result);
+        $row          = mysqli_fetch_assoc($result);
         $previousFile = $row['img'];
 
-        // Menghapus file foto sebelumnya (jika ada)
-        if (file_exists($previousFile)) {
-            unlink($previousFile);
+        return $previousFile; // Mengembalikan path file foto sebelumnya
+    } else {
+        // Kondisi jika terdapat ID maka file sebelumnya akan dihapus
+        if ($id) {
+            // Mendapatkan path file foto sebelumnya dari database berdasarkan id_user
+            $query  = "SELECT img FROM user WHERE id_user = '$id'";
+            $result = mysqli_query($koneksi, $query);
+
+            if (!$result) {
+                // Query error handling
+                echo "
+                    <script>
+                        alert('Terjadi kesalahan saat mengambil data dari database');
+                        window.location.href = 'index.php?page=user';
+                    </script>";
+                die();
+            }
+
+            // Mendapatkan path file foto sebelumnya (misalnya dari database)
+            $row          = mysqli_fetch_assoc($result);
+            $previousFile = $row['img'];
+
+            // Menghapus file foto sebelumnya (jika ada)
+            if (file_exists($previousFile)) {
+                unlink($previousFile);
+            }
         }
     }
 
-    // Tangkap name
-    $fileName        = $_FILES['img']['name'];
-    $fileSize        = $_FILES['img']['size'];
-    $fileError       = $_FILES['img']['error'];
-    $fileTmp         = $_FILES['img']['tmp_name'];
-
     // Cek Upload File
-    $extension_valid = ['jpg', 'jpeg', 'png'];
-    $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
-    $extension       = strtolower($extension);
+    if (!empty($fileName)) {
+        $extension_valid = ['jpg', 'jpeg', 'png'];
+        $extension       = pathinfo($fileName, PATHINFO_EXTENSION);
+        $extension       = strtolower($extension);
 
-    // Validasi Ekstensi File Upload
-    if (!in_array($extension, $extension_valid)) {
-        echo "<script>
-            alert('Format File Tidak Valid');
-            window.location.href = 'index.php?page=user';
-            </script>";
-        die();
+        // Validasi Ekstensi File Upload
+        if (!in_array($extension, $extension_valid)) {
+            echo "
+                <script>
+                    alert('Format File Tidak Valid');
+                    window.location.href = 'index.php?page=user';
+                </script>";
+            die();
+        }
+
+        // Validasi Ukuran File Upload > 2 MB
+        if ($fileSize > 2048000) {
+            echo "
+                <script>
+                    alert('Ukuran File Max: 2 MB');
+                    window.location.href = 'index.php?page=user';
+                </script>";
+            die();
+        }
+
+        // Generate New File
+        $newFile = 'img/' . uniqid('', true) . '.' . $extension;
+
+        // Pindahkan File Ke Local Storage
+        if (move_uploaded_file($fileTmp, $newFile)) {
+            return $newFile;
+        } else {
+            echo "
+                <script>
+                    alert('Gagal mengunggah file');
+                    window.location.href = 'index.php?page=user';
+                </script>";
+            die();
+        }
     }
 
-    // Validasi Ukuran File Upload > 2 MB
-    if ($fileSize > 2048000) {
-        echo "<script>
-            alert('Ukuran File Max: 2 MB');
-            window.location.href = 'index.php?page=user';
-            </script>";
-        die();
-    }
-
-    // Generate New File
-    $newFile = 'img/' . uniqid('', true) . '.' . $extension;
-
-    // Pindahkan File Ke Local Storage
-    if (move_uploaded_file($fileTmp, $newFile)) {
-        return $newFile;
-    } else {
-        echo "<script>
-            alert('Gagal mengunggah file');
-            window.location.href = 'index.php?page=user';
-            </script>";
-        die();
-    }
+    return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
 }
+
+
+function profile_update($post)
+{
+    global $koneksi;
+    $id         = $post['id_user'];
+
+    $username   = mysqli_real_escape_string($koneksi, strip_tags($post['username']));
+    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
+    $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
+    $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
+    $user_role  = mysqli_real_escape_string($koneksi, strip_tags($post['user_role']));
+    $img        = upload_file_user($id);
+
+    // Validasi Upload File
+    if (!$img) {
+        return false;
+    }
+
+    // Prepare statement
+    $stmt = mysqli_prepare($koneksi, "UPDATE user SET username = ?, name = ?, email = ?, password = ?, img = ?, user_role = ? WHERE id_user = ?");
+    mysqli_stmt_bind_param($stmt, "ssssssi", $username, $name, $email, $password, $img, $user_role, $id);
+
+    // Execute statement
+    $result = mysqli_stmt_execute($stmt);
+
+    exit;
+
+    // Check for errors
+    if ($result === false) {
+        echo "Error in SQL query: " . mysqli_error($koneksi);
+        return false;
+    }
+
+    // Get the number of affected rows
+    $affectedRows = mysqli_stmt_affected_rows($stmt);
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+
+    return $affectedRows;
+}
+
 
 // ==== END USER CONTROLLER ==== //

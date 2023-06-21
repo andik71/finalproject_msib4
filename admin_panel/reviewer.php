@@ -6,7 +6,7 @@ INNER JOIN movie as m ON m.id_movie = r.movie_id
 ORDER BY id_reviewer DESC");
 
 $arr_obj = [
-    'No', 'Username', 'Movie Title','Comment', 'Date', 'Rating', 'Action'
+    'No', 'Username', 'Movie Title','Comment', 'Date', 'Action'
 ];
 
 $no = 1;
@@ -26,7 +26,7 @@ $no = 1;
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <!-- TODO :: Link ke Halaman Public -->
-            <a href="index.php?page=reviewer" class="btn btn-primary btn-icon-split btn-sm">
+            <a href="../index.php?page=movies_list" class="btn btn-primary btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                     <i class="fas fa-arrow-left"></i>
                 </span>

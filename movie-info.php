@@ -244,7 +244,7 @@ if (isset($_POST['submit'])) {
                                         <div class="rating-line">
                                             <label>Rating:</label>
                                             <div class="form-rating" name="rating">
-                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                            <?php for ($i = 5; $i >= 1; $i--) { ?>
                                                     <input type="radio" id="rating-input-<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" />
                                                     <label for="rating-input-<?php echo $i; ?>">
                                                         <span class="rating-active-icon"><i class="fas fa-star"></i></span>

@@ -48,11 +48,11 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
                     </div>
                     <div class="mb-3">
                         <label for="country" class="form-label">Country</label>
-                        <input type="text" class="form-control" id="country" placeholder="" value="<?= $data_actor['country'] ?>" disabled readonly>
+                        <input type="text" class="form-control" id="country" placeholder="" value="<?= $data_director['country'] ?>" disabled readonly>
                     </div>
                     <div class="mb-3">
                         <label for="occupation" class="form-label">Occupation</label>
-                        <input type="text" class="form-control" id="occupation" placeholder="" value="<?= $data_actor['occupation'] ?>" disabled readonly>
+                        <input type="text" class="form-control" id="occupation" placeholder="" value="<?= $data_director['occupation'] ?>" disabled readonly>
                     </div>
                 </div>
             </div>

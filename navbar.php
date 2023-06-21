@@ -1,6 +1,8 @@
 <?php
-$data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
 
+// $id_user = $_SESSION['id_user'];
+// $data_user = select("SELECT * FROM user WHERE id_user = '$id_user'")[0];
+$data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
 ?>
 
 <body class="body">
@@ -63,22 +65,21 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
 
                         <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
                             <div class="d-flex">
-                                <a class="nav-link btn-theme btn text-white" href="login.php">&nbsp;&nbsp;Login</a>
+                                <a class="nav-link btn-theme btn text-white" href="login.php">&nbsp;&nbsp;Login</a> &nbsp;
                                 <a class="nav-link btn-theme btn text-white" href="register.php">&nbsp;&nbsp;Register</a>
                             </div>
                         </div>
                     <?php } else { ?>
-
 
                         <div class="navbar-extra nav-item-arrow-down nav-hover-show-sub">
                             <a class="nav-link btn-theme btn text-white" href="#" data-role="nav-toggler"><?= $_SESSION['name'] ?></a>
                             <div class="nav-arrow"><i class="fas fa-chevron-down"></i></div>
                             <ul class="collapse nav">
                                 <li>
-                                    <a class="nav-link" href="index.php?page=profile">Profile</a>
+                                    <a class="nav-link" href="index.php?page=edit_profile&id=<?= $_SESSION['id_user'] ?>">Profile</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" href="index.php?page=changepassword">Change Password</a>
+                                    <a class="nav-link" href="index.php?page=change_password&id=<?= $_SESSION['id_user'] ?>">Change Password</a>
                                 </li>
                                 <li>
                                     <a class="nav-link" href="logout.php">Logout</a>

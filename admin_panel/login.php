@@ -32,7 +32,15 @@ if (isset($_POST['login'])) {
     }
 
     $error = true;
+} elseif (isset($_SESSION['login'])) {
+    echo "
+        <script>
+        window.location.href = 'index.php';
+        </script>";
+    exit;
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +53,7 @@ if (isset($_POST['login'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Admin - Film Kita</title>
 
     <!-- Mengimpor font kustom untuk template ini -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -65,7 +73,7 @@ if (isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Login Page</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Admin Panel - FilmKita</h1>
                             </div>
                             <form class="user" action="" method="POST">
                                 <?php if (isset($error)) : ?>
@@ -87,13 +95,6 @@ if (isset($_POST['login'])) {
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block" type="submit" name="login">Login</button>
                             </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.php">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="register.php">Create an Account!</a>
-                            </div>
                         </div>
                     </div>
                 </div>

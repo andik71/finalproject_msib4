@@ -76,7 +76,7 @@ if (isset($_POST['login'])) {
                                 <img src="images/svg/logo-kita.png" alt="" srcset="" width="180">
                             </div>
                             <div class="d-inline ms-auto">
-                                <a class="btn btn-sm btn-theme" href="index.php">Go Back</a>
+                                <a class="btn btn-sm btn-theme" href="index.php">Go Back to Main Page</a>
                             </div>
                         </div>
                     </div>
@@ -84,9 +84,21 @@ if (isset($_POST['login'])) {
 
                     <div class="card-body">
                         <form class="user" action="" method="POST">
+                            <div class="text-muted"><small><em>Please Fill all the required fields</em></small></div>
                             <?php if (isset($error)) : ?>
                                 <div class="alert alert-danger" role="alert">
                                     Username atau Password Salah!
+                                </div>
+                            <?php endif; ?>
+                            <?php if (isset($error) && !empty($error)) : ?>
+                                <div class="alert alert-danger"><?= $error ?></div>
+                            <?php endif; ?>
+                            <?php if (isset($_SESSION['msg']['success']) && !empty($_SESSION['msg']['success'])) : ?>
+                                <div class="alert alert-success">
+                                    <?php
+                                    echo $_SESSION['msg']['success'];
+                                    unset($_SESSION['msg']);
+                                    ?>
                                 </div>
                             <?php endif; ?>
                             <div class="form-group">
@@ -105,7 +117,7 @@ if (isset($_POST['login'])) {
                         </form>
                         <hr>
                         <div class="text-center d-inline d-block">
-                            <a class="small" href="forgot-password.php">Forgot Password?</a>
+                            <a class="small" href="./auth/forgot-password.php">Forgot Password?</a>
                             <a class="small" href="register.php"><strong>Create an Account!</strong></a>
                         </div>
                     </div>

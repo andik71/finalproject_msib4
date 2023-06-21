@@ -7,9 +7,9 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
 
 <section class="after-head d-flex section-text-white position-relative  pt-5" style="background-image: url('images/image1.png');">
     <div class="d-background bg-black-50"></div>
-    <div class="top-block top-inner container">
+     <div class="top-block top-inner container">
         <div class="top-block-content">
-            <h1 class="section-title"><?= $data_director['name'] ?></h1>
+            <h1 class="section-title"><?=  $data_director['name'] ?></h1>
             <div class="page-breadcrumbs">
                 <a class="content-link" href="index.php?page=home">Home</a>
                 <span class="text-theme mx-2"><i class="fas fa-chevron-right"></i></span>
@@ -25,9 +25,9 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
         </div>
         <div class="section-description">
             <div class="card p-4">
-                <div class="grid row">
+                <div class="grid row">                 
                     <div class="col-md-3">
-                        <center><img src="./admin_panel/<?= $data_director['img'] ?>" alt="" srcset="" width="150px">
+                    <img src="./admin_finalproject/<?= $data_director['img'] ?>" alt="" srcset="" width="150px">
                     </div>
                     <div class="col-md-6 p-4">
                         <div class="row">
@@ -44,7 +44,7 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
                                 <span class="font-weight-bold text-dark">Occupation</span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_director['occupation'] ?>
+                            <?= $data_director['Occupation'] ?>
                             </div>
                         </div>
                         <hr>
@@ -53,20 +53,20 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
                                 <span class="font-weight-bold text-dark">Country</span>
                             </div>
                             <div class="col-md-4">
-                                <?= $data_director['country'] ?>
+                            <?= $data_director['Country'] ?>
                             </div>
                         </div>
                     </div>
-                </div>
+               </div>                           
             </div>
         </div>
-
+        
         <br>
         <div class="section-head">
             <h2 class="section-title text-uppercase text-dark">mini bio</h2>
         </div>
         <div class="card section-description p-5">
-            <p class="lead text-justify"><?= $data_director['bio'] ?></p>
+            <p class="lead text-justify"><?=  $data_director['bio'] ?></p>             
         </div>
         <br>
     </div>

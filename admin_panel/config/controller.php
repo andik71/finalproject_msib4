@@ -1127,7 +1127,7 @@ function add_user($post)
     $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
     $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
     $user_role  = 'viewer';
-    $img        = 'img/default_user.jpg';
+    $img        = 'img/default_user.png';
 
     // Password Encryptor
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -1349,48 +1349,5 @@ function upload_file_user($id = NULL)
 
     return NULL; // Mengembalikan NULL jika tidak ada file yang diunggah
 }
-
-
-function profile_update($post)
-{
-    global $koneksi;
-    $id         = $post['id_user'];
-
-    $username   = mysqli_real_escape_string($koneksi, strip_tags($post['username']));
-    $name       = mysqli_real_escape_string($koneksi, strip_tags($post['name']));
-    $email      = mysqli_real_escape_string($koneksi, strip_tags($post['email']));
-    $password   = mysqli_real_escape_string($koneksi, strip_tags($post['password']));
-    $user_role  = mysqli_real_escape_string($koneksi, strip_tags($post['user_role']));
-    $img        = upload_file_user($id);
-
-    // Validasi Upload File
-    if (!$img) {
-        return false;
-    }
-
-    // Prepare statement
-    $stmt = mysqli_prepare($koneksi, "UPDATE user SET username = ?, name = ?, email = ?, password = ?, img = ?, user_role = ? WHERE id_user = ?");
-    mysqli_stmt_bind_param($stmt, "ssssssi", $username, $name, $email, $password, $img, $user_role, $id);
-
-    // Execute statement
-    $result = mysqli_stmt_execute($stmt);
-
-    exit;
-
-    // Check for errors
-    if ($result === false) {
-        echo "Error in SQL query: " . mysqli_error($koneksi);
-        return false;
-    }
-
-    // Get the number of affected rows
-    $affectedRows = mysqli_stmt_affected_rows($stmt);
-
-    // Close statement
-    mysqli_stmt_close($stmt);
-
-    return $affectedRows;
-}
-
 
 // ==== END USER CONTROLLER ==== //

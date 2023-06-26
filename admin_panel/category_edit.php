@@ -40,13 +40,13 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Add Data tag</p>
+    <h1 class="h3 mb-2 text-gray-800">Edit Data Category</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melakukan Update. atau edit data record yang tersimpan di database</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Add Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Category</h6>
         </div>
         <div class="card-body">
 

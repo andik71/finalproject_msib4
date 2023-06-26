@@ -27,12 +27,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Mau Logout?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Klik tombol logout untuk keluar dari aplikasi.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-primary" href="logout.php">Logout</a>
@@ -102,7 +102,7 @@
     }
 </script>
 
-<!-- CKEditor Initialization - 'bio' element -->
+<!-- CKEditor Initialization - 'bio' element Integrated with CKFinder-->
 <script>
     // Wait for the DOM to load before accessing the element
     document.addEventListener('DOMContentLoaded', function() {
@@ -112,12 +112,17 @@
         // Check if the element exists before initializing CKEditor
         if (element) {
             // Replace the 'bio' textarea with CKEditor instance
-            CKEDITOR.replace('bio');
+            CKEDITOR.replace('bio', {
+                filebrowserBrowseUrl: 'vendor/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                height: '400px'
+            });
         }
     });
 </script>
 
-<!-- CKEditor Initialization - 'synopsis' element -->
+
+<!-- CKEditor Initialization - 'synopsis' element Integrated with CKFinder-->
 <script>
     // Wait for the DOM to load before accessing the element
     document.addEventListener('DOMContentLoaded', function() {
@@ -127,11 +132,17 @@
         // Check if the element exists before initializing CKEditor
         if (element) {
             // Replace the 'synopsis' textarea with CKEditor instance
-            CKEDITOR.replace('synopsis');
+            CKEDITOR.replace('synopsis', {
+                filebrowserBrowseUrl: 'vendor/ckfinder/ckfinder.html',
+                filebrowserUploadUrl: 'vendor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                height: '400px'
+            });
         }
     });
 </script>
 
+<!-- SB Form Builder CDN -->
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

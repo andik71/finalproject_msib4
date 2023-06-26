@@ -16,8 +16,8 @@ $no = 1;
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data genre</p>
+    <h1 class="h3 mb-2 text-gray-800">Genre Data</h1>
+    <p class="mb-4">Halaman ini merupakan sekumpulan data <strong>genre</strong> yang telah tersimpan dalam database. Admin memiliki akses untuk Create, Update, Read dan Delete data</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -49,7 +49,7 @@ $no = 1;
                                     <div class="d-inline">
                                         <a href="index.php?page=genre_view&id=<?= $row['id_genre'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=genre_edit&id=<?= $row['id_genre'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>
-                                        <a href="index.php?page=genre_delete&id=<?= $row['id_genre'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Remove this data?');"><i class="fas fa-trash"></i></a>
+                                        <a href="index.php?page=genre_delete&id=<?= $row['id_genre'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Hapus data ini?');"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

@@ -36,13 +36,13 @@ window.location.href = 'index.php?page=genre';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Edit Data genre</p>
+    <h1 class="h3 mb-2 text-gray-800">Update Data Genre</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Update. atau edit data genre</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Edit Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Genre</h6>
         </div>
         <div class="card-body">
 

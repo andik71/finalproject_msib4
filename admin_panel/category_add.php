@@ -35,20 +35,20 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Add Data tag</p>
+    <h1 class="h3 mb-2 text-gray-800">Create Data Category</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Create atau tambah data dari category</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Add Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Category</h6>
         </div>
         <div class="card-body">
 
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="genreName">Genre Name</label>
-                    <select class="form-control form-select" id="genreName" name="id_genre" aria-label="Genre Name">
+                    <select class="form-control form-select" id="genreName" name="id_genre" aria-label="Genre Name" required>
                         <?php
                         foreach ($data_genre as $dg) { ?>
                             <option value="<?= $dg['id_genre'] ?>"><?= $dg['genre'] ?></option>
@@ -58,7 +58,7 @@ if (isset($_POST['save'])) {
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="tagsName">Tags Name</label>
-                    <select class="form-control form-select" id="tagsName" name="id_tag" aria-label="Tags Name">
+                    <select class="form-control form-select" id="tagsName" name="id_tag" aria-label="Tags Name" required>
                         <?php
                         foreach ($data_tag as $dt) { ?>
                             <option value="<?= $dt['id_tag'] ?>"><?= $dt['tags'] ?></option>

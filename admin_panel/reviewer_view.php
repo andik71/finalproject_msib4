@@ -13,7 +13,7 @@ WHERE id_reviewer = '$id_reviewer'")[0];
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">View Data Reviewer</h1>
-    <p class="mb-4">Master Data</p>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data User Review</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">

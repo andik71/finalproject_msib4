@@ -90,9 +90,6 @@ if (isset($_POST['login'])) {
                                     Username atau Password Salah!
                                 </div>
                             <?php endif; ?>
-                            <?php if (isset($error) && !empty($error)) : ?>
-                                <div class="alert alert-danger"><?= $error ?></div>
-                            <?php endif; ?>
                             <?php if (isset($_SESSION['msg']['success']) && !empty($_SESSION['msg']['success'])) : ?>
                                 <div class="alert alert-success">
                                     <?php
@@ -132,7 +129,7 @@ if (isset($_POST['login'])) {
 
     <script>
         var showPasswordCheckbox = document.getElementById('showPassword');
-        var passwordInput = document.getElementById('exampleInputPassword');
+        var passwordInput = document.getElementById('password');
 
         showPasswordCheckbox.addEventListener('change', function() {
             if (this.checked) {

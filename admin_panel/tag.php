@@ -16,8 +16,8 @@ $no = 1;
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data tag</p>
+    <h1 class="h3 mb-2 text-gray-800">Tag Data</h1>
+    <p class="mb-4">Halaman ini merupakan sekumpulan data <strong>tag</strong> yang telah tersimpan dalam database. Admin memiliki akses untuk Create, Update, Read dan Delete data</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

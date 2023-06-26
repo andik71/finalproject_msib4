@@ -23,7 +23,6 @@ if (isset($_POST['save'])) {
         window.location.href = 'index.php?page=user';
         </script>";
     } else {
-        exit;
         echo "
         <script>
         alert('Data Gagal Diubah');
@@ -35,9 +34,10 @@ if (isset($_POST['save'])) {
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">View Data User</h1>
-    <p class="mb-4">Master Data</p>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data user</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
@@ -71,7 +71,7 @@ if (isset($_POST['save'])) {
                         <div class="mb-3">
                             <button type="submit" name="save" class="btn btn-primary btn-icon-split btn-sm">
                                 <span class="icon text-white-50">
-                                    <i class="fas fa-person"></i>
+                                    <i class="fas fa-user"></i>
                                 </span>
                                 <span class="text">Change Role</span>
                             </button>

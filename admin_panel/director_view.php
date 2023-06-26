@@ -11,7 +11,7 @@ $data_director = select("SELECT * FROM director WHERE id_director = '$id_directo
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">View Data Director</h1>
-    <p class="mb-4">Master Data</p>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data record</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">

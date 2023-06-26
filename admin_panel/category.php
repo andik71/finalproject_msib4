@@ -17,8 +17,8 @@ $no = 1;
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data category</p>
+    <h1 class="h3 mb-2 text-gray-800">Category Data</h1>
+    <p class="mb-4">Halaman ini merupakan sekumpulan data <strong>category</strong> yang telah tersimpan dalam database. Admin memiliki akses untuk Create, Update, Read dan Delete data</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -51,7 +51,7 @@ $no = 1;
                                     <div class="d-inline">
                                         <a href="index.php?page=category_view&id=<?= $row['id_category'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=category_edit&id=<?= $row['id_category'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>
-                                        <a href="index.php?page=category_delete&id=<?= $row['id_category'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Remove this data?');"><i class="fas fa-trash"></i></a>
+                                        <a href="index.php?page=category_delete&id=<?= $row['id_category'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Hapus data category ini?');"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

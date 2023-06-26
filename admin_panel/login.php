@@ -30,7 +30,6 @@ if (isset($_POST['login'])) {
             exit;
         }
     }
-
     $error = true;
 } elseif (isset($_SESSION['login'])) {
     echo "
@@ -73,7 +72,7 @@ if (isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Admin Panel - FilmKita</h1>
+                                <h1 class="h4 text-gray-900 mb-4"><strong>FilmKita</strong> - Admin Panel</h1>
                             </div>
                             <form class="user" action="" method="POST">
                                 <?php if (isset($error)) : ?>
@@ -94,6 +93,7 @@ if (isset($_POST['login'])) {
                                     </div>
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block" type="submit" name="login">Login</button>
+                                <a href="../index.php" class="btn btn-secondary btn-user btn-block">Go to Public Page</a>
                             </form>
                         </div>
                     </div>

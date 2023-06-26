@@ -36,13 +36,13 @@ window.location.href = 'index.php?page=actor';
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Edit Data Actor</h1>
-    <p class="mb-4">Master Data</p>
+    <h1 class="h3 mb-2 text-gray-800">Update Data Actor</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Update. atau edit data actor</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Edit Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Actor</h6>
         </div>
         <div class="card-body">
 

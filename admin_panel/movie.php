@@ -21,8 +21,8 @@ $no = 1;
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data Movie</p>
+    <h1 class="h3 mb-2 text-gray-800">Movie Data</h1>
+    <p class="mb-4">Halaman ini merupakan sekumpulan data <strong>movie</strong> yang telah tersimpan dalam database. Admin memiliki akses untuk Create, Update, Read dan Delete data</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -55,7 +55,7 @@ $no = 1;
                                 <td><?= date('d/m/Y', strtotime($row['release_date'])) ?></td>
                                 <td class="text-center"><?= format_duration($row['duration']) ?></td>
                                 <td class="text-center"><?= $row['production'] ?></td>
-                                <td class="text-center"><a href="<?= $row['video'] ?>" target="_blank">Trailer</a></td>
+                                <td class="text-center"><a href="<?= $row['video'] ?>" target="_blank">Trailer Video</a></td>
                                 <td class="text-center"><?= $row['country'] ?></td>
                                 <td class="text-center"><?= $row['genre'] ?></td>
                                 <td class="text-center"><?= $row['tags'] ?></td>
@@ -65,7 +65,7 @@ $no = 1;
                                     <div class="d-inline">
                                         <a href="index.php?page=movie_view&id=<?= $row['id_movie'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
                                         <a href="index.php?page=movie_edit&id=<?= $row['id_movie'] ?>" class="btn btn-warning btn-circle btn-md"><i class="fas fa-pen"></i></a>
-                                        <a href="index.php?page=movie_delete&id=<?= $row['id_movie'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Remove this data?');"><i class="fas fa-trash"></i></a>
+                                        <a href="index.php?page=movie_delete&id=<?= $row['id_movie'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Hapus data ini?');"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

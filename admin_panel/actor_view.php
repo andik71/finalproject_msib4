@@ -10,7 +10,7 @@ $data_actor = select("SELECT * FROM actor WHERE id_actor = '$id_actor'")[0];
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">View Data Actor</h1>
-    <p class="mb-4">Master Data</p>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data record</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">

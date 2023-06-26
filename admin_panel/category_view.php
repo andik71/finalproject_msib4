@@ -11,8 +11,8 @@ INNer JOIN tag as t ON c.tag_id = t.id_tag WHERE id_category = '$id_category'")[
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">View Data genre</p>
+    <h1 class="h3 mb-2 text-gray-800">View Data Category</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data record</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">

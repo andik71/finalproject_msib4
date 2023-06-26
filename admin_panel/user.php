@@ -26,8 +26,8 @@ $no = 1;
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Data user</p>
+    <h1 class="h3 mb-2 text-gray-800">User Management</h1>
+    <p class="mb-4">Halaman ini merupakan kumpulan data dari user yang terdaftar pada aplikasi. Admin dapat menghapus dan mengedit user-level dari Akun</p>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -64,7 +64,7 @@ $no = 1;
                                 <td class="text-center">
                                     <div class="d-inline">
                                         <a href="index.php?page=user_view&id=<?= $row['id_user'] ?>" class="btn btn-info btn-circle btn-md"><i class="fas fa-eye"></i></a>
-                                        <a href="index.php?page=user_delete&id=<?= $row['id_user'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Remove this data?');"><i class="fas fa-trash"></i></a>
+                                        <a href="index.php?page=user_delete&id=<?= $row['id_user'] ?>" class="btn btn-danger btn-circle btn-md" onclick="return confirm('Hapus Akun ini selamanya?');"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </td>
                             </tr>

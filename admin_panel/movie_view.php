@@ -22,7 +22,7 @@ $data_movie = !empty($data_movie) ? $data_movie[0] : null;
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">View Data Movie</h1>
-    <p class="mb-4">Master Data</p>
+    <p class="mb-4">Halaman ini merupakan halaman untuk melihat detail dari data record</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">

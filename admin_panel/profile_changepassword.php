@@ -2,6 +2,9 @@
 // Tangkap ID berdasarkan URL
 $id_user = (int)$_GET['id'];
 
+// Notification
+$notif    = '';
+
 $data_user = select("SELECT * FROM user WHERE id_user = '$id_user'")[0];
 
 if (isset($_POST['save'])) {
@@ -9,23 +12,29 @@ if (isset($_POST['save'])) {
     $newPassword = $_POST['new_password'];
 
     if (validateOldPassword($id_user, $oldPassword)) {
-        if (changePassword($id_user, $newPassword)) {
-            echo "
-<script>
-alert('Password Berhasil Diubah');
-window.location.href = 'index.php?page=dashboard';
-</script>";
-        } else {
-            echo "
-<script>
-alert('Gagal mengubah password');
-</script>";
+        if (validateNewPasswordLength($newPassword) && validateNewPasswordSymbols($newPassword)) {
+            if (changePassword($id_user, $newPassword)) {
+                $notif = "
+                <div class='alert alert-success'>Berhasil Mengubah Password</div>
+                ";
+            } else {
+                $notif = "
+                <div class='alert alert-danger'>Gagal Mengubah Password</div>
+                ";
+            }
+        } elseif (!validateNewPasswordLength($newPassword)) {
+            $notif = "
+            <div class='alert alert-danger'>Password minimal 8 karakter</div>
+            ";
+        } elseif (!validateNewPasswordSymbols($newPassword)) {
+            $notif = "
+            <div class='alert alert-danger'>Passwordharus mengandung angka atau simbol</div>
+            ";
         }
     } else {
-        echo "
-<script>
-alert('Password lama tidak valid');
-</script>";
+        $notif = "
+        <div class='alert alert-danger'>Password Lama Tidak Valid</div>
+        ";
     }
 }
 
@@ -41,6 +50,28 @@ function validateOldPassword($userId, $oldPassword)
 
     // Memeriksa apakah password lama yang dimasukkan sesuai dengan password di database
     if (password_verify($oldPassword, $oldPasswordFromDB)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Fungsi untuk validasi panjang password baru
+function validateNewPasswordLength($newPassword)
+{
+    // Memeriksa panjang password baru
+    if (strlen($newPassword) >= 8) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Fungsi untuk validasi keberadaan angka atau simbol pada password baru
+function validateNewPasswordSymbols($newPassword)
+{
+    // Memeriksa apakah password baru mengandung kombinasi angka atau simbol
+    if (preg_match('/[0-9]/', $newPassword) && preg_match('/[^A-Za-z0-9]/', $newPassword)) {
         return true;
     } else {
         return false;
@@ -72,18 +103,21 @@ function changePassword($userId, $newPassword)
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-0">
                     <input type="hidden" name="id_user" value="<?= $data_user['id_user'] ?>">
+                    <?php if (isset($notif)) { ?>
+                        <?= $notif ?>
+                    <?php } ?>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="old_password">Old Password</label>
                     <div class="form-group">
-                        <input class="form-control" id="old_password" name="old_password" type="password" placeholder="Old Password" data-sb-validations="required" />
+                        <input class="form-control" id="old_password" name="old_password" type="password" placeholder="Old Password" data-sb-validations="required" required autofocus />
                     </div>
                     <div class="invalid-feedback" data-sb-feedback="old_password:required">Can't be empty!</div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="new_password">New Password</label>
                     <div class="form-group">
-                        <input class="form-control" id="new_password" name="new_password" type="password" placeholder="New Password" data-sb-validations="required" />
+                        <input class="form-control" id="new_password" name="new_password" type="password" placeholder="New Password" data-sb-validations="required" required />
                     </div>
                     <div class="invalid-feedback" data-sb-feedback="new_password:required">Can't be empty!</div>
                 </div>

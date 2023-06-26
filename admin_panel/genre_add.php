@@ -31,20 +31,20 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Master Data</h1>
-    <p class="mb-4">Add Data tag</p>
+    <h1 class="h3 mb-2 text-gray-800">Create Data Genre</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Create. atau tambah data dari genre</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h4 class="m-0 font-weight-bold text-primary">Add Data</h4>
+            <h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
         </div>
         <div class="card-body">
 
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="genre">Genre Name</label>
-                    <input class="form-control" id="genre" name="genre" type="text" placeholder="Genre Name" data-sb-validations="required" />
+                    <input class="form-control" id="genre" name="genre" type="text" placeholder="Genre Name" data-sb-validations="required" required/>
                     <div class="invalid-feedback" data-sb-feedback="genre:required">Genre Name is required.</div>
                 </div>
                 <div class="d-grid">

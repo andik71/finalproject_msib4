@@ -40,14 +40,14 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Edit Data Director</h1>
-    <p class="mb-4">Master Data</p>
+    <h1 class="h3 mb-2 text-gray-800">Update Data Movie</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Update. atau edit data movie</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary">Edit Data</h4>
+                <h6 class="m-0 font-weight-bold text-primary">Edit Data Movie</h6>
             </div>
             <div class="card-body">
 
@@ -65,12 +65,12 @@ if (isset($_POST['save'])) {
                             <input class="form-control-file" id="formFile" name="img" type="file" accept="image/png, image/jpg, image/jpeg" data-sb-validations="required" onchange="previewImage(event)" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="duration">Duration</label>
+                            <label class="form-label" for="duration">Duration (Menit)</label>
                             <input class="form-control" id="duration" name="duration" type="number" placeholder="" data-sb-validations="required" value="<?= $data_movie['duration'] ?>" />
                             <div class="invalid-feedback" data-sb-feedback="duration:required">Duration is required.</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="video">Video</label>
+                            <label class="form-label" for="video">Video (URL)</label>
                             <input class="form-control" id="video" name="video" type="text" placeholder="" data-sb-validations="required" value="<?= $data_movie['video'] ?>" />
                             <div class="invalid-feedback" data-sb-feedback="video:required">Video is required.</div>
                         </div>

@@ -81,6 +81,12 @@ $data_genre = select("SELECT * from genre ORDER BY id_genre ASC");
                                 <li>
                                     <a class="nav-link" href="index.php?page=change_password&id=<?= $_SESSION['id_user'] ?>">Change Password</a>
                                 </li>
+                                <!-- Membatasi Hak Akses -->
+                                <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                                    <li>
+                                        <a class="nav-link" href="./admin_panel/index.php">Go to Admin Panel</a>
+                                    </li>
+                                <?php endif; ?>
                                 <li>
                                     <a class="nav-link" href="logout.php">Logout</a>
                                 </li>

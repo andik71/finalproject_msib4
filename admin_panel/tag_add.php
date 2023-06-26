@@ -31,20 +31,20 @@ if (isset($_POST['save'])) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Add Data Tag</h1>
-    <p class="mb-4">Master Data</p>
+    <h1 class="h3 mb-2 text-gray-800">Create Data Tag</h1>
+    <p class="mb-4">Halaman ini merupakan halaman untuk Create. atau tambah data dari tag</p>
 
     <!-- Basic Card Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Data Tag</h6>
         </div>
         <div class="card-body">
 
             <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="tag">Tag Name</label>
-                    <input class="form-control" id="tag" name="tags" type="text" placeholder="Tag Name" data-sb-validations="required" />
+                    <input class="form-control" id="tag" name="tags" type="text" placeholder="Tag Name" data-sb-validations="required" required/>
                     <div class="invalid-feedback" data-sb-feedback="tag:required">Tag Name is required.</div>
                 </div>
                 <div class="d-grid">

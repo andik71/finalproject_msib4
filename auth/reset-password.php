@@ -74,22 +74,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </div>
 
-<script>
-    var showPasswordCheckbox = document.getElementById('showPassword');
-    var passwordInput = document.getElementById('new_password');
-    var passwordInput1 = document.getElementById('confirm_password');
-
-    showPasswordCheckbox.addEventListener('change', function() {
-        if (this.checked) {
-            // Mengubah tipe input password menjadi text untuk menampilkan password
-            passwordInput.setAttribute('type', 'text');
-            passwordInput1.setAttribute('type', 'text');
-        } else {
-            // Mengubah tipe input password menjadi password untuk menyembunyikan password
-            passwordInput.setAttribute('type', 'password');
-            passwordInput1.setAttribute('type', 'password');
-        }
-    });
-</script>
-
 <?php include_once('footer.php') ?>

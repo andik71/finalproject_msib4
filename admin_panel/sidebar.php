@@ -69,22 +69,18 @@
 
             <!-- Membatasi Hak Akses -->
             <?php if ($_SESSION['user_role'] === 'admin') : ?>
-
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-
                 <!-- Heading -->
                 <div class="sidebar-heading">
                     User
                 </div>
-
                 <!-- Nav Item - Tables -->
                 <li class="nav-item">
                     <a class="nav-link" href="index.php?page=user">
                         <i class="fas fa-fw fa-user"></i>
                         <span>User Management</span></a>
                 </li>
-
             <?php endif; ?>
             <!-- .End -->
 
